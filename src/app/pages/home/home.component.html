@@ -1,0 +1,42 @@
+<div id="home-page">
+  <div class="hero">
+    <h1>worldhopp</h1>
+  </div>
+
+  <div class="container">
+    <section class="hp-s2-our-fates">
+      <app-hp-text-container [subtitle]="sections.fates.subtitle" [title]="sections.fates.title"
+        [paragraph]="sections.fates.paragraph">
+      </app-hp-text-container>
+      <app-hp-gallery-paralax [images]="sections.fates.images"></app-hp-gallery-paralax>
+    </section>
+
+    <section class="hp-s3-reasons">
+      <div class="hp-s3-10-reasons-box">
+        <div class="hp-s3-10rb-image">
+          <div></div>
+        </div>
+        <h2>world<span class="hopp-name">hopp</span></h2>
+        <p>Te seguimos en tu aventura</p>
+        <button type="button" class="btn btn-primary">¿Te falta un HOPP?</button>
+      </div>
+      <app-hp-text-container [subtitle]="sections.reasons.subtitle" [title]="sections.reasons.title"
+        [paragraph]="sections.reasons.paragraph">
+      </app-hp-text-container>
+      <img src="../../../assets/img/never_alone.PNG" />
+    </section>
+  </div>
+
+  <div class="container">
+    <section class="hp-s4-services">
+      <app-hp-text-container [subtitle]="sections.services.subtitle" [title]="sections.services.title"
+        [paragraph]="sections.services.paragraph">
+      </app-hp-text-container>
+      <app-hp-cards-paralax></app-hp-cards-paralax>
+    </section>
+  </div>
+
+  <div class="hp-btn-goto-contact">
+    <div></div>
+  </div>
+</div>

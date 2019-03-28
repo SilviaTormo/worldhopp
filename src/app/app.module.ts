@@ -2,13 +2,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './pages/home/home.component';
+import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
+import { HpTextContainerComponent } from './components/hp-text-container/hp-text-container.component';
+import { HpGalleryParalaxComponent } from './components/hp-gallery-paralax/hp-gallery-paralax.component';
+import { HpCardsParalaxComponent } from './components/hp-cards-paralax/hp-cards-paralax.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    TopNavbarComponent,
+    HpTextContainerComponent,
+    HpGalleryParalaxComponent,
+    HpCardsParalaxComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,22 @@
+<div class="cards-box">
+  <ng-container *ngFor="let card of cards">
+    <div class="cb-card-box" [ngClass]="{'rellax': card['rellax'] != undefined }"
+      [attr.data-rellax-speed]="(card['rellax'] != undefined && card['rellax']['speed'] != undefined) ? card['rellax']['speed'] : null">
+      <ng-container *ngIf="card['icon'] != undefined">
+        <div class="cb-cb-icon">
+          <img [attr.src]="setBgCard(card.icon)" />
+        </div>
+      </ng-container>
+      <ng-container *ngIf="card['title'] != undefined || card['text'] != undefined">
+        <div class="cb-cb-texts">
+          <ng-container *ngIf="card['title'] != undefined">
+            <h4>{{ card.title }}</h4>
+          </ng-container>
+          <ng-container *ngIf="card['text'] != undefined">
+            <p>{{ card.text }}</p>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

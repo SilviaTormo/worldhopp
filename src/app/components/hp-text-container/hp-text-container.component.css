@@ -1,0 +1,28 @@
+div {
+  width: 90%;
+  max-width: 560px;
+  margin: auto;
+  display: block;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: normal;
+  color: #1686F7;
+  line-height: 22px;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 58px;
+}
+
+p {
+  font-size: 26px;
+  font-weight: normal;
+  color: #878787;
+  line-height: 34px;
+}

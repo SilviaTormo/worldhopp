@@ -1,1 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+.hopp-name::after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  top: 10%;
+  right: 50%;
+  border-radius: 20px;
+  background-color: #17153B;
+  position: absolute;
+}
+
+/* BUTTONS */
+.btn {
+  padding: 15px 30px;
+  margin: 20px auto;
+  border: none;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #f2f2f2;
+  display: block;
+  cursor: pointer;
+}
+
+.btn.btn-primary,
+.btn.btn-secondary-blue,
+.btn.btn-secondary-yellow,
+.btn.btn-secondary-green {
+  color: white;
+}
+
+.btn.btn-primary {
+  background-color: #17153B;
+}
+
+.btn.btn-secondary-blue {
+  background-color: #1686F7;
+}
+
+.btn.btn-secondary-yellow {
+  background-color: #FFFE78;
+}
+
+.btn.btn-secondary-green {
+  background-color: #1BBC9B;
+}

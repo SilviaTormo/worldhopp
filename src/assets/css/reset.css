@@ -1,0 +1,36 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Avenir', sans-serif;
+  color: #17153B;
+  box-sizing: border-box;
+  position: relative;
+}
+
+*:hover,
+*:focus {
+  outline: none;
+}
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+}
+
+body {
+  position: absolute;
+}
+
+img {
+  max-width: 100%;
+  line-height: 1;
+}

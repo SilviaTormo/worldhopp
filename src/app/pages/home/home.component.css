@@ -1,0 +1,122 @@
+#home-page {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 60px;
+  background-color: white;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#home-page .hero {
+  width: 100%;
+  height: 75vh;
+  background-image: url('../../../assets/img/wave.svg'), url('../../../assets/img/coast-4033636.jpg');
+  background-size: 100% auto, cover;
+  background-position: 0% 105%, 50% 50%;
+  background-repeat: no-repeat, no-repeat;
+}
+
+#home-page .hero h1 {
+  top: 50%;
+  left: 50%;
+  font-size: 7.5vw;
+  color: white;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+#home-page .hero h1::after {
+  content: "";
+  width: 4%;
+  top: 15%;
+  right: 22.5%;
+  padding-top: 4%;
+  border-radius: 20px;
+  background-color: white;
+  position: absolute;
+}
+
+#home-page .container {
+  width: 100%;
+}
+
+#home-page>.container:nth-of-type(2) {
+  background-image: url('../../../assets/img/wave.svg'), linear-gradient(#ffffff, #f5f5f5);
+  background-size: 100% auto;
+  background-position: 0% 101%;
+  background-repeat: no-repeat;
+}
+
+#home-page section {
+  padding: 60px 2%;
+}
+
+#home-page .hp-s3-reasons .hp-s3-10-reasons-box {
+  margin: 80px auto;
+  margin-top: 20px;
+  text-align: center;
+  display: block;
+}
+
+#home-page .hp-s3-reasons .hp-s3-10-reasons-box .hp-s3-10rb-image {
+  width: 78px;
+  height: 78px;
+  margin: 15px auto;
+  border-radius: 100%;
+  box-shadow: 0px 0px 25px -3px #c8c8c8;
+  background-color: #c2c2c2;
+  display: block;
+}
+
+#home-page .hp-s3-reasons .hp-s3-10-reasons-box h2 {
+  font-size: 62px;
+  line-height: 1.2;
+}
+
+#home-page .hp-s3-reasons .hp-s3-10-reasons-box h2>span {
+  color: #1686F7;
+}
+
+#home-page .hp-s3-reasons .hp-s3-10-reasons-box h2>span::after {
+  width: 10px;
+  height: 10px;
+  background-color: yellow;
+}
+
+#home-page .hp-s3-reasons .hp-s3-10-reasons-box p {
+  font-size: 18px;
+}
+
+#home-page .hp-btn-goto-contact {
+  width: 128px;
+  height: 128px;
+  right: 4%;
+  bottom: 18%;
+  border-radius: 100%;
+  background-color: transparent;
+  overflow: hidden;
+  position: fixed;
+}
+
+#home-page .hp-btn-goto-contact>div {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-image: url('../../../assets/img/fixed_btn.PNG');
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+#home-page .hp-s3-reasons img {
+  width: 480px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: -110px;
+  display: block;
+}
+
+#home-page .hp-s4-services {
+  margin-top: 50px;
+}
