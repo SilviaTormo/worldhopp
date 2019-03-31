@@ -8,6 +8,7 @@ import { TopNavbarComponent } from './components/top-navbar/top-navbar.component
 import { HpTextContainerComponent } from './components/hp-text-container/hp-text-container.component';
 import { HpGalleryParalaxComponent } from './components/hp-gallery-paralax/hp-gallery-paralax.component';
 import { HpCardsParalaxComponent } from './components/hp-cards-paralax/hp-cards-paralax.component';
+import { HpSliderExperiencesComponent } from './components/hp-slider-experiences/hp-slider-experiences.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HpCardsParalaxComponent } from './components/hp-cards-paralax/hp-cards-
     TopNavbarComponent,
     HpTextContainerComponent,
     HpGalleryParalaxComponent,
-    HpCardsParalaxComponent
+    HpCardsParalaxComponent,
+    HpSliderExperiencesComponent
   ],
   imports: [
     BrowserModule,
