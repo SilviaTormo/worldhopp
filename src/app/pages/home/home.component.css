@@ -3,8 +3,7 @@
   min-height: 100vh;
   padding-top: 60px;
   background-color: white;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 #home-page .hero {
@@ -73,11 +72,16 @@
   line-height: 1.2;
 }
 
-#home-page .hp-s3-reasons .hp-s3-10-reasons-box h2>span {
+#home-page .worlhopp-name {
+  font-size: 62px;
+  line-height: 1.2;
+}
+
+#home-page .worlhopp-name>span {
   color: #1686F7;
 }
 
-#home-page .hp-s3-reasons .hp-s3-10-reasons-box h2>span::after {
+#home-page .worlhopp-name>span::after {
   width: 10px;
   height: 10px;
   background-color: yellow;
@@ -119,4 +123,43 @@
 
 #home-page .hp-s4-services {
   margin-top: 50px;
+}
+
+#home-page .hp-s6-experiences {
+  padding-top: 0;
+}
+
+#home-page .hp-s6-experiences>.hp-s6-experiences-box,
+#home-page .hp-s6-experiences>.hp-s6-experiences-box>* {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+#home-page .hp-s6-experiences>.hp-s6-experiences-box {
+  margin-bottom: 60px;
+}
+
+#home-page .hp-s6-experiences>.hp-s6-experiences-box * {
+  text-align: center;
+}
+
+#home-page .hp-s6-experiences>.hp-s6-experiences-box .worlhopp-name {
+  font-size: 52px;
+}
+
+#home-page .hp-s8-learn-english * {
+  text-align: center;
+}
+
+#home-page .hp-s8-learn-english .hp-s8-le-box {
+  margin-bottom: 20px;
+}
+
+#home-page .hp-s8-learn-english .hp-s8-le-box * {
+  font-size: 48px;
+}
+
+#home-page .hp-s8-learn-english .hp-s8-le-box img {
+  width: 335px;
 }

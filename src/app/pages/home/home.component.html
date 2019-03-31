@@ -8,7 +8,7 @@
       <app-hp-text-container [subtitle]="sections.fates.subtitle" [title]="sections.fates.title"
         [paragraph]="sections.fates.paragraph">
       </app-hp-text-container>
-      <app-hp-gallery-paralax [images]="sections.fates.images"></app-hp-gallery-paralax>
+      <app-hp-gallery-paralax [gallery]="sections.fates.gallery"></app-hp-gallery-paralax>
     </section>
 
     <section class="hp-s3-reasons">
@@ -16,7 +16,7 @@
         <div class="hp-s3-10rb-image">
           <div></div>
         </div>
-        <h2>world<span class="hopp-name">hopp</span></h2>
+        <h2 class="worlhopp-name">world<span class="hopp-name">hopp</span></h2>
         <p>Te seguimos en tu aventura</p>
         <button type="button" class="btn btn-primary">¿Te falta un HOPP?</button>
       </div>
@@ -33,6 +33,39 @@
         [paragraph]="sections.services.paragraph">
       </app-hp-text-container>
       <app-hp-cards-paralax></app-hp-cards-paralax>
+    </section>
+
+    <section class="hp-s5-steps-to-follow">
+      <app-hp-text-container [subtitle]="sections.stepsToFollow.subtitle" [title]="sections.stepsToFollow.title"
+        [paragraph]="sections.stepsToFollow.paragraph">
+      </app-hp-text-container>
+      <app-hp-gallery-paralax [gallery]="sections.stepsToFollow.gallery"></app-hp-gallery-paralax>
+    </section>
+
+    <section class="hp-s6-experiences">
+      <div class="hp-s6-experiences-box">
+        <h2 class="worlhopp-name">world<span class="hopp-name">hopp</span></h2>
+      </div>
+      <app-hp-text-container [subtitle]="sections.experiences.subtitle" [title]="sections.experiences.title"
+        [paragraph]="sections.experiences.paragraph">
+      </app-hp-text-container>
+      <app-hp-slider-experiences [sliderList]="sections.experiences.slider"></app-hp-slider-experiences>
+    </section>
+
+    <section class="hp-s7-team">
+      <app-hp-text-container [subtitle]="sections.team.subtitle" [title]="sections.team.title"
+        [paragraph]="sections.team.paragraph">
+      </app-hp-text-container>
+      <app-hp-gallery-paralax [gallery]="sections.team.gallery"></app-hp-gallery-paralax>
+    </section>
+
+    <section class="hp-s8-learn-english">
+      <div class="hp-s8-le-box">
+        <h2 class="worlhopp-name">world<span class="hopp-name">hopp</span></h2>
+        <img src="../../../assets/img/how_are_you.PNG" />
+      </div>
+      <app-hp-text-container [title]="sections.learnEnglish.title" [paragraph]="sections.learnEnglish.paragraph">
+      </app-hp-text-container>
     </section>
   </div>
 
