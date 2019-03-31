@@ -1,14 +1,19 @@
-<div class="gallery-box">
-  <ng-container *ngFor="let image of images">
-    <div class="gb-image-box" [ngClass]="{'rellax': image['rellax'] != undefined }"
-      [attr.data-rellax-speed]="(image['rellax'] != undefined && image['rellax']['speed'] != undefined) ? image['rellax']['speed'] : null">
+<div class="gallery-box" [ngClass]="{'gb-with-steps': gallery?.steps}">
+  <ng-container *ngFor="let image of gallery.images; let index = index">
+    <div [ngClass]="['gb-image-box', rellaxClassName]"
+      [attr.data-rellax-speed]="(gallery?.rellax && image['rellax'] != undefined && image['rellax']['speed'] != undefined) ? image['rellax']['speed'] : null"
+      [attr.data-step-number]="(gallery?.steps) ? (index + 1) : null">
       <div class="gb-ib-image">
         <div [style.background-image]="setBgImage(image.img)"></div>
       </div>
-      <ng-container *ngIf="image['title'] != undefined">
+      <ng-container *ngIf="image['text'] != undefined">
         <div class="gb-ib-title">
-          <p [ngStyle]="{'color': (image['color'] != undefined) ? image['color'] : null}"
-            [innerHTML]="getFormat(image.title)"></p>
+          <p [ngStyle]="{
+            'color': (image['color'] != undefined) ? image['color'] : null, 
+            'text-align': (image['textAlign'] != undefined) ? image['textAlign'] : null,
+            'font-size': (image['fontSize'] != undefined) ? image['fontSize'] : null,
+            'font-weight': (image['fontWeight'] != undefined) ? image['fontWeight'] : null}"
+            [innerHTML]="getFormat(image.text)"></p>
         </div>
       </ng-container>
     </div>
