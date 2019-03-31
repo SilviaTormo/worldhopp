@@ -8,9 +8,9 @@ import { Title } from '@angular/platform-browser';
 })
 export class HpTextContainerComponent implements OnInit {
 
-  @Input() subtitle: string;
-  @Input() title: string;
-  @Input() paragraph: string;
+  @Input() subtitle: string = null;
+  @Input() title: string = null;
+  @Input() paragraph: string = null;
 
   constructor() { }
 
