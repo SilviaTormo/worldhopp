@@ -1,4 +1,4 @@
-<div class="gallery-box" [ngClass]="{'gb-with-steps': gallery['steps'] != undefined}">
+<div class="gallery-box" [ngClass]="{'gb-with-steps': gallery['steps'] != undefined && gallery['steps'] == true }">
   <ng-container *ngFor="let image of gallery['images']; let index = index">
     <div [ngClass]="['gb-image-box', rellaxClassName]"
       [attr.data-rellax-speed]="(gallery?.rellax && image['rellax'] != undefined && image['rellax']['speed'] != undefined) ? image['rellax']['speed'] : null"
