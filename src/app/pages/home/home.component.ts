@@ -162,7 +162,7 @@ export class HomeComponent implements OnInit {
             }
           },
           {
-            img: '../../../assets/img/guy-598180_1280.jpg',
+            img: 'https://www.kiwihopp.com/wp-content/uploads/2018/04/Natalia.jpg',
             rellax: {
               speed: 1
             }
