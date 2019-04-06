@@ -54,6 +54,14 @@
   text-align: center;
 }
 
+#top-navbar .tnb-main-nav ul {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 #top-navbar .tnb-main-nav li {
   padding: 20px 15px;
   font-weight: 600;
@@ -63,7 +71,22 @@
   color: #1686F7;
 }
 
+#top-navbar .tnb-main-nav li img {
+  width: 100px;
+  pointer-events: none;
+}
+
 #top-navbar .tnb-menu {
   text-align: right;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 670px) {
+  #top-navbar .tnb-main-nav li:not(.logo) {
+    display: none;
+  }
+
+  #top-navbar .tnb-main-nav li.logo {
+    padding: 0;
+  }
 }
