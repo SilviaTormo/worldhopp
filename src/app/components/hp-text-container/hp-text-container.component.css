@@ -1,8 +1,14 @@
 div {
-  width: 90%;
+  width: 95%;
   max-width: 560px;
   margin: auto;
   display: block;
+}
+
+@media only screen and (max-width: 560px) {
+  div * {
+    text-align: center;
+  }
 }
 
 h3 {
