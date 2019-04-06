@@ -25,6 +25,10 @@
   cursor: pointer;
 }
 
+.btn.btn-lg {
+  min-width: 220px;
+}
+
 .btn.btn-primary,
 .btn.btn-secondary-blue,
 .btn.btn-secondary-yellow,
