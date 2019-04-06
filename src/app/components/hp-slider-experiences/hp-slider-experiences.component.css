@@ -35,7 +35,7 @@
   white-space: normal;
   transform: translate(-50%, -50%);
   background-color: rgb(23, 21, 5, 0.52);
-  background-color: rgba(78, 48, 89, 0.76);
+  background-color: rgb(53, 59, 80, 0.47);
   opacity: 0;
   transition: 0.35s;
   display: flex;
@@ -62,7 +62,7 @@
   font-family: "Font Awesome 5 Free";
   font-size: 28px;
   font-weight: 600;
-  color: white;
+  color: #1684f5;
   /* transform: translate(-50%, -50%);
   position: absolute; */
 }
@@ -104,5 +104,6 @@
 }
 
 .slider-container>.slider-dots>ul>li.current-slider {
-  background-color: #17153b;
+  background-color: #353b50;
+  
 }

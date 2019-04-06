@@ -8,11 +8,17 @@
 
 #home-page .hero {
   width: 100%;
-  height: 75vh;
-  background-image: url('../../../assets/img/wave.svg'), url('../../../assets/img/coast-4033636.jpg');
+  height: 85vh;
+  background-image: url('../../../assets/img/wave.svg'),url('../../../assets/img/new-zealand-583177-1920.png');
   background-size: 100% auto, cover;
   background-position: 0% 105%, 50% 50%;
   background-repeat: no-repeat, no-repeat;
+}
+
+#home-page .new-zealand-583177_1920 {
+  width: 1920px;
+  height: 953px;
+  object-fit: contain;
 }
 
 #home-page .hero h1 {
@@ -46,9 +52,15 @@
   background-repeat: no-repeat;
 }
 
-#home-page section {
-  padding: 60px 2%;
+
+
+#home-page .hp-s2-green-left-path {
+  width: 170px;
+  height: 800px;
+  object-fit: contain;
+  position:absolute;
 }
+
 
 #home-page .hp-s3-reasons .hp-s3-10-reasons-box {
   margin: 80px auto;
