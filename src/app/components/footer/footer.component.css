@@ -6,9 +6,10 @@
 
 #footer-content {
   padding: 10px 30px;
+  background-color: white;
 }
 
-#footer-content *:not(i.fa) {
+#footer-content *:not(i.fab) {
   font-family: 'Avenir Roman';
   color: #353b50;
 }
@@ -39,7 +40,7 @@
   text-align: right;
 }
 
-#footer-content li.fc-social-networks li {
+#footer-content li.fc-social-networks li:not(:last-of-type) {
   margin-right: 20px;
 }
 
@@ -57,4 +58,39 @@
   line-height: 1;
   transform: translateX(50%);
   position: absolute;
+}
+
+@media only screen and (max-width: 995px) {
+  #footer-content>ul {
+    flex-direction: column;
+  }
+
+  #footer-content li.fc-social-networks,
+  #footer-content li.fc-legal-notices,
+  #footer-content li.fc-copyright {
+    width: 100%;
+    text-align: center;
+  }
+
+  #footer-content li.fc-social-networks {
+    margin-bottom: 25px;
+  }
+
+  #footer-content li.fc-legal-notices {
+    margin-bottom: 15px;
+  }
+
+  #footer-content li.fc-legal-notices li {
+    width: 100%;
+    padding: 2.5px 0;
+    display: block;
+  }
+
+  #footer-content li.fc-legal-notices li:not(:last-of-type)::after {
+    content: none;
+  }
+
+  #footer-content li.fc-social-networks i.fab {
+    font-size: 21px;
+  }
 }
