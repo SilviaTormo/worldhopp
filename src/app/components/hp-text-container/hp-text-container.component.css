@@ -13,6 +13,10 @@ h3 {
   text-transform: uppercase;
 }
 
+.theme-light h3 {
+  color: #ffffff;
+}
+
 h2 {
   margin-bottom: 20px;
   font-size: 52px;
@@ -20,9 +24,36 @@ h2 {
   line-height: 58px;
 }
 
+.theme-light h2 {
+  color: #ffffff;
+}
+
 p {
   font-size: 26px;
   font-weight: normal;
   color: #878787;
   line-height: 34px;
+}
+
+.theme-light p {
+  color: #ffffff;
+}
+
+@media only screen and (max-width: 560px) {
+  h3 {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 36px;
+    line-height: 1.05;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
 }

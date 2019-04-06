@@ -1,4 +1,4 @@
-<div>
+<div [ngClass]="{'theme-dark': theme === 'dark', 'theme-light': theme === 'light'}">
   <h3 *ngIf="subtitle != null">{{ subtitle }}</h3>
   <h2 *ngIf="title != null">{{ title }}</h2>
   <p *ngIf="paragraph != null">{{ paragraph }}</p>
