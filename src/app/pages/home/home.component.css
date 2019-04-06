@@ -6,13 +6,19 @@
   overflow: hidden;
 }
 
+
+
+
+
+/* BEGIN:: HERO */
 #home-page .hero {
   width: 100%;
   height: 75vh;
   background-image: url('../../../assets/img/wave.svg'), url('../../../assets/img/coast-4033636.jpg');
   background-size: 100% auto, cover;
-  background-position: 0% 105%, 50% 50%;
+  background-position: 0% 103%, 50% 50%;
   background-repeat: no-repeat, no-repeat;
+  transition: 0.4s;
 }
 
 #home-page .hero h1 {
@@ -35,9 +41,28 @@
   position: absolute;
 }
 
+@media only screen and (max-width: 890px) {
+  #home-page .hero {
+    height: 50vh;
+    background-position: 0% 102%, 50% 50%;
+  }
+
+  #home-page .hero h1 {
+    font-size: 58px;
+  }
+}
+
+/* END:: HERO */
+
 #home-page .container {
   width: 100%;
 }
+
+#home-page section {
+  padding: 60px 2%;
+}
+
+
 
 #home-page>.container:nth-of-type(2) {
   background-image: url('../../../assets/img/wave.svg'), linear-gradient(#ffffff, #f5f5f5);
@@ -46,10 +71,31 @@
   background-repeat: no-repeat;
 }
 
-#home-page section {
-  padding: 60px 2%;
+@media only screen and (max-width: 920px) {
+  #home-page>.container:nth-of-type(2) {
+    background-size: 200% auto;
+    background-position: 65% 101%;
+  }
 }
 
+
+
+
+
+/* BEGIN:: OUR FATES */
+@media only screen and (max-width: 560px) {
+  #home-page .hp-s2-our-fates {
+    padding-bottom: 0;
+  }
+}
+
+/* END:: OUR FATES */
+
+
+
+
+
+/* BEGIN:: 10 REASONS */
 #home-page .hp-s3-reasons .hp-s3-10-reasons-box {
   margin: 80px auto;
   margin-top: 20px;
@@ -67,10 +113,28 @@
   display: block;
 }
 
-#home-page .hp-s3-reasons .hp-s3-10-reasons-box h2 {
-  font-size: 62px;
-  line-height: 1.2;
+#home-page .hp-s3-reasons .hp-s3-10-reasons-box p {
+  font-size: 18px;
 }
+
+#home-page .hp-s3-reasons img {
+  width: 480px;
+  max-width: 90%;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: -70px;
+  display: block;
+  pointer-events: none;
+}
+
+@media only screen and (max-width: 560px) {
+  #home-page .hp-s3-reasons img {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+/* END:: 10 REASONS */
 
 #home-page .worlhopp-name {
   font-size: 62px;
@@ -87,44 +151,35 @@
   background-color: yellow;
 }
 
-#home-page .hp-s3-reasons .hp-s3-10-reasons-box p {
-  font-size: 18px;
+@media only screen and (max-width: 560px) {
+  #home-page .worlhopp-name {
+    font-size: 48px;
+  }
 }
 
-#home-page .hp-btn-goto-contact {
-  width: 128px;
-  height: 128px;
-  right: 4%;
-  bottom: 18%;
-  border-radius: 100%;
-  background-color: transparent;
-  overflow: hidden;
-  position: fixed;
-}
 
-#home-page .hp-btn-goto-contact>div {
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-  background-image: url('../../../assets/img/fixed_btn.PNG');
-  background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-}
 
-#home-page .hp-s3-reasons img {
-  width: 480px;
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: -110px;
-  display: block;
-}
 
+
+/* BEGIN:: SERVICES */
 #home-page .hp-s4-services {
   margin-top: 50px;
 }
 
+@media only screen and (max-width: 560px) {
+  #home-page .hp-s4-services {
+    margin-top: 0px;
+    padding-bottom: 0px;
+  }
+}
+
+/* END:: SERVICES */
+
+
+
+
+
+/* BEGIN:: EXPERIENCES */
 #home-page .hp-s6-experiences {
   padding-top: 0;
 }
@@ -148,6 +203,22 @@
   font-size: 52px;
 }
 
+@media only screen and (max-width: 560px) {
+  #home-page .hp-s6-experiences {
+    padding-bottom: 0;
+  }
+
+  #home-page .hp-s6-experiences>.hp-s6-experiences-box .worlhopp-name {
+    font-size: 48px;
+  }
+}
+
+/* END:: EXPERIENCES */
+
+#home-page .hp-s8-learn-english {
+  padding-top: 0;
+}
+
 #home-page .hp-s8-learn-english * {
   text-align: center;
 }
@@ -162,4 +233,326 @@
 
 #home-page .hp-s8-learn-english .hp-s8-le-box img {
   width: 335px;
+  max-width: 80%;
+  margin-top: 30px;
+  pointer-events: none;
 }
+
+#home-page .container:nth-of-type(4) {
+  background-color: #17153b;
+}
+
+#home-page .container:nth-of-type(4)::before {
+  content: url('../../../assets/img/wave.svg');
+  width: 100%;
+  top: 0;
+  left: 0;
+  transform: rotate(180deg) translateY(35%);
+  position: absolute;
+}
+
+
+#home-page .hp-s9-contact {
+  padding: 10%;
+  padding-bottom: 5%;
+}
+
+#home-page .hp-s9-contact * {
+  text-align: center;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form,
+#home-page .hp-s9-contact>.hp-s9-c-form>form,
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group {
+  width: 100%;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form {
+  width: 750px;
+  max-width: 100%;
+  margin: auto;
+  margin-top: 80px;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group>label {
+  width: 100%;
+  padding: 5px;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group>label>input:not([type="checkbox"]),
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group>label>select,
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group>textarea {
+  width: 100%;
+  height: 49px;
+  padding: 10px 25px;
+  border: 1px solid white;
+  border-radius: 4px;
+  font-size: 18px;
+  text-align: left;
+  color: white;
+  background-color: transparent;
+  transition: 0.2s;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group>label.select-field::after {
+  content: url('../../../assets/img/ic-expand-more.svg');
+  top: 52.5%;
+  right: 20px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group>label.select-field>select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group input::placeholder,
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group textarea::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group>label>input:focus,
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group>label>select:focus,
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group>textarea:focus {
+  border: 1px solid #1684f5;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group input:focus::placeholder,
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group textarea:focus::placeholder {
+  opacity: 0.6;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group>textarea {
+  height: 270px;
+  margin: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  resize: none;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group input[type="checkbox"] {
+  display: none;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group input[type="checkbox"]+span {
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group input[type="checkbox"]+span::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  border-radius: 4px;
+  color: white;
+  background-color: #ffffff;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group input[type="checkbox"]:checked+span::before {
+  content: '\f00c';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  background-color: #1bba99;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group input[type="checkbox"]+span>a {
+  color: #fffc78;
+  margin-left: 5px;
+}
+
+#home-page .hp-s9-contact>.hp-s9-c-form>form>.form-conditions {
+  margin-top: 10px;
+}
+
+
+#home-page .container:nth-of-type(4) img.paper-plane {
+  right: 15%;
+  top: 0%;
+  animation-name: move_bg_image_paper_plane;
+  animation-duration: 6s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  transform: translate(50%, 0%);
+  position: absolute;
+}
+
+@keyframes move_bg_image_paper_plane {
+  0% {
+    top: 0%;
+  }
+
+  50% {
+    top: 1%;
+  }
+
+  100% {
+    top: 0%;
+  }
+}
+
+#home-page .container:nth-of-type(4) img.clouds-left {
+  left: 0;
+  top: 50%;
+  animation-name: move_bg_image_clouds_left;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  transform: translateY(-50%);
+  position: absolute;
+}
+
+@keyframes move_bg_image_clouds_left {
+  0% {
+    left: 0%;
+  }
+
+  25% {
+    left: -0.4%;
+  }
+
+  50% {
+    left: 0%;
+  }
+
+  75% {
+    left: -0.4%;
+  }
+
+  100% {
+    left: 0%;
+  }
+}
+
+
+#home-page .container:nth-of-type(4) img.clouds-right {
+  right: 0;
+  top: 100%;
+  animation-name: move_bg_image_clouds_right;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  transform: translateY(-50%);
+  position: absolute;
+}
+
+@keyframes move_bg_image_clouds_right {
+  0% {
+    right: 0%;
+  }
+
+  25% {
+    right: -0.4%;
+  }
+
+  50% {
+    right: 0%;
+  }
+
+  75% {
+    right: -0.4%;
+  }
+
+  100% {
+    right: 0%;
+  }
+}
+
+@media only screen and (max-width: 1380px) {
+  #home-page .container:nth-of-type(4)>.hp-s9-contact {
+    padding-bottom: 120px;
+  }
+
+  #home-page .container:nth-of-type(4) img.paper-plane {
+    right: unset;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    position: relative;
+    transform: translate(0%, 0%);
+    display: block;
+  }
+
+  #home-page .hp-s9-contact>.hp-s9-c-form {
+    margin-top: 30px;
+  }
+
+  #home-page .container:nth-of-type(4) img.clouds-left {
+    display: none;
+  }
+
+  #home-page .container:nth-of-type(4) img.clouds-right {
+    max-width: 110%;
+    animation: none;
+  }
+}
+
+@media only screen and (max-width: 590px) {
+  #home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group {
+    flex-direction: column;
+  }
+
+  #home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group label {
+    padding: 5px 0;
+  }
+}
+
+
+
+
+
+/* BEGIN:: PARTNERS */
+@media only screen and (max-width: 995px) {
+  #home-page .hp-s10-partners * {
+    display: none;
+  }
+}
+
+/* END:: PARTNERS */
+
+
+
+
+
+/* BEGIN:: BUTTON GO TO CONTACT */
+#home-page .hp-btn-goto-contact {
+  width: 128px;
+  height: 128px;
+  right: 4%;
+  bottom: 18%;
+  border-radius: 100%;
+  background-color: transparent;
+  overflow: hidden;
+  position: fixed;
+  z-index: 9999999;
+}
+
+#home-page .hp-btn-goto-contact>div {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-image: url('../../../assets/img/te_ayudamos_a_dar_el_hopp.svg');
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* END:: BUTTON GO TO CONTACT */
