@@ -13,8 +13,10 @@
 
 .slider-container>.slider-list>.slider-item {
   width: 100%;
-  margin: 10px;
+  margin: 10px 20px;
+  margin-left: 0px;
   padding-top: 56.25%;
+  /* 16:9 Aspect Ratio */
   border-radius: 8px;
   background-color: #efefef;
   background-size: cover;
@@ -23,6 +25,10 @@
   box-shadow: 0px 3px 10px -2px #dadada;
   display: inline-block;
   overflow: hidden;
+}
+
+.slider-container>.slider-list>.slider-item:last-of-type {
+  margin-right: 0;
 }
 
 .slider-container>.slider-list>.slider-item>.si-comment {
@@ -34,7 +40,7 @@
   /* border: 1px solid #d2d2d2; */
   white-space: normal;
   transform: translate(-50%, -50%);
-  background-color: rgb(23, 21, 5, 0.52);
+  background-color: rgba(22, 134, 247, 0.32);
   background-color: rgba(78, 48, 89, 0.76);
   opacity: 0;
   transition: 0.35s;
@@ -105,4 +111,26 @@
 
 .slider-container>.slider-dots>ul>li.current-slider {
   background-color: #17153b;
+}
+
+@media only screen and (max-width: 560px) {
+  .slider-container>.slider-list>.slider-item {
+    padding-top: 66.66%;
+    /* 3:2 Aspect Ratio */
+  }
+
+  .slider-container>.slider-list>.slider-item>.si-comment>div * {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .slider-container {
+    padding: 30px 0;
+  }
+
+  .slider-container>.slider-list>.slider-item {
+    padding-top: 75%;
+    /* 4:3 Aspect Ratio */
+  }
 }

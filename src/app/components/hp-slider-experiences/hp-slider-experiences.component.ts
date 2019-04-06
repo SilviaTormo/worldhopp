@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterContentInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as Hammer from 'hammerjs';
 
@@ -7,13 +7,17 @@ import * as Hammer from 'hammerjs';
   templateUrl: './hp-slider-experiences.component.html',
   styleUrls: ['./hp-slider-experiences.component.css']
 })
-export class HpSliderExperiencesComponent implements OnInit {
+export class HpSliderExperiencesComponent implements OnInit, AfterContentInit {
 
   @Input() sliderList: Object[] = [];
 
   // tslint:disable-next-line:no-inferrable-types
   currentSlider: number = 1;
   sliderClassName: String = '';
+  // tslint:disable-next-line:no-inferrable-types
+  sliderWidth: number = 800;
+
+  @ViewChild('eSliderList') eSliderList;
 
   constructor(
     private _sanitizer: DomSanitizer
@@ -22,6 +26,10 @@ export class HpSliderExperiencesComponent implements OnInit {
   ngOnInit() {
     this.sliderClassName = this.makeid();
     this.newSlider();
+  }
+
+  ngAfterContentInit(): void {
+    this.getSliderWidth();
   }
 
   setBgImage(url) {
@@ -55,11 +63,11 @@ export class HpSliderExperiencesComponent implements OnInit {
       });
       mc.add(Swipe);
       mc.on('swipeleft', () => {
-        console.log('Swipe Left!');
+        // console.log('Swipe Left!');
         this.currentSlider = (this.currentSlider === (this.sliderList.length - 1)) ? 0 : ++this.currentSlider;
       });
       mc.on('swiperight', () => {
-        console.log('Swipe Right!');
+        // console.log('Swipe Right!');
         this.currentSlider = (this.currentSlider === 0) ? (this.sliderList.length - 1) : --this.currentSlider;
       });
     } else {
@@ -67,5 +75,14 @@ export class HpSliderExperiencesComponent implements OnInit {
         this.newSlider();
       }, 100);
     }
+  }
+
+  getSliderWidth() {
+    const element = this.eSliderList.nativeElement.getBoundingClientRect();
+    const widthSize = element.width;
+    const marginSize = 20;
+    const realWidthSize = (marginSize + widthSize);
+    console.log(marginSize);
+    this.sliderWidth = realWidthSize;
   }
 }
