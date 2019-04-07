@@ -8,7 +8,7 @@
 
 #home-page .hero {
   width: 100%;
-  height: 85vh;
+  height: 72vh;
   background-image: url('../../../assets/img/wave.svg'),url('../../../assets/img/new-zealand-583177-1920.png');
   background-size: 100% auto, cover;
   background-position: 0% 105%, 50% 50%;
@@ -51,7 +51,9 @@
   background-position: 0% 101%;
   background-repeat: no-repeat;
 }
-
+#home-page section {
+  padding: 60px 2%;
+}
 
 
 #home-page .hp-s2-green-left-path {
