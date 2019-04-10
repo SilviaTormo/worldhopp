@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterContentChecked } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as Hammer from 'hammerjs';
 
@@ -7,7 +7,7 @@ import * as Hammer from 'hammerjs';
   templateUrl: './hp-slider-experiences.component.html',
   styleUrls: ['./hp-slider-experiences.component.css']
 })
-export class HpSliderExperiencesComponent implements OnInit, AfterContentInit {
+export class HpSliderExperiencesComponent implements OnInit, AfterContentChecked {
 
   @Input() sliderList: Object[] = [];
 
@@ -28,7 +28,7 @@ export class HpSliderExperiencesComponent implements OnInit, AfterContentInit {
     this.newSlider();
   }
 
-  ngAfterContentInit(): void {
+  ngAfterContentChecked(): void {
     this.getSliderWidth();
   }
 
@@ -82,7 +82,7 @@ export class HpSliderExperiencesComponent implements OnInit, AfterContentInit {
     const widthSize = element.width;
     const marginSize = 20;
     const realWidthSize = (marginSize + widthSize);
-    console.log(marginSize);
+    // console.log(marginSize);
     this.sliderWidth = realWidthSize;
   }
 }
