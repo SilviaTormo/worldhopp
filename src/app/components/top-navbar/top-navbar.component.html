@@ -1,4 +1,4 @@
-<div id="top-navbar">
+<div id="top-navbar" (window:scroll)="handleScroll()" [ngClass]="{ 'scroll-is-up': scrollIsUp }">
   <div class="tnb-social-networks">
     <ul>
       <li>

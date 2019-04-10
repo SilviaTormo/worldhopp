@@ -8,7 +8,7 @@
 
 #top-navbar {
   width: 100%;
-  height: 60px;
+  height: 65px;
   padding: 0px 10px;
   box-shadow: 0px 0px 7px -1px #9e9e9e;
   display: flex;
@@ -55,16 +55,18 @@
 }
 
 #top-navbar .tnb-main-nav ul {
-  height: 60px;
+  height: 65px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
 }
 
-#top-navbar .tnb-main-nav li {
-  padding: 20px 15px;
+#top-navbar .tnb-main-nav li:not(.logo) {
+  height: 65px;
+  padding: 0px 15px;
   font-weight: 600;
+  line-height: 65px;
 }
 
 #top-navbar .tnb-main-nav li.active {
@@ -74,6 +76,23 @@
 #top-navbar .tnb-main-nav li img {
   width: 100px;
   pointer-events: none;
+}
+
+#top-navbar .tnb-main-nav li.logo {
+  max-height: 200%;
+  padding-top: 20px;
+  transition: 0.4s;
+}
+
+#top-navbar:not(.scroll-is-up) .tnb-main-nav li.logo {
+  max-height: 100%;
+  padding-top: 0px;
+}
+
+#top-navbar:not(.scroll-is-up) .tnb-main-nav li.logo .logo-image {
+  width: 86px;
+  height: 110%;
+  transition: 0.4s;
 }
 
 #top-navbar .tnb-menu {
@@ -88,5 +107,12 @@
 
   #top-navbar .tnb-main-nav li.logo {
     padding: 0;
+    transition: 0.4s;
+  }
+
+  #top-navbar .tnb-main-nav li.logo .logo-image {
+    width: 86px;
+    height: 110%;
+    transition: 0.4s;
   }
 }
