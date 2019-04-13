@@ -1,0 +1,72 @@
+/* BEGIN:: BUTTON GO TO CONTACT */
+.hp-btn-goto-contact {
+  background-color: transparent;
+  overflow: hidden;
+  position: fixed;
+  z-index: 9999999;
+}
+
+.hp-btn-goto-contact.desktop-version {
+  width: 128px;
+  height: 128px;
+  right: 4%;
+  bottom: 18%;
+  border-radius: 100%;
+}
+
+.hp-btn-goto-contact.desktop-version>.hp-btn-gtc-btn-image {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-image: url('../../../assets/img/te_ayudamos_a_dar_el_hopp.svg');
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+}
+
+.hp-btn-goto-contact.mobile-version {
+  width: 100%;
+  height: 60px;
+  left: 0%;
+  bottom: 0%;
+  border-radius: 0%;
+  transform: translateY(0%);
+  transition: 0.25s;
+}
+
+.hp-btn-goto-contact.mobile-version.hide-banner {
+  transform: translateY(100%);
+}
+
+.hp-btn-goto-contact.mobile-version>.hp-btn-gtc-bottom-bar {
+  width: 100%;
+  height: 100%;
+  padding: 0 10%;
+  background-color: #fffc78;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.hp-btn-goto-contact.mobile-version>.hp-btn-gtc-bottom-bar>.hp-btn-gtc-bb-image {
+  width: 60px;
+  height: 100%;
+  margin-right: 5%;
+  background-image: url('../../../assets/img/saltamontes.svg');
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.hp-btn-goto-contact.mobile-version>.hp-btn-gtc-bottom-bar>.hp-btn-gtc-bb-text>p {
+  font-size: 14px;
+  font-weight: 600;
+  color: #353b50;
+  text-transform: uppercase;
+}
+
+
+/* END:: BUTTON GO TO CONTACT */
