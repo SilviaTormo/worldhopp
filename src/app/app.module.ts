@@ -9,6 +9,8 @@ import { HpTextContainerComponent } from './components/hp-text-container/hp-text
 import { HpGalleryParalaxComponent } from './components/hp-gallery-paralax/hp-gallery-paralax.component';
 import { HpCardsParalaxComponent } from './components/hp-cards-paralax/hp-cards-paralax.component';
 import { HpSliderExperiencesComponent } from './components/hp-slider-experiences/hp-slider-experiences.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HpSliderPartnersComponent } from './components/hp-slider-partners/hp-slider-partners.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { HpSliderExperiencesComponent } from './components/hp-slider-experiences
     HpTextContainerComponent,
     HpGalleryParalaxComponent,
     HpCardsParalaxComponent,
-    HpSliderExperiencesComponent
+    HpSliderExperiencesComponent,
+    FooterComponent,
+    HpSliderPartnersComponent
   ],
   imports: [
     BrowserModule,

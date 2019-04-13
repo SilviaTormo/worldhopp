@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopNavbarComponent implements OnInit {
 
+  // tslint:disable-next-line:no-inferrable-types
+  scrollIsUp: boolean = true;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  handleScroll() {
+    const scrollYPos = window.scrollY;
+
+    if (scrollYPos > 10) {
+      this.scrollIsUp = false;
+    } else {
+      this.scrollIsUp = true;
+    }
   }
 
 }

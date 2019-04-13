@@ -179,6 +179,38 @@ export class HomeComponent implements OnInit {
     'learnEnglish': {
       title: 'Aprende inglés mientras ves mundo',
       paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dictum vel nisl quis dignissim.',
+    },
+    'contact': {
+      title: '¿Quieres dar el hopp?',
+      paragraph: 'Lorem ipsum dolor sit amet, consectetur.',
+    },
+    'partners': {
+      slider: [
+        {
+          img: '../../../assets/img/partners/Lonely_Planet.svg.png',
+          name: '',
+          description: '',
+          url: ''
+        },
+        {
+          img: '../../../assets/img/partners/Lonely_Planet.svg.png',
+          name: '',
+          description: '',
+          url: ''
+        },
+        {
+          img: '../../../assets/img/partners/Lonely_Planet.svg.png',
+          name: '',
+          description: '',
+          url: ''
+        },
+        {
+          img: '../../../assets/img/partners/Lonely_Planet.svg.png',
+          name: '',
+          description: '',
+          url: ''
+        },
+      ]
     }
   };
 

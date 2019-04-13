@@ -1,6 +1,7 @@
 <div class="slider-container">
-  <div [ngClass]="['slider-list', sliderClassName]"
-    [ngStyle]="{'transform': 'translateX(-' + (currentSlider * 800) + 'px)'}">
+  <div #eSliderList [ngClass]="['slider-list', sliderClassName]"
+    [ngStyle]="{'transform': 'translateX(-' + (currentSlider * sliderWidth) + 'px)'}"
+    (window:resize)="getSliderWidth()">
     <ng-container *ngFor="let slider of sliderList; let index = index">
       <div class="slider-item" [ngClass]="{'current-slider': currentSlider === index}" [attr.data-slider-index]="index"
         [style.background-image]="setBgImage(slider?.photo)" (click)="currentSlider = index">

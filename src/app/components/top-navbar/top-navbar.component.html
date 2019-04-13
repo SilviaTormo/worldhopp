@@ -1,4 +1,4 @@
-<div id="top-navbar">
+<div id="top-navbar" (window:scroll)="handleScroll()" [ngClass]="{ 'scroll-is-up': scrollIsUp }">
   <div class="tnb-social-networks">
     <ul>
       <li>
@@ -14,7 +14,13 @@
       <ul>
         <li class="active">Destinos</li>
         <li>Servicios</li>
+<<<<<<< HEAD
         <li><img class="saltamontes" src="../../../assets/img/saltamontes.svg" alt="logo worldhopp"></li>
+=======
+        <li class="logo">
+          <img class="logo-image" src="../../../assets/img/saltamontes.svg" />
+        </li>
+>>>>>>> master
         <li>Equipo</li>
         <li>Contacto</li>
       </ul>

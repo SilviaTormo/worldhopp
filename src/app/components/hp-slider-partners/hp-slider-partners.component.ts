@@ -1,23 +1,21 @@
-import { Component, OnInit, Input, ViewChild, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as Hammer from 'hammerjs';
 
 @Component({
-  selector: 'app-hp-slider-experiences',
-  templateUrl: './hp-slider-experiences.component.html',
-  styleUrls: ['./hp-slider-experiences.component.css']
+  selector: 'app-hp-slider-partners',
+  templateUrl: './hp-slider-partners.component.html',
+  styleUrls: ['./hp-slider-partners.component.css']
 })
-export class HpSliderExperiencesComponent implements OnInit, AfterContentChecked {
+export class HpSliderPartnersComponent implements OnInit {
 
   @Input() sliderList: Object[] = [];
+  // tslint:disable-next-line:no-inferrable-types
+  @Input() dots: boolean = false;
 
   // tslint:disable-next-line:no-inferrable-types
-  currentSlider: number = 1;
+  currentSlider: number = 0;
   sliderClassName: String = '';
-  // tslint:disable-next-line:no-inferrable-types
-  sliderWidth: number = 800;
-
-  @ViewChild('eSliderList') eSliderList;
 
   constructor(
     private _sanitizer: DomSanitizer
@@ -26,10 +24,6 @@ export class HpSliderExperiencesComponent implements OnInit, AfterContentChecked
   ngOnInit() {
     this.sliderClassName = this.makeid();
     this.newSlider();
-  }
-
-  ngAfterContentChecked(): void {
-    this.getSliderWidth();
   }
 
   setBgImage(url) {
@@ -63,11 +57,11 @@ export class HpSliderExperiencesComponent implements OnInit, AfterContentChecked
       });
       mc.add(Swipe);
       mc.on('swipeleft', () => {
-        // console.log('Swipe Left!');
+        console.log('Swipe Left!');
         this.currentSlider = (this.currentSlider === (this.sliderList.length - 1)) ? 0 : ++this.currentSlider;
       });
       mc.on('swiperight', () => {
-        // console.log('Swipe Right!');
+        console.log('Swipe Right!');
         this.currentSlider = (this.currentSlider === 0) ? (this.sliderList.length - 1) : --this.currentSlider;
       });
     } else {
@@ -75,14 +69,5 @@ export class HpSliderExperiencesComponent implements OnInit, AfterContentChecked
         this.newSlider();
       }, 100);
     }
-  }
-
-  getSliderWidth() {
-    const element = this.eSliderList.nativeElement.getBoundingClientRect();
-    const widthSize = element.width;
-    const marginSize = 20;
-    const realWidthSize = (marginSize + widthSize);
-    // console.log(marginSize);
-    this.sliderWidth = realWidthSize;
   }
 }

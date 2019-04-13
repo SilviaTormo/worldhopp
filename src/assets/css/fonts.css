@@ -11,3 +11,10 @@
   font-weight: 600;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Avenir Roman';
+  src: url('../fonts/avenir_ff/AvenirLTStd-Roman.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}

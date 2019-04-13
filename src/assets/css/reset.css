@@ -33,4 +33,5 @@ body {
 img {
   max-width: 100%;
   line-height: 1;
+  user-select: none;
 }

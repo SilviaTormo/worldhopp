@@ -31,7 +31,8 @@
       <app-hp-text-container [subtitle]="sections.reasons.subtitle" [title]="sections.reasons.title"
         [paragraph]="sections.reasons.paragraph">
       </app-hp-text-container>
-      <img src="../../../assets/img/never_alone.PNG" />
+      <img src="../../../assets/img/never-alone.png"
+        srcset="../../../assets/img/never-alone@2x.png 2x,../../../assets/img/never-alone@3x.png 3x" />
     </section>
   </div>
 
@@ -70,10 +71,65 @@
     <section class="hp-s8-learn-english">
       <div class="hp-s8-le-box">
         <h2 class="worlhopp-name">world<span class="hopp-name">hopp</span></h2>
-        <img src="../../../assets/img/how_are_you.PNG" />
+        <img src="../../../assets/img/learn_english.svg" />
       </div>
       <app-hp-text-container [title]="sections.learnEnglish.title" [paragraph]="sections.learnEnglish.paragraph">
       </app-hp-text-container>
+    </section>
+  </div>
+
+  <div class="container">
+    <section class="hp-s9-contact">
+      <img class="paper-plane" src="../../../assets/img/paper_plane.svg" />
+      <app-hp-text-container [theme]="'light'" [title]="sections.contact.title"
+        [paragraph]="sections.contact.paragraph">
+      </app-hp-text-container>
+      <div class="hp-s9-c-form">
+        <form>
+          <div class="form-group">
+            <label>
+              <input type="text" placeholder="Nombre" />
+            </label>
+            <label>
+              <input type="text" placeholder="Apellidos" />
+            </label>
+          </div>
+          <div class="form-group">
+            <label>
+              <input type="text" placeholder="Email" />
+            </label>
+            <label class="select-field">
+              <select>
+                <option selected>Nacionalidad</option>
+              </select>
+            </label>
+          </div>
+          <div class="form-group">
+            <label>
+              <input type="text" placeholder="Asunto" />
+            </label>
+          </div>
+          <div class="form-group">
+            <textarea placeholder="Mensaje"></textarea>
+          </div>
+          <div class="form-group form-conditions">
+            <label>
+              <input type="checkbox" />
+              <span>Acepto la <a href="">política de privacidad</a></span>
+            </label>
+          </div>
+          <button type="button" class="btn btn-lg btn-secondary-blue">ENVIAR</button>
+        </form>
+      </div>
+      <img class="clouds-left" src="../../../assets/img/clouds_left.svg" />
+      <img class="clouds-right" src="../../../assets/img/clouds_right.svg" />
+    </section>
+  </div>
+
+
+  <div class="container">
+    <section class="hp-s10-partners">
+      <app-hp-slider-partners [sliderList]="sections.partners.slider"></app-hp-slider-partners>
     </section>
   </div>
 

@@ -1,0 +1,18 @@
+<div class="slider-container">
+  <div [ngClass]="['slider-list', sliderClassName]"
+    [ngStyle]="{'transform': 'translateX(-' + (currentSlider * 800) + 'px)'}">
+    <ng-container *ngFor="let slider of sliderList; let index = index">
+      <div class="slider-item" [ngClass]="{'current-slider': currentSlider === index}" [attr.data-slider-index]="index"
+        [style.background-image]="setBgImage(slider?.img)" (click)="currentSlider = index">
+      </div>
+    </ng-container>
+  </div>
+  <ng-container *ngIf="dots && sliderList.length > 4">
+    <div class="slider-dots">
+      <ul>
+        <li *ngFor="let slider of sliderList; let index = index" [ngClass]="{'current-slider': currentSlider === index}"
+          (click)="currentSlider = index"></li>
+      </ul>
+    </div>
+  </ng-container>
+</div>
