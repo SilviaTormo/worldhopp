@@ -99,32 +99,6 @@
   text-align: right;
   cursor: pointer;
 }
-<<<<<<< HEAD
-.saltamontes {
-  width: 120px;
-  height: 103px;
-  top:26px;
-  object-fit: contain;
-  vertical-align: middle;
-}
-.Destinos-Servicios {
-  width: 315px;
-  height: 79px;
-  font-family: Avenir;
-  font-size: 20px;
-  font-weight: 900;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  color: #353b50;
-}
-.Destinos-Servicios .text-style-1 {
-  color: #1684f5;
-}
-
-=======
 
 @media only screen and (max-width: 670px) {
   #top-navbar .tnb-main-nav li:not(.logo) {
@@ -142,4 +116,3 @@
     transition: 0.4s;
   }
 }
->>>>>>> master
