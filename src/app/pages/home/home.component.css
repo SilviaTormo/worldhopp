@@ -14,9 +14,9 @@
 #home-page .hero {
   width: 100%;
   height: 75vh;
-  background-image: url('../../../assets/img/wave.svg'), url('../../../assets/img/coast-4033636.jpg');
+  background-image: url('../../../assets/img/wave.svg'), url('../../../assets/img/new-zealand-583177-1920.jpg');
   background-size: 100% auto, cover;
-  background-position: 0% 103%, 50% 50%;
+  background-position: 0% 103%, 50% 80%;
   background-repeat: no-repeat, no-repeat;
   transition: 0.4s;
 }
@@ -310,6 +310,7 @@
 }
 
 #home-page .hp-s9-contact>.hp-s9-c-form>form>.form-group>label.select-field>select {
+  padding-left: 20px;
   -moz-appearance: none;
   -webkit-appearance: none;
 }
@@ -525,34 +526,3 @@
 }
 
 /* END:: PARTNERS */
-
-
-
-
-
-/* BEGIN:: BUTTON GO TO CONTACT */
-#home-page .hp-btn-goto-contact {
-  width: 128px;
-  height: 128px;
-  right: 4%;
-  bottom: 18%;
-  border-radius: 100%;
-  background-color: transparent;
-  overflow: hidden;
-  position: fixed;
-  z-index: 9999999;
-}
-
-#home-page .hp-btn-goto-contact>div {
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-  background-image: url('../../../assets/img/te_ayudamos_a_dar_el_hopp.svg');
-  background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
-}
-
-/* END:: BUTTON GO TO CONTACT */
