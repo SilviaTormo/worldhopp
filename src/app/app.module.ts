@@ -11,6 +11,7 @@ import { HpCardsParalaxComponent } from './components/hp-cards-paralax/hp-cards-
 import { HpSliderExperiencesComponent } from './components/hp-slider-experiences/hp-slider-experiences.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HpSliderPartnersComponent } from './components/hp-slider-partners/hp-slider-partners.component';
+import { HpBtnGotoContactComponent } from './components/hp-btn-goto-contact/hp-btn-goto-contact.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HpSliderPartnersComponent } from './components/hp-slider-partners/hp-sl
     HpCardsParalaxComponent,
     HpSliderExperiencesComponent,
     FooterComponent,
-    HpSliderPartnersComponent
+    HpSliderPartnersComponent,
+    HpBtnGotoContactComponent
   ],
   imports: [
     BrowserModule,
