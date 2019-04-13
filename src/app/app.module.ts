@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
@@ -12,6 +11,10 @@ import { HpSliderExperiencesComponent } from './components/hp-slider-experiences
 import { FooterComponent } from './components/footer/footer.component';
 import { HpSliderPartnersComponent } from './components/hp-slider-partners/hp-slider-partners.component';
 
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,13 +25,18 @@ import { HpSliderPartnersComponent } from './components/hp-slider-partners/hp-sl
     HpCardsParalaxComponent,
     HpSliderExperiencesComponent,
     FooterComponent,
-    HpSliderPartnersComponent
+    HpSliderPartnersComponent,
+   
+
+   
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
