@@ -6,10 +6,6 @@
   overflow: hidden;
 }
 
-
-
-
-
 /* BEGIN:: HERO */
 #home-page .hero {
   width: 100%;
@@ -68,8 +64,6 @@
   padding: 60px 2%;
 }
 
-
-
 #home-page>.container:nth-of-type(2) {
   background-image: url('../../../assets/img/wave.svg'), linear-gradient(#ffffff, #f5f5f5);
   background-size: 100% auto;
@@ -84,10 +78,13 @@
   }
 }
 
+/* BEGIN LEFT JELLY */
 
-
-
-
+#home-page .blob {
+  float: left;
+  left: -3%;
+ 
+}
 /* BEGIN:: OUR FATES */
 @media only screen and (max-width: 560px) {
   #home-page .hp-s2-our-fates {
@@ -96,9 +93,6 @@
 }
 
 /* END:: OUR FATES */
-
-
-
 
 
 /* BEGIN:: 10 REASONS */
@@ -162,9 +156,6 @@
     font-size: 48px;
   }
 }
-
-
-
 
 
 /* BEGIN:: SERVICES */
