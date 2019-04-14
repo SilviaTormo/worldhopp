@@ -382,27 +382,54 @@
 #home-page .container:nth-of-type(4) img.paper-plane {
   right: 15%;
   top: 0%;
+  animation: animationFrames linear 3s;
   animation-name: move_bg_image_paper_plane;
   animation-duration: 6s;
   animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  transform: translate(50%, 0%);
+  transform: origin (50%,50%);
   position: absolute;
 }
 
+
+
 @keyframes move_bg_image_paper_plane {
-  0% {
-    top: 0%;
-  }
 
-  50% {
-    top: 1%;
-  }
-
-  100% {
-    top: 0%;
-  }
+    0% {
+      transform:  translate(0%,3px)  rotate(0deg) ;
+    }
+    10% {
+      transform:  translate(3%,9px)  rotate(5deg) ;
+    }
+    20% {
+      transform:  translate(9%,15x)  rotate(15deg) ;
+    }
+    30% {
+      transform:  translate(15%,21px)  rotate(10deg) ;
+    }  
+    40% {
+      transform:  translate(21%,27px)  rotate(5deg) ;
+    }
+    50% {
+      transform:  translate(27%,33px)  rotate(0deg) ;
+    }  
+    60% {
+      transform:  translate(33%,21px)  rotate(-5deg) ;
+    }
+    70% {
+      transform:  translate(39%,24x)  rotate(-10deg) ;
+    }
+    80% {
+      transform:  translate(45%,27x)  rotate(-15deg) ;
+    }
+    90% {
+      transform:  translate(51%,30px)  rotate(-10deg) ;
+    }
+    100% {
+      transform:  translate(57%,33px)  rotate(0deg) ;
+    }
+  
 }
 
 #home-page .container:nth-of-type(4) img.clouds-left {
