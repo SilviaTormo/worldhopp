@@ -382,6 +382,8 @@
 #home-page .container:nth-of-type(4) img.paper-plane {
   right: 15%;
   top: 0%;
+  width:30vh;
+  height: 30vh;
   animation: animationFrames linear 3s;
   animation-name: move_bg_image_paper_plane;
   animation-duration: 6s;
