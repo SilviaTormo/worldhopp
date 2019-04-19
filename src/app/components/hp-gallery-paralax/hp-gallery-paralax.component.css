@@ -92,7 +92,7 @@
 
 @media only screen and (max-width: 920px) {
   .gallery-box {
-    width: 85%;
+    width: 95%;
     max-width: 450px;
     padding: 40px 0;
     margin: 0 calc((100% - 560px) / 2);
@@ -110,7 +110,7 @@
 
   .gallery-box>.gb-image-box {
     margin: 0;
-    margin-right: 20px;
+    margin-right: 10px;
     display: inline-block;
     transform: translate3d(0, 0, 0) !important;
   }
@@ -118,6 +118,10 @@
   .gallery-box>.gb-image-box>.gb-ib-image {
     margin: 0;
     padding-top: 63%;
+  }
+
+  .gallery-box.gb-with-steps>.gb-image-box>.gb-ib-image {
+    padding-top: 80%;
   }
 
   .gallery-box>.gb-image-box>.gb-ib-title>p {
