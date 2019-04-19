@@ -1,0 +1,9 @@
+.hp-s2-our-destinations {
+  padding: 60px 2%;
+}
+
+@media only screen and (max-width: 560px) {
+  .hp-s2-our-destinations {
+    padding-bottom: 0;
+  }
+}

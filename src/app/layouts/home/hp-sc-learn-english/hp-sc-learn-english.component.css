@@ -1,0 +1,44 @@
+.hp-s8-learn-english {
+  padding: 60px 2%;
+  padding-top: 0;
+}
+
+.hp-s8-learn-english * {
+  text-align: center;
+}
+
+.hp-s8-learn-english .hp-s8-le-box {
+  margin-bottom: 20px;
+}
+
+.hp-s8-learn-english .hp-s8-le-box * {
+  font-size: 48px;
+}
+
+.hp-s8-learn-english .hp-s8-le-box img {
+  width: 335px;
+  max-width: 80%;
+  margin-top: 30px;
+  pointer-events: none;
+}
+
+.hp-s8-learn-english .worlhopp-name {
+  font-size: 62px;
+  line-height: 1.2;
+}
+
+.hp-s8-learn-english .worlhopp-name>span {
+  color: #1686F7;
+}
+
+.hp-s8-learn-english .worlhopp-name>span::after {
+  width: 10px;
+  height: 10px;
+  background-color: yellow;
+}
+
+@media only screen and (max-width: 560px) {
+  .hp-s8-learn-english .worlhopp-name {
+    font-size: 48px;
+  }
+}

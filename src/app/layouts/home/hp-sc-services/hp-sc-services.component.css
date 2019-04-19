@@ -1,0 +1,11 @@
+.hp-s4-services {
+  padding: 60px 2%;
+  margin-top: 50px;
+}
+
+@media only screen and (max-width: 560px) {
+  .hp-s4-services {
+    margin-top: 0px;
+    padding-bottom: 0px;
+  }
+}

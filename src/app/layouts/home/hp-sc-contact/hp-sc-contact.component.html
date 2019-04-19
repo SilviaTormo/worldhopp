@@ -1,0 +1,48 @@
+<section id="contact" class="hp-s9-contact" data-anchor="3">
+  <img class="paper-plane" src="../../../assets/img/paper_plane.svg" />
+  <app-hp-text-container [theme]="'light'" [title]="content.title" [paragraph]="content.paragraph">
+  </app-hp-text-container>
+  <div class="hp-s9-c-form">
+    <form>
+      <div class="form-group">
+        <label>
+          <input type="text" placeholder="Nombre" />
+        </label>
+        <label>
+          <input type="text" placeholder="Apellidos" />
+        </label>
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="text" placeholder="Email" />
+        </label>
+        <label class="select-field">
+          <select>
+            <option selected>Nacionalidad</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="text" placeholder="Asunto" />
+        </label>
+      </div>
+      <div class="form-group">
+        <textarea placeholder="Mensaje"></textarea>
+      </div>
+      <div class="form-group form-conditions">
+        <label>
+          <input type="checkbox" />
+          <span>Acepto la <a href="">política de privacidad</a></span>
+        </label>
+      </div>
+      <button type="button" class="btn btn-lg btn-secondary-blue">ENVIAR</button>
+    </form>
+  </div>
+  <img class="clouds-left" src="../../../assets/img/clouds_left.svg" />
+  <img class="clouds-right" src="../../../assets/img/clouds_right.svg" />
+</section>
+
+<ng-container>
+  <app-hp-btn-goto-contact></app-hp-btn-goto-contact>
+</ng-container>

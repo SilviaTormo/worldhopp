@@ -12,6 +12,15 @@ import { HpSliderExperiencesComponent } from './components/hp-slider-experiences
 import { FooterComponent } from './components/footer/footer.component';
 import { HpSliderPartnersComponent } from './components/hp-slider-partners/hp-slider-partners.component';
 import { HpBtnGotoContactComponent } from './components/hp-btn-goto-contact/hp-btn-goto-contact.component';
+import { HpScOurDestinationsComponent } from './layouts/home/hp-sc-our-destinations/hp-sc-our-destinations.component';
+import { HpScReasonsComponent } from './layouts/home/hp-sc-reasons/hp-sc-reasons.component';
+import { HpScServicesComponent } from './layouts/home/hp-sc-services/hp-sc-services.component';
+import { HpScStepsToFollowComponent } from './layouts/home/hp-sc-steps-to-follow/hp-sc-steps-to-follow.component';
+import { HpScExperiencesComponent } from './layouts/home/hp-sc-experiences/hp-sc-experiences.component';
+import { HpScTeamComponent } from './layouts/home/hp-sc-team/hp-sc-team.component';
+import { HpScLearnEnglishComponent } from './layouts/home/hp-sc-learn-english/hp-sc-learn-english.component';
+import { HpScContactComponent } from './layouts/home/hp-sc-contact/hp-sc-contact.component';
+import { HpScPartnersComponent } from './layouts/home/hp-sc-partners/hp-sc-partners.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +33,16 @@ import { HpBtnGotoContactComponent } from './components/hp-btn-goto-contact/hp-b
     HpSliderExperiencesComponent,
     FooterComponent,
     HpSliderPartnersComponent,
-    HpBtnGotoContactComponent
+    HpBtnGotoContactComponent,
+    HpScOurDestinationsComponent,
+    HpScReasonsComponent,
+    HpScServicesComponent,
+    HpScStepsToFollowComponent,
+    HpScExperiencesComponent,
+    HpScTeamComponent,
+    HpScLearnEnglishComponent,
+    HpScContactComponent,
+    HpScPartnersComponent
   ],
   imports: [
     BrowserModule,

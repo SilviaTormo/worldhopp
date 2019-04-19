@@ -1,129 +1,34 @@
-<div id="home-page">
-  <div class="hero">
-    <h1>worldhopp</h1>
+<header>
+  <app-top-navbar [anchors]="menu"></app-top-navbar>
+</header>
+<main>
+  <div id="home-page">
+    <div class="hero">
+      <h1>worldhopp</h1>
+    </div>
+
+    <div class="container">
+      <app-hp-sc-our-destinations></app-hp-sc-our-destinations>
+      <app-hp-sc-reasons></app-hp-sc-reasons>
+    </div>
+
+    <div class="container">
+      <app-hp-sc-services></app-hp-sc-services>
+      <app-hp-sc-steps-to-follow></app-hp-sc-steps-to-follow>
+      <app-hp-sc-experiences></app-hp-sc-experiences>
+      <app-hp-sc-team></app-hp-sc-team>
+      <app-hp-sc-learn-english></app-hp-sc-learn-english>
+    </div>
+
+    <div class="container">
+      <app-hp-sc-contact></app-hp-sc-contact>
+    </div>
+
+    <div class="container">
+      <app-hp-sc-partners></app-hp-sc-partners>
+    </div>
   </div>
-
-  <div class="container">
-    <section class="hp-s2-our-fates">
-      <app-hp-text-container [subtitle]="sections.fates.subtitle" [title]="sections.fates.title"
-        [paragraph]="sections.fates.paragraph">
-      </app-hp-text-container>
-      <app-hp-gallery-paralax [gallery]="sections.fates.gallery"></app-hp-gallery-paralax>
-    </section>
-
-    <section class="hp-s3-reasons">
-      <div class="hp-s3-10-reasons-box">
-        <div class="hp-s3-10rb-image">
-          <div></div>
-        </div>
-        <h2 class="worlhopp-name">world<span class="hopp-name">hopp</span></h2>
-        <p>Te seguimos en tu aventura</p>
-        <button type="button" class="btn btn-primary">¿Te falta un HOPP?</button>
-      </div>
-      <app-hp-text-container [subtitle]="sections.reasons.subtitle" [title]="sections.reasons.title"
-        [paragraph]="sections.reasons.paragraph">
-      </app-hp-text-container>
-      <img src="../../../assets/img/never-alone.png"
-        srcset="../../../assets/img/never-alone@2x.png 2x,../../../assets/img/never-alone@3x.png 3x" />
-    </section>
-  </div>
-
-  <div class="container">
-    <section class="hp-s4-services">
-      <app-hp-text-container [subtitle]="sections.services.subtitle" [title]="sections.services.title"
-        [paragraph]="sections.services.paragraph">
-      </app-hp-text-container>
-      <app-hp-cards-paralax></app-hp-cards-paralax>
-    </section>
-
-    <section class="hp-s5-steps-to-follow">
-      <app-hp-text-container [subtitle]="sections.stepsToFollow.subtitle" [title]="sections.stepsToFollow.title"
-        [paragraph]="sections.stepsToFollow.paragraph">
-      </app-hp-text-container>
-      <app-hp-gallery-paralax [gallery]="sections.stepsToFollow.gallery"></app-hp-gallery-paralax>
-    </section>
-
-    <section class="hp-s6-experiences">
-      <div class="hp-s6-experiences-box">
-        <h2 class="worlhopp-name">world<span class="hopp-name">hopp</span></h2>
-      </div>
-      <app-hp-text-container [subtitle]="sections.experiences.subtitle" [title]="sections.experiences.title"
-        [paragraph]="sections.experiences.paragraph">
-      </app-hp-text-container>
-      <app-hp-slider-experiences [sliderList]="sections.experiences.slider"></app-hp-slider-experiences>
-    </section>
-
-    <section class="hp-s7-team">
-      <app-hp-text-container [subtitle]="sections.team.subtitle" [title]="sections.team.title"
-        [paragraph]="sections.team.paragraph">
-      </app-hp-text-container>
-      <app-hp-gallery-paralax [gallery]="sections.team.gallery"></app-hp-gallery-paralax>
-    </section>
-
-    <section class="hp-s8-learn-english">
-      <div class="hp-s8-le-box">
-        <h2 class="worlhopp-name">world<span class="hopp-name">hopp</span></h2>
-        <img src="../../../assets/img/learn_english.svg" />
-      </div>
-      <app-hp-text-container [title]="sections.learnEnglish.title" [paragraph]="sections.learnEnglish.paragraph">
-      </app-hp-text-container>
-    </section>
-  </div>
-
-  <div class="container">
-    <section class="hp-s9-contact">
-      <img class="paper-plane" src="../../../assets/img/paper_plane.svg" />
-      <app-hp-text-container [theme]="'light'" [title]="sections.contact.title"
-        [paragraph]="sections.contact.paragraph">
-      </app-hp-text-container>
-      <div class="hp-s9-c-form">
-        <form>
-          <div class="form-group">
-            <label>
-              <input type="text" placeholder="Nombre" />
-            </label>
-            <label>
-              <input type="text" placeholder="Apellidos" />
-            </label>
-          </div>
-          <div class="form-group">
-            <label>
-              <input type="text" placeholder="Email" />
-            </label>
-            <label class="select-field">
-              <select>
-                <option selected>Nacionalidad</option>
-              </select>
-            </label>
-          </div>
-          <div class="form-group">
-            <label>
-              <input type="text" placeholder="Asunto" />
-            </label>
-          </div>
-          <div class="form-group">
-            <textarea placeholder="Mensaje"></textarea>
-          </div>
-          <div class="form-group form-conditions">
-            <label>
-              <input type="checkbox" />
-              <span>Acepto la <a href="">política de privacidad</a></span>
-            </label>
-          </div>
-          <button type="button" class="btn btn-lg btn-secondary-blue">ENVIAR</button>
-        </form>
-      </div>
-      <img class="clouds-left" src="../../../assets/img/clouds_left.svg" />
-      <img class="clouds-right" src="../../../assets/img/clouds_right.svg" />
-    </section>
-  </div>
-
-
-  <div class="container">
-    <section class="hp-s10-partners">
-      <app-hp-slider-partners [sliderList]="sections.partners.slider"></app-hp-slider-partners>
-    </section>
-  </div>
-
-  <app-hp-btn-goto-contact></app-hp-btn-goto-contact>
-</div>
+</main>
+<footer>
+  <app-footer></app-footer>
+</footer>

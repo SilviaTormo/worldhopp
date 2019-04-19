@@ -1,0 +1,261 @@
+.hp-s9-contact {
+  padding: 10%;
+  padding-bottom: 5%;
+}
+
+.hp-s9-contact * {
+  text-align: center;
+}
+
+.hp-s9-contact>.hp-s9-c-form,
+.hp-s9-contact>.hp-s9-c-form>form,
+.hp-s9-contact>.hp-s9-c-form>form>.form-group {
+  width: 100%;
+}
+
+.hp-s9-contact>.hp-s9-c-form {
+  width: 750px;
+  max-width: 100%;
+  margin: auto;
+  margin-top: 80px;
+}
+
+.hp-s9-contact>.hp-s9-c-form>form>.form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.hp-s9-contact>.hp-s9-c-form>form>.form-group>label {
+  width: 100%;
+  padding: 5px;
+}
+
+.hp-s9-contact>.hp-s9-c-form>form>.form-group>label>input:not([type="checkbox"]),
+.hp-s9-contact>.hp-s9-c-form>form>.form-group>label>select,
+.hp-s9-contact>.hp-s9-c-form>form>.form-group>textarea {
+  width: 100%;
+  height: 49px;
+  padding: 10px 25px;
+  border: 1px solid white;
+  border-radius: 4px;
+  font-size: 18px;
+  text-align: left;
+  color: white;
+  background-color: transparent;
+  transition: 0.2s;
+}
+
+.hp-s9-contact>.hp-s9-c-form>form>.form-group>label.select-field::after {
+  content: url('../../../../assets/img/ic-expand-more.svg');
+  top: 52.5%;
+  right: 20px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.hp-s9-contact>.hp-s9-c-form>form>.form-group>label.select-field>select {
+  padding-left: 20px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.hp-s9-contact>.hp-s9-c-form>form>.form-group input::placeholder,
+.hp-s9-contact>.hp-s9-c-form>form>.form-group textarea::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.hp-s9-contact>.hp-s9-c-form>form>.form-group>label>input:focus,
+.hp-s9-contact>.hp-s9-c-form>form>.form-group>label>select:focus,
+.hp-s9-contact>.hp-s9-c-form>form>.form-group>textarea:focus {
+  border: 1px solid #1684f5;
+}
+
+.hp-s9-contact>.hp-s9-c-form>form>.form-group input:focus::placeholder,
+.hp-s9-contact>.hp-s9-c-form>form>.form-group textarea:focus::placeholder {
+  opacity: 0.6;
+}
+
+.hp-s9-contact>.hp-s9-c-form>form>.form-group>textarea {
+  height: 270px;
+  margin: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  resize: none;
+}
+
+.hp-s9-contact>.hp-s9-c-form>form>.form-group input[type="checkbox"] {
+  display: none;
+}
+
+.hp-s9-contact>.hp-s9-c-form>form>.form-group input[type="checkbox"]+span {
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hp-s9-contact>.hp-s9-c-form>form>.form-group input[type="checkbox"]+span::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  border-radius: 4px;
+  color: white;
+  background-color: #ffffff;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.hp-s9-contact>.hp-s9-c-form>form>.form-group input[type="checkbox"]:checked+span::before {
+  content: '\f00c';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  background-color: #1bba99;
+}
+
+.hp-s9-contact>.hp-s9-c-form>form>.form-group input[type="checkbox"]+span>a {
+  color: #fffc78;
+  margin-left: 5px;
+}
+
+.hp-s9-contact>.hp-s9-c-form>form>.form-conditions {
+  margin-top: 10px;
+}
+
+
+.hp-s9-contact img.paper-plane {
+  right: 15%;
+  top: 0%;
+  animation-name: move_bg_image_paper_plane;
+  animation-duration: 6s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  transform: translate(50%, 0%);
+  position: absolute;
+}
+
+@keyframes move_bg_image_paper_plane {
+  0% {
+    top: 0%;
+  }
+
+  50% {
+    top: 1%;
+  }
+
+  100% {
+    top: 0%;
+  }
+}
+
+.hp-s9-contact img.clouds-left {
+  left: 0;
+  top: 50%;
+  animation-name: move_bg_image_clouds_left;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  transform: translateY(-50%);
+  position: absolute;
+}
+
+@keyframes move_bg_image_clouds_left {
+  0% {
+    left: 0%;
+  }
+
+  25% {
+    left: -0.4%;
+  }
+
+  50% {
+    left: 0%;
+  }
+
+  75% {
+    left: -0.4%;
+  }
+
+  100% {
+    left: 0%;
+  }
+}
+
+
+.hp-s9-contact img.clouds-right {
+  right: 0;
+  top: 100%;
+  animation-name: move_bg_image_clouds_right;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  transform: translateY(-50%);
+  position: absolute;
+}
+
+@keyframes move_bg_image_clouds_right {
+  0% {
+    right: 0%;
+  }
+
+  25% {
+    right: -0.4%;
+  }
+
+  50% {
+    right: 0%;
+  }
+
+  75% {
+    right: -0.4%;
+  }
+
+  100% {
+    right: 0%;
+  }
+}
+
+@media only screen and (max-width: 1380px) {
+  .hp-s9-contact>.hp-s9-contact {
+    padding-bottom: 120px;
+  }
+
+  .hp-s9-contact img.paper-plane {
+    right: unset;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    position: relative;
+    transform: translate(0%, 0%);
+    display: block;
+  }
+
+  .hp-s9-contact>.hp-s9-c-form {
+    margin-top: 30px;
+  }
+
+  .hp-s9-contact img.clouds-left {
+    display: none;
+  }
+
+  .hp-s9-contact img.clouds-right {
+    max-width: 110%;
+    animation: none;
+  }
+}
+
+@media only screen and (max-width: 590px) {
+  .hp-s9-contact>.hp-s9-c-form>form>.form-group {
+    flex-direction: column;
+  }
+
+  .hp-s9-contact>.hp-s9-c-form>form>.form-group label {
+    padding: 5px 0;
+  }
+}
