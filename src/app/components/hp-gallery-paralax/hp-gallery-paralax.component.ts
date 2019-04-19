@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SecurityContext, ViewChild, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Input, SecurityContext, ViewChild, AfterContentChecked } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as Rellax from 'rellax';
 import * as Hammer from 'hammerjs';
@@ -8,7 +8,7 @@ import * as Hammer from 'hammerjs';
   templateUrl: './hp-gallery-paralax.component.html',
   styleUrls: ['./hp-gallery-paralax.component.css']
 })
-export class HpGalleryParalaxComponent implements OnInit, AfterContentInit {
+export class HpGalleryParalaxComponent implements OnInit, AfterContentChecked {
 
   @Input() gallery: Object[];
   @ViewChild('galleryElement') galleryElement;
@@ -39,7 +39,7 @@ export class HpGalleryParalaxComponent implements OnInit, AfterContentInit {
     this.newSlider();
   }
 
-  ngAfterContentInit(): void {
+  ngAfterContentChecked(): void {
     this.getSliderWidth();
   }
 
@@ -119,7 +119,7 @@ export class HpGalleryParalaxComponent implements OnInit, AfterContentInit {
   getSliderWidth() {
     const element = this.galleryElement.nativeElement.getBoundingClientRect();
     const widthSize = element.width;
-    const marginSize = 20;
+    const marginSize = 10;
     const realWidthSize = (marginSize + widthSize);
     // console.log(realWidthSize);
     this.sliderWidth = realWidthSize;
