@@ -41,7 +41,6 @@
   white-space: normal;
   transform: translate(-50%, -50%);
   background-color: rgba(22, 134, 247, 0.32);
-  background-color: rgba(78, 48, 89, 0.76);
   opacity: 0;
   transition: 0.35s;
   display: flex;
