@@ -14,9 +14,27 @@ export class HpScReasonsComponent implements OnInit {
     paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis. Pellentesque luctus enim vel quam sagittis tristique.'
   };
 
+  // tslint:disable-next-line:no-inferrable-types
+  showSideBar: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleShowSideBar() {
+    this.showSideBar = !this.showSideBar;
+  }
+
+  handleActions(event) {
+    switch (event.action) {
+      case 'close':
+        this.toggleShowSideBar();
+        break;
+
+      default:
+        break;
+    }
   }
 
 }
