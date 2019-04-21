@@ -21,6 +21,7 @@ import { HpScTeamComponent } from './layouts/home/hp-sc-team/hp-sc-team.componen
 import { HpScLearnEnglishComponent } from './layouts/home/hp-sc-learn-english/hp-sc-learn-english.component';
 import { HpScContactComponent } from './layouts/home/hp-sc-contact/hp-sc-contact.component';
 import { HpScPartnersComponent } from './layouts/home/hp-sc-partners/hp-sc-partners.component';
+import { HpSidebarDoYouLackAHoppComponent } from './layouts/home/hp-sidebar-do-you-lack-a-hopp/hp-sidebar-do-you-lack-a-hopp.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { HpScPartnersComponent } from './layouts/home/hp-sc-partners/hp-sc-partn
     HpScTeamComponent,
     HpScLearnEnglishComponent,
     HpScContactComponent,
-    HpScPartnersComponent
+    HpScPartnersComponent,
+    HpSidebarDoYouLackAHoppComponent
   ],
   imports: [
     BrowserModule,
