@@ -378,6 +378,10 @@
   margin-top: 10px;
 }
 
+#home-page .img.paper-luna {
+  width:30vh;
+  height: 30vh;
+}
 
 #home-page .container:nth-of-type(4) img.paper-plane {
   right: 15%;
@@ -447,33 +451,17 @@
 }
 
 @keyframes move_bg_image_clouds_left {
-  0% {
-    left: 0%;
-  }
-
-  25% {
-    left: -0.4%;
-  }
-
-  50% {
-    left: 0%;
-  }
-
-  75% {
-    left: -0.4%;
-  }
-
-  100% {
-    left: 0%;
-  }
+  0% {margin-left: 100px;}
+	100% {margin-left: -100px;}
 }
 
 
 #home-page .container:nth-of-type(4) img.clouds-right {
+  z-index: -2;
   right: 0;
   top: 100%;
   animation-name: move_bg_image_clouds_right;
-  animation-duration: 10s;
+  animation-duration: -0s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-fill-mode: forwards;
