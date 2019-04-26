@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
       name: 'Contacto',
       id: 'contact',
       section: '.hp-s9-contact'
->>>>>>> master
     }
   ];
 

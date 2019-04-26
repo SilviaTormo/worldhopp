@@ -37,11 +37,6 @@ import { HpSidebarDoYouLackAHoppComponent } from './layouts/home/hp-sidebar-do-y
     HpSliderExperiencesComponent,
     FooterComponent,
     HpSliderPartnersComponent,
-<<<<<<< HEAD
-   
-
-   
-=======
     HpBtnGotoContactComponent,
     HpScOurDestinationsComponent,
     HpScReasonsComponent,
@@ -53,7 +48,6 @@ import { HpSidebarDoYouLackAHoppComponent } from './layouts/home/hp-sidebar-do-y
     HpScContactComponent,
     HpScPartnersComponent,
     HpSidebarDoYouLackAHoppComponent
->>>>>>> master
   ],
   imports: [
     BrowserModule,
