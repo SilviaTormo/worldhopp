@@ -67,10 +67,23 @@
   padding: 0px 15px;
   font-weight: 600;
   line-height: 65px;
+  transition: 0.2s;
 }
 
 #top-navbar .tnb-main-nav li.active {
   color: #1686F7;
+}
+
+#top-navbar .tnb-main-nav li a {
+  height: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  line-height: 65px;
+  text-align: inherit;
+  text-decoration: none;
+  display: inline-block;
 }
 
 #top-navbar .tnb-main-nav li img {

@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+<<<<<<< HEAD
   sections = {
     'fates': {
       subtitle: 'Estas a un hopp de cambiar tu vida',
@@ -211,8 +212,30 @@ export class HomeComponent implements OnInit {
           url: ''
         },
       ]
+=======
+  menu = [
+    {
+      name: 'Destinos',
+      id: 'destinations',
+      section: '.hp-s2-our-destinations'
+    },
+    {
+      name: 'Servicios',
+      id: 'services',
+      section: '.hp-s4-services'
+    },
+    {
+      name: 'Equipo',
+      id: 'team',
+      section: '.hp-s7-team'
+    },
+    {
+      name: 'Contacto',
+      id: 'contact',
+      section: '.hp-s9-contact'
+>>>>>>> master
     }
-  };
+  ];
 
   constructor() { }
 

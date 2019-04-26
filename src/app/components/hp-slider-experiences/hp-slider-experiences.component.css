@@ -4,7 +4,7 @@
 
 .slider-container>.slider-list {
   width: 780px;
-  max-width: 100%;
+  max-width: 95%;
   margin: auto;
   white-space: nowrap;
   transition: 0.2s;
@@ -130,7 +130,7 @@
   }
 
   .slider-container>.slider-list>.slider-item {
-    padding-top: 75%;
+    padding-top: 80%;
     /* 4:3 Aspect Ratio */
   }
 }

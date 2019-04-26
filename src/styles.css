@@ -51,3 +51,7 @@
 .btn.btn-secondary-green {
   background-color: #1BBC9B;
 }
+
+.overflow-hidden {
+  overflow: hidden;
+}

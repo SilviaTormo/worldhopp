@@ -1,0 +1,18 @@
+<section class="hp-s3-reasons">
+  <div class="hp-s3-10-reasons-box">
+    <div class="hp-s3-10rb-image">
+      <div></div>
+    </div>
+    <h2 class="worlhopp-name">world<span class="hopp-name">hopp</span></h2>
+    <p>Te seguimos en tu aventura</p>
+    <button type="button" class="btn btn-primary" (click)="toggleShowSideBar()">¿Te falta un HOPP?</button>
+  </div>
+  <app-hp-text-container [subtitle]="content.subtitle" [title]="content.title" [paragraph]="content.paragraph">
+  </app-hp-text-container>
+  <img src="../../../assets/img/never-alone.png"
+    srcset="../../../assets/img/never-alone@2x.png 2x,../../../assets/img/never-alone@3x.png 3x" />
+</section>
+
+<ng-container *ngIf="showSideBar">
+  <app-hp-sidebar-do-you-lack-a-hopp (actionToExport)="handleActions($event)"></app-hp-sidebar-do-you-lack-a-hopp>
+</ng-container>

@@ -9,10 +9,15 @@
 /* BEGIN:: HERO */
 #home-page .hero {
   width: 100%;
+<<<<<<< HEAD
   height: 90vh;
   background-image: url('../../../assets/img/wave.svg'),url('../../../assets/img/new-zealand-583177-1920.png');
+=======
+  height: 75vh;
+  background-image: url('../../../assets/img/wave.svg'), url('../../../assets/img/new-zealand-583177-1920.jpg');
+>>>>>>> master
   background-size: 100% auto, cover;
-  background-position: 0% 103%, 50% 50%;
+  background-position: 0% 103%, 50% 80%;
   background-repeat: no-repeat, no-repeat;
   transition: 0.4s;
 }
@@ -78,6 +83,7 @@
   }
 }
 
+<<<<<<< HEAD
 /* BEGIN LEFT JELLY */
 
 
@@ -139,6 +145,8 @@
 
 /* END:: 10 REASONS */
 
+=======
+>>>>>>> master
 #home-page .worlhopp-name {
   font-size: 62px;
   line-height: 1.2;
@@ -160,6 +168,7 @@
   }
 }
 
+<<<<<<< HEAD
 
 /* BEGIN:: SERVICES */
 #home-page .hp-s4-services {
@@ -238,6 +247,8 @@
   pointer-events: none;
 }
 
+=======
+>>>>>>> master
 #home-page .container:nth-of-type(4) {
   background-color: #17153b;
 }
@@ -250,6 +261,7 @@
   transform: rotate(180deg) translateY(35%);
   position: absolute;
 }
+<<<<<<< HEAD
 
 
 #home-page .hp-s9-contact {
@@ -573,3 +585,5 @@
 }
 
 /* END:: BUTTON GO TO CONTACT */
+=======
+>>>>>>> master

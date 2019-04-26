@@ -21,11 +21,16 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "ajv": "^6.10.0",
+<<<<<<< HEAD
     "ajv-keywords": "^3.4.0",
+=======
+>>>>>>> master
     "core-js": "^2.5.4",
+    "gsap": "^2.1.2",
     "hammerjs": "^2.0.8",
     "rellax": "^1.8.0",
     "rxjs": "~6.2.0",
+    "scrollmagic": "^2.0.6",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
