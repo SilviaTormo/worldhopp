@@ -9,13 +9,8 @@
 /* BEGIN:: HERO */
 #home-page .hero {
   width: 100%;
-<<<<<<< HEAD
-  height: 90vh;
-  background-image: url('../../../assets/img/wave.svg'),url('../../../assets/img/new-zealand-583177-1920.png');
-=======
   height: 75vh;
   background-image: url('../../../assets/img/wave.svg'), url('../../../assets/img/new-zealand-583177-1920.jpg');
->>>>>>> master
   background-size: 100% auto, cover;
   background-position: 0% 103%, 50% 80%;
   background-repeat: no-repeat, no-repeat;
@@ -168,87 +163,6 @@
   }
 }
 
-<<<<<<< HEAD
-
-/* BEGIN:: SERVICES */
-#home-page .hp-s4-services {
-  margin-top: 50px;
-}
-
-@media only screen and (max-width: 560px) {
-  #home-page .hp-s4-services {
-    margin-top: 0px;
-    padding-bottom: 0px;
-  }
-}
-
-/* END:: SERVICES */
-
-
-
-
-
-/* BEGIN:: EXPERIENCES */
-#home-page .hp-s6-experiences {
-  padding-top: 0;
-}
-
-#home-page .hp-s6-experiences>.hp-s6-experiences-box,
-#home-page .hp-s6-experiences>.hp-s6-experiences-box>* {
-  width: 100%;
-  margin: 0 auto;
-  display: block;
-}
-
-#home-page .hp-s6-experiences>.hp-s6-experiences-box {
-  margin-bottom: 60px;
-}
-
-#home-page .hp-s6-experiences>.hp-s6-experiences-box * {
-  text-align: center;
-}
-
-#home-page .hp-s6-experiences>.hp-s6-experiences-box .worlhopp-name {
-  font-size: 52px;
-}
-
-@media only screen and (max-width: 560px) {
-  #home-page .hp-s6-experiences {
-    padding-bottom: 0;
-  }
-
-  #home-page .hp-s6-experiences>.hp-s6-experiences-box .worlhopp-name {
-    font-size: 48px;
-  }
-}
-
-/* END:: EXPERIENCES */
-
-#home-page .hp-s8-learn-english {
-  padding-top: 0;
-}
-
-#home-page .hp-s8-learn-english * {
-  text-align: center;
-}
-
-#home-page .hp-s8-learn-english .hp-s8-le-box {
-  margin-bottom: 20px;
-}
-
-#home-page .hp-s8-learn-english .hp-s8-le-box * {
-  font-size: 48px;
-}
-
-#home-page .hp-s8-learn-english .hp-s8-le-box img {
-  width: 335px;
-  max-width: 80%;
-  margin-top: 30px;
-  pointer-events: none;
-}
-
-=======
->>>>>>> master
 #home-page .container:nth-of-type(4) {
   background-color: #17153b;
 }
