@@ -129,6 +129,7 @@ export class HpGalleryParalaxComponent implements OnInit, AfterContentChecked {
     const windowWidth = window.innerWidth;
     if (windowWidth > 920) {
       this.isMobile = false;
+      this.currentSlider = 0;
     } else {
       this.isMobile = true;
     }
