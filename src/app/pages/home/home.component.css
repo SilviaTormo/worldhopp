@@ -59,16 +59,38 @@
 }
 
 #home-page>.container:nth-of-type(2) {
-  background-image: url('../../../assets/img/wave.svg'), linear-gradient(#ffffff, #f5f5f5);
-  background-size: 100% auto;
-  background-position: 0% 101%;
+  background-image: url('../../../assets/img/wave.svg'), url('../../../assets/img/sl_green_waves.svg'), url('../../../assets/img/sr_yellow_wave.svg'), linear-gradient(#ffffff, #f5f5f5);
+  background-size: 100% auto, auto 35%, auto 30%;
+  background-position: 0% 101%, 0% 9%, 100% 75%;
   background-repeat: no-repeat;
+}
+
+
+@media only screen and (max-width: 1299px) {
+  #home-page>.container:nth-of-type(2) {
+    background-image: url('../../../assets/img/wave.svg'), linear-gradient(#ffffff, #f5f5f5);
+    background-size: 100% auto;
+    background-position: 0% 101%;
+  }
 }
 
 @media only screen and (max-width: 920px) {
   #home-page>.container:nth-of-type(2) {
     background-size: 200% auto;
     background-position: 65% 101%;
+  }
+}
+
+#home-page>.container:nth-of-type(3) {
+  background-image: url('../../../assets/img/sl_blue_wave.svg'), url('../../../assets/img/sr_blue_wave.svg'), url('../../../assets/img/sl_yellow_wave.svg');
+  background-size: auto 20%, auto 20%, auto 20%;
+  background-position: 0% 8%, 100% 15%, 0% 97%;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 1299px) {
+  #home-page>.container:nth-of-type(3) {
+    background-image: none;
   }
 }
 
