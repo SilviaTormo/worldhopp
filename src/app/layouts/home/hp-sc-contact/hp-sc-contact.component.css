@@ -125,9 +125,14 @@
   margin-top: 10px;
 }
 
-
-.hp-s9-contact img.paper-plane {
+.hp-s9-contact img.paper-moon {
   right: 15%;
+  top: 0%;
+ 
+  position: absolute;
+}
+.hp-s9-contact img.paper-plane {
+  right: 26%;
   top: 0%;
   animation-name: move_bg_image_paper_plane;
   animation-duration: 6s;
@@ -141,14 +146,30 @@
 @keyframes move_bg_image_paper_plane {
   0% {
     top: 0%;
+    right:20%;
+  }
+  15% {
+    top: 2%;
+    right:19%;
+  }
+
+  25% {
+    top: 3%;
+    right:18%;
+  }
+  40% {
+    top: 2%;
+    right:17%;
   }
 
   50% {
     top: 1%;
+    right:16%;
   }
 
   100% {
-    top: 0%;
+    top: 2%;
+    right:15%;
   }
 }
 
