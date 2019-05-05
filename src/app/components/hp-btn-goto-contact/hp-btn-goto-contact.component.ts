@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-hp-btn-goto-contact',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hp-btn-goto-contact.component.css']
 })
 export class HpBtnGotoContactComponent implements OnInit {
+
+  @Input() anchor = '';
 
   // tslint:disable-next-line:no-inferrable-types
   isMobile: boolean = false;
