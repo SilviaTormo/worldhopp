@@ -78,15 +78,6 @@
   }
 }
 
-/* BEGIN LEFT JELLY */
-
-
-
-#home-page .blob {
-  float: left;
-  left: -3%;
-  
-}
 
 /* BEGIN:: OUR FATES */
 @media only screen and (max-width: 560px) {
