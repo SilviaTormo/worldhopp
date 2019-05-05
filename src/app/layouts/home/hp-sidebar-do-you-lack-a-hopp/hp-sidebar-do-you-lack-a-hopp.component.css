@@ -176,7 +176,7 @@
   padding: 15px;
   overflow: hidden;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
