@@ -11,7 +11,7 @@ export class HpScOurDestinationsComponent implements OnInit {
     subtitle: 'Estas a un hopp de cambiar tu vida',
     title: 'Nuestros destinos',
     // tslint:disable-next-line:max-line-length
-    paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis. Pellentesque luctus enim vel quam sagittis tristique.',
+    paragraph: 'Lánzate a una aventura épica en nuestros hábitats. Tu sueño de viajar y estudiar convertido en una experiencia que será inolvidable. Lets Hopp together!',
     gallery: {
       steps: false,
       rellax: true,

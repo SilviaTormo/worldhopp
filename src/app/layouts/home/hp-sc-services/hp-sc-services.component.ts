@@ -8,10 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HpScServicesComponent implements OnInit {
 
   content = {
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    subtitle: 'SERVICIOS, EVENTOS, PRACTICAS y MUCHO MAS',
     title: '¿Qué te ofrecemos?',
     // tslint:disable-next-line:max-line-length
-    paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis. Pellentesque luctus enim vel quam sagittis tristique.'
+    paragraph: 'Los mejores programas de estudio a tu alcance en las ciudades de destino para que la experencia que elijas sea perfecta y adaptada a tus necesidades.'
   };
 
   constructor() { }
