@@ -11,7 +11,7 @@ export class HpScExperiencesComponent implements OnInit {
     subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title: 'Otros ya lo han hecho!',
     // tslint:disable-next-line:max-line-length
-    paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis.',
+    paragraph: 'Puedes leer sus opiniones y vivencias para hacerte una idea de lo que estás a punto de experimentar',
     slider: [
       {
         photo: '../../../assets/img/water-1245677_1280.jpg',
