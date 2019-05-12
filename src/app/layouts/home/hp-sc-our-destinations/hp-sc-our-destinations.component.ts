@@ -8,10 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HpScOurDestinationsComponent implements OnInit {
 
   content = {
-    subtitle: 'Estas a un hopp de cambiar tu vida',
+    subtitle: 'Estas a un Hopp de cambiar tu vida',
     title: 'Nuestros destinos',
     // tslint:disable-next-line:max-line-length
-    paragraph: 'Lánzate a una aventura épica en nuestros hábitats. Tu sueño de viajar y estudiar convertido en una experiencia que será inolvidable. Lets Hopp together!',
+    paragraph: 'Lánzate a una aventura única en nuestros hábitats. Tu sueño de viajar y estudiar convertido en una experiencia que será inolvidable. Lets Hopp Together!',
     gallery: {
       steps: false,
       rellax: true,
