@@ -21,6 +21,7 @@
   background-repeat: no-repeat;
   background-size: 150%;
   display: block;
+  cursor: pointer;
 }
 
 .hp-s3-reasons .hp-s3-10-reasons-box p {
