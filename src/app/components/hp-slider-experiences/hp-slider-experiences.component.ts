@@ -12,7 +12,7 @@ export class HpSliderExperiencesComponent implements OnInit, AfterContentChecked
   @Input() sliderList: Object[] = [];
 
   // tslint:disable-next-line:no-inferrable-types
-  currentSlider: number = 0;
+  currentSlider: number = 1;
   sliderClassName: String = '';
   // tslint:disable-next-line:no-inferrable-types
   sliderWidth: number = 800;
@@ -59,6 +59,7 @@ export class HpSliderExperiencesComponent implements OnInit, AfterContentChecked
   newSlider() {
     if ((<HTMLElement>document.getElementsByClassName('' + this.sliderClassName)[0])) {
       const slider = (<HTMLElement>document.getElementsByClassName('' + this.sliderClassName)[0]);
+      this.goTo(this.currentSlider);
       const mc = new Hammer.Manager(slider);
       // const Swipe = new Hammer.Swipe({ direction: Hammer.DIRECTION_HORIZONTAL });
       const Pan = new Hammer.Pan({ threshold: 0, direction: Hammer.DIRECTION_HORIZONTAL });
