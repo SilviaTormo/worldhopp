@@ -65,7 +65,8 @@
 #top-navbar .tnb-main-nav li:not(.logo) {
   height: 65px;
   padding: 0px 15px;
-  font-weight: 600;
+  font-weight: 900;
+  color: #353b50;
   line-height: 65px;
   transition: 0.2s;
 }
@@ -93,6 +94,7 @@
 
 #top-navbar .tnb-main-nav li.logo {
   max-height: 200%;
+  padding: 0 50px;
   padding-top: 20px;
   transition: 0.4s;
 }
