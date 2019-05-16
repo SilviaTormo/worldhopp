@@ -29,7 +29,9 @@ export class HpScReasonsComponent implements OnInit {
   handleActions(event) {
     switch (event.action) {
       case 'close':
-        this.toggleShowSideBar();
+        if (this.showSideBar) {
+          this.toggleShowSideBar();
+        }
         break;
 
       default:
