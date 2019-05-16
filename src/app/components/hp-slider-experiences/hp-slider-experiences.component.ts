@@ -15,7 +15,7 @@ export class HpSliderExperiencesComponent implements OnInit, AfterContentChecked
   currentSlider: number = 1;
   sliderClassName: String = '';
   // tslint:disable-next-line:no-inferrable-types
-  sliderWidth: number = 800;
+  sliderWidth: number;
   sliderTimer;
 
   @ViewChild('eSliderList') eSliderList: ElementRef;
@@ -104,7 +104,7 @@ export class HpSliderExperiencesComponent implements OnInit, AfterContentChecked
     }
     this.renderer2.addClass(this.eSliderList.nativeElement, 'is-animating');
     const percentage = -((this.sliderList.length * 100) / this.sliderList.length) * this.currentSlider;
-    this.renderer2.setStyle(this.eSliderList.nativeElement, 'transform', 'translateX( ' + percentage + '% )');
+    this.renderer2.setStyle(this.eSliderList.nativeElement, 'transform', 'translateX( ' + (percentage - 2) + '% )');
     clearTimeout(this.sliderTimer);
     const self = this;
     this.sliderTimer = setTimeout(function () {

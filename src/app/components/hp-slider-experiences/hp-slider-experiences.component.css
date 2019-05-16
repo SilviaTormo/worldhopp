@@ -17,7 +17,7 @@
 
 .slider-container>.slider-list>.slider-item {
   width: 100%;
-  margin: 10px 20px;
+  margin: 10px 0px;
   margin-left: 0px;
   padding-top: 56.25%;
   /* 16:9 Aspect Ratio */
@@ -29,6 +29,10 @@
   box-shadow: 0px 3px 10px -2px #dadada;
   display: inline-block;
   overflow: hidden;
+}
+
+.slider-container>.slider-list>.slider-item.current-slider {
+  margin: 10px 2%;
 }
 
 .slider-container>.slider-list>.slider-item:last-of-type {
