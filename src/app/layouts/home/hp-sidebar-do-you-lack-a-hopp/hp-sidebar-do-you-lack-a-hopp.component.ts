@@ -1,11 +1,11 @@
-import { Component, OnInit, EventEmitter, Output, Renderer2, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter, Output, Renderer2, HostListener, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-hp-sidebar-do-you-lack-a-hopp',
   templateUrl: './hp-sidebar-do-you-lack-a-hopp.component.html',
   styleUrls: ['./hp-sidebar-do-you-lack-a-hopp.component.css']
 })
-export class HpSidebarDoYouLackAHoppComponent implements OnInit {
+export class HpSidebarDoYouLackAHoppComponent implements OnInit, OnDestroy {
 
   // tslint:disable-next-line:no-inferrable-types
   hideSideBar: boolean = false;
@@ -81,7 +81,11 @@ export class HpSidebarDoYouLackAHoppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.renderer2.setStyle(document.body, 'overflow', 'hidden');
+    this.renderer2.setStyle(document.documentElement, 'overflow', 'hidden');
+  }
+
+  ngOnDestroy(): void {
+    this.renderer2.removeStyle(document.documentElement, 'overflow');
   }
 
   scrollEffects(event) {
