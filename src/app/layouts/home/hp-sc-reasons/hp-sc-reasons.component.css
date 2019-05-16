@@ -10,11 +10,11 @@
 }
 
 .hp-s3-reasons .hp-s3-10-reasons-box .hp-s3-10rb-image {
-  width: 96px;
-  height: 96px;
+  width: 128px;
+  height: 128px;
   margin: 15px auto;
   border-radius: 100%;
-  box-shadow: 0px 0px 25px -3px #c8c8c8;
+  box-shadow: 0 4px 34px 0 rgba(0, 0, 0, 0.14);
   background-color: #c2c2c2;
   background-image: url('../../../../assets/img/dar-el-hopp.svg');
   background-position: 50% 44%;
