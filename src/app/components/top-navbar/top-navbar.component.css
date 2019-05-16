@@ -115,7 +115,7 @@
   cursor: pointer;
 }
 
-@media only screen and (max-width: 670px) {
+@media only screen and (max-width: 775px) {
   #top-navbar .tnb-main-nav li:not(.logo) {
     display: none;
   }
