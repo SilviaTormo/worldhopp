@@ -8,10 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HpScExperiencesComponent implements OnInit {
 
   content = {
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    subtitle: 'Conoce la comunidad de Worldhoppers',
     title: 'Otros ya lo han hecho!',
     // tslint:disable-next-line:max-line-length
+<<<<<<< HEAD
     paragraph: 'Puedes leer sus opiniones y vivencias para hacerte una idea de lo que estás a punto de experimentar',
+=======
+    paragraph: 'Estás a punto de emprender una nueva aventura, conoce la historia de otros Worldhoppers que se han lanzado a estudiar, trabajar y vivir en el extranjero.',
+>>>>>>> sandra2
     slider: [
       {
         photo: '../../../assets/img/water-1245677_1280.jpg',

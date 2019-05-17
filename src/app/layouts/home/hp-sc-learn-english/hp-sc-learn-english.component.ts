@@ -9,7 +9,8 @@ export class HpScLearnEnglishComponent implements OnInit {
 
   content = {
     title: 'Aprende inglés mientras ves mundo',
-    paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dictum vel nisl quis dignissim.',
+    // tslint:disable-next-line:max-line-length
+    paragraph: 'Te ofrecemos los mejores cursos de inglés, tecnología, deportes, etc.. para estudiar en el extranjero. Worldhopp representa a las mejores instituciones en las ciudades principales.',
   };
 
   constructor() { }

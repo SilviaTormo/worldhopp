@@ -8,17 +8,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HpScStepsToFollowComponent implements OnInit {
 
   content = {
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    subtitle: 'No necesitas saber inglés, nosotros nos ocupamos de todo.',
     title: 'Pasos a seguir',
     // tslint:disable-next-line:max-line-length
-    paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis. Pellentesque luctus enim vel quam sagittis tristique.',
+    paragraph: 'Nuestro Hopper te informará y te ayudará a elegir. Además te matriculará y te asistirá con el Visado y todos los trámites de formalización. Realiza los preparativos, compra los vuelos y preguntanos las dudas de última hora. Te recibimos y damos los primeros pasos contigo. ',
     gallery: {
       steps: true,
       rellax: true,
       images: [
         {
           img: '../../../assets/img/alone-480474_1280.jpg',
-          text: 'Lorem ipsum dolor',
+          text: 'Infórmate y Decide',
           fontWeight: '600',
           rellax: {
             speed: -1
@@ -26,7 +26,7 @@ export class HpScStepsToFollowComponent implements OnInit {
         },
         {
           img: '../../../assets/img/city-1868530_1280.jpg',
-          text: 'Lorem ipsum dolor',
+          text: 'Conviertete en Worldhopper',
           fontWeight: '600',
           rellax: {
             speed: 1
@@ -34,7 +34,7 @@ export class HpScStepsToFollowComponent implements OnInit {
         },
         {
           img: '../../../assets/img/airport-2373727_1280.jpg',
-          text: 'Lorem ipsum dolor',
+          text: 'Haz las maletas',
           fontWeight: '600',
           rellax: {
             speed: -1
@@ -42,7 +42,7 @@ export class HpScStepsToFollowComponent implements OnInit {
         },
         {
           img: '../../../assets/img/spain-1276209_1280.jpg',
-          text: 'Lorem ipsum dolor',
+          text: 'Welcome to the Jungle!',
           fontWeight: '600',
           rellax: {
             speed: 1
