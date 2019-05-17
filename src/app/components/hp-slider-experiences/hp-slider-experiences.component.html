@@ -1,10 +1,8 @@
 <div class="slider-container">
-  <div #eSliderList [ngClass]="['slider-list', sliderClassName]"
-    [ngStyle]="{'transform': 'translateX(-' + (currentSlider * sliderWidth) + 'px)'}"
-    (window:resize)="getSliderWidth()">
+  <div #eSliderList [ngClass]="['slider-list', sliderClassName]" (window:resize)="getSliderWidth()">
     <ng-container *ngFor="let slider of sliderList; let index = index">
       <div class="slider-item" [ngClass]="{'current-slider': currentSlider === index}" [attr.data-slider-index]="index"
-        [style.background-image]="setBgImage(slider?.photo)" (click)="currentSlider = index">
+        [style.background-image]="setBgImage(slider?.photo)">
         <ng-container>
           <div class="si-comment">
             <div>
@@ -20,7 +18,7 @@
     <div class="slider-dots">
       <ul>
         <li *ngFor="let slider of sliderList; let index = index" [ngClass]="{'current-slider': currentSlider === index}"
-          (click)="currentSlider = index"></li>
+          (click)="goTo(index)"></li>
       </ul>
     </div>
   </ng-container>
