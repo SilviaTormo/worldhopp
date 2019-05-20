@@ -101,7 +101,7 @@
 
 #top-navbar:not(.scroll-is-up) .tnb-main-nav li.logo {
   max-height: 100%;
-  padding-top: 0px;
+  padding-top: 10px;
 }
 
 #top-navbar:not(.scroll-is-up) .tnb-main-nav li.logo .logo-image {
