@@ -6,6 +6,21 @@
   overflow: hidden;
 }
 
+#claim  {
+  font-family: 'Caveat', cursive;
+  color: #fffe78;
+  font-size: 36px;
+  font-weight: bolder;
+  top:58%;
+  left:44%;
+  letter-spacing: 2px;
+  position: absolute;
+  z-index: 4;
+}
+
+
+
+
 /* BEGIN:: HERO */
 #home-page .hero {
   width: 100%;
