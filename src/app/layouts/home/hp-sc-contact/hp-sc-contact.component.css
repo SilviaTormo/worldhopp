@@ -131,26 +131,14 @@
   top: 0%;
   animation-name: move_bg_image_paper_plane;
   animation-duration: 6s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
   animation-fill-mode: forwards;
   transform: translate(50%, 0%);
   position: absolute;
 }
 
-@keyframes move_bg_image_paper_plane {
-  0% {
-    top: 0%;
-  }
-
-  50% {
-    top: 1%;
-  }
-
-  100% {
-    top: 0%;
-  }
-}
+@keyframes move_bg_image_paper_plane {}
 
 .hp-s9-contact img.clouds-left {
   left: 0;
@@ -164,27 +152,7 @@
   position: absolute;
 }
 
-@keyframes move_bg_image_clouds_left {
-  0% {
-    left: 0%;
-  }
-
-  25% {
-    left: -0.4%;
-  }
-
-  50% {
-    left: 0%;
-  }
-
-  75% {
-    left: -0.4%;
-  }
-
-  100% {
-    left: 0%;
-  }
-}
+@keyframes move_bg_image_clouds_left {}
 
 
 .hp-s9-contact img.clouds-right {
@@ -199,27 +167,7 @@
   position: absolute;
 }
 
-@keyframes move_bg_image_clouds_right {
-  0% {
-    right: 0%;
-  }
-
-  25% {
-    right: -0.4%;
-  }
-
-  50% {
-    right: 0%;
-  }
-
-  75% {
-    right: -0.4%;
-  }
-
-  100% {
-    right: 0%;
-  }
-}
+@keyframes move_bg_image_clouds_right {}
 
 @media only screen and (max-width: 1380px) {
   .hp-s9-contact>.hp-s9-contact {
