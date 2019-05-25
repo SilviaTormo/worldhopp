@@ -11,13 +11,13 @@ export class HpCardsParalaxComponent implements OnInit {
 
   @Input() cards: Object[] = [{
     icon: '../../../assets/img/icon_asesoria.PNG',
-    title: 'Asesoria'
+    title: 'Asesoria gratis y trámites online'
   }, {
     icon: '../../../assets/img/icon_oportunidades.PNG',
-    title: 'Oportunidades para ti'
+    title: 'Oportunidades para tí'
   }, {
     icon: '../../../assets/img/icon_informacion.PNG',
-    title: 'Información en general'
+    title: 'Información durante la experiencia'
   }];
 
   constructor(

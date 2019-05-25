@@ -8,8 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HpScContactComponent implements OnInit {
 
   content = {
-    title: '¿Quieres dar el hopp?',
-    paragraph: 'Lorem ipsum dolor sit amet, consectetur.',
+    title: '¿Quieres dar el Hopp?',
+    paragraph: 'Contáctanos! Te contestaremos cuanto antes.',
   };
 
   constructor() { }

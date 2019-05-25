@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
@@ -25,6 +24,10 @@ import { HpSidebarDoYouLackAHoppComponent } from './layouts/home/hp-sidebar-do-y
 import { EyeFollowMyCursorComponent } from './components/eye-follow-my-cursor/eye-follow-my-cursor.component';
 import { HpScSocialComponent } from './layouts/home/hp-sc-social/hp-sc-social.component';
 import { SmartphoneSocialComponent } from './components/smartphone-social/smartphone-social.component';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -54,9 +57,11 @@ import { SmartphoneSocialComponent } from './components/smartphone-social/smartp
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

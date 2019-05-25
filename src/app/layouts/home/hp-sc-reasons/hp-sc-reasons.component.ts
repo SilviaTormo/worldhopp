@@ -8,10 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HpScReasonsComponent implements OnInit {
 
   content = {
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    title: 'In fermentum erat quis nibh pulvinar mattis. Pellentesque luctus.',
+    title: 'La información que necesites para planificar tu viaje.',
+    // subtitle: 'Te acompañamos en todas las etapas de tu experiencia',
+    subtitle: 'Never alone. Vamos contigo!',
+    // subtitle: 'Te asesoramos con los tramites de las escuelas y los visados.',
     // tslint:disable-next-line:max-line-length
-    paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis. Pellentesque luctus enim vel quam sagittis tristique.'
+    // paragraph: 'Aprovecha las mejores oportunidades en cada destino gracias a las recomendaciones de nuestro equipo de coaching transformacional.',
+    // tslint:disable-next-line:max-line-length
+    paragraph: 'Te acompañamos en todas las etapas de tu aventura, nosotros ya hemos vivido todas las experiencias. Bienvenido a la comunidad de Worldhoppers.'
   };
 
   // tslint:disable-next-line:no-inferrable-types

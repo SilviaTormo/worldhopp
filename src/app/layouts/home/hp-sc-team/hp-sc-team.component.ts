@@ -8,10 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HpScTeamComponent implements OnInit {
 
   content = {
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    subtitle: 'Un equipo entero a tu disposición',
     title: 'Nuestro equipo',
     // tslint:disable-next-line:max-line-length
-    paragraph: 'Asesoramos sobre los vuelos, seguros y preparativos para el viaje... y resolvemos las dudas hasta el ultimo momento.',
+    paragraph: 'Te asesoramos gratuitamente sobre vuelos, seguros, preparativos para el viaje y resolvemos todas las dudas que tengas. Tu Hopper está allí y te lo cuenta todo, el también pasó por ello!',
     gallery: {
       steps: false,
       rellax: true,
