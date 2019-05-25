@@ -20,9 +20,7 @@
         <label class="select-field">
           <select>
             <option selected>Nacionalidad</option>
-            <option>España</option>
-            <option>Chile</option>
-            <option>Brasil</option>
+            <option *ngFor="let item of nationalitiesAvailable">{{ item }}</option>
           </select>
         </label>
       </div>

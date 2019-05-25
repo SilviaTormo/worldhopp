@@ -12,6 +12,12 @@ export class HpScContactComponent implements OnInit {
     paragraph: 'Contáctanos! Te contestaremos cuanto antes.',
   };
 
+  nationalitiesAvailable = [
+    'España',
+    'Chile',
+    'Brasil'
+  ];
+
   constructor() { }
 
   ngOnInit() {
