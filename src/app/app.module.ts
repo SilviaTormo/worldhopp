@@ -23,6 +23,8 @@ import { HpScContactComponent } from './layouts/home/hp-sc-contact/hp-sc-contact
 import { HpScPartnersComponent } from './layouts/home/hp-sc-partners/hp-sc-partners.component';
 import { HpSidebarDoYouLackAHoppComponent } from './layouts/home/hp-sidebar-do-you-lack-a-hopp/hp-sidebar-do-you-lack-a-hopp.component';
 import { EyeFollowMyCursorComponent } from './components/eye-follow-my-cursor/eye-follow-my-cursor.component';
+import { HpScSocialComponent } from './layouts/home/hp-sc-social/hp-sc-social.component';
+import { SmartphoneSocialComponent } from './components/smartphone-social/smartphone-social.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { EyeFollowMyCursorComponent } from './components/eye-follow-my-cursor/ey
     HpScContactComponent,
     HpScPartnersComponent,
     HpSidebarDoYouLackAHoppComponent,
-    EyeFollowMyCursorComponent
+    EyeFollowMyCursorComponent,
+    HpScSocialComponent,
+    SmartphoneSocialComponent
   ],
   imports: [
     BrowserModule,
