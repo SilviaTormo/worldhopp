@@ -28,7 +28,7 @@ export class HpScOurDestinationsComponent implements OnInit {
           }
         },
         {
-          img: '../../../assets/img/scuba-diver-1049945_1280.jpg',
+          img: '../../../assets/img/malta.jpg',
           text: 'MALTAhopp',
           color: '#F5A623',
           fontSize: '22px',
@@ -39,7 +39,7 @@ export class HpScOurDestinationsComponent implements OnInit {
           }
         },
         {
-          img: '../../../assets/img/cliffs-of-moher-2641966_1280.jpg',
+          img: '../../../assets/img/irlanda.jpg',
           text: 'IRELANDhopp',
           color: '#1BBA99',
           fontSize: '22px',
