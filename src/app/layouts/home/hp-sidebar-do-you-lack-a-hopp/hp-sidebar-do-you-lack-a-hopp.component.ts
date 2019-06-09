@@ -61,7 +61,7 @@ export class HpSidebarDoYouLackAHoppComponent implements OnInit, OnDestroy {
     {
       image: '../../../../assets/img/enriqueceras.jpg',
       title: '¡Enriquecerás tu vida!',
-      text: 'E inspirarás a la gente que te rodea; a tus amigos, hermanos, familia a perseguir sus sueños y dar el salto.'
+      text: 'Inspirarás a la gente que te rodea; a tus amigos, hermanos, familia a perseguir sus sueños y dar el salto.'
     },
     {
       image: '../../../../assets/img/feliz.jpg',
