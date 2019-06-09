@@ -17,7 +17,7 @@ export class HpScStepsToFollowComponent implements OnInit {
       rellax: true,
       images: [
         {
-          img: '../../../assets/img/alone-480474_1280.jpg',
+          img: '../../../assets/img/decide.jpg',
           text: 'Infórmate y Decide',
           fontWeight: '600',
           rellax: {
@@ -33,7 +33,7 @@ export class HpScStepsToFollowComponent implements OnInit {
           }
         },
         {
-          img: '../../../assets/img/airport-2373727_1280.jpg',
+          img: '../../../assets/img/maletas.jpg',
           text: 'Haz las maletas',
           fontWeight: '600',
           rellax: {
@@ -41,7 +41,7 @@ export class HpScStepsToFollowComponent implements OnInit {
           }
         },
         {
-          img: '../../../assets/img/spain-1276209_1280.jpg',
+          img: '../../../assets/img/welcome.jpg',
           text: 'Welcome to the Jungle!',
           fontWeight: '600',
           rellax: {
