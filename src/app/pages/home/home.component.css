@@ -55,16 +55,17 @@
   background-color: white;
   position: absolute;
   animation-name: salto;
-  animation-duration: 2s;
+  animation-delay: 2s;
+  animation-duration: 1s;
   animation-iteration-count: 1;
 }
 @keyframes salto{
   0% {
     top: 80%;
-    right: 45%;
+    right: 35%;
   }20% {
     top: 40%;
-    right: 35%;
+    right: 30%;
   }70% {
     top:0%;
     right: 25%;
