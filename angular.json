@@ -28,6 +28,7 @@
               "src/assets/css/fonts.css"
             ],
             "scripts": [
+              "./node_modules/smoothscroll-polyfill/dist/smoothscroll.min.js",
               "./node_modules/gsap/src/uncompressed/TweenMax.js",
               "./node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js",
               "./node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js",

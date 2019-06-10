@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-hp-btn-goto-contact',
@@ -32,8 +32,15 @@ export class HpBtnGotoContactComponent implements OnInit {
     }
   }
 
+  getScrollPosition(): number {
+    const scrollY = document.documentElement.scrollTop + document.documentElement.clientHeight;
+    const scrollYHeight = document.documentElement.scrollHeight;
+    const percentageScroll = ((scrollY / scrollYHeight) * 100).toFixed(0);
+    return Number(percentageScroll);
+  }
+
   hiddenBanner() {
-    if (this.isMobile) {
+    if (this.isMobile && this.getScrollPosition() < 100) {
       clearTimeout(this.timeOutHideBanner);
       this.hideBanner = true;
     }
@@ -41,10 +48,18 @@ export class HpBtnGotoContactComponent implements OnInit {
 
   showBanner() {
     if (this.isMobile) {
-      this.timeOutHideBanner = setTimeout(() => {
+      if (this.getScrollPosition() < 100) {
+        this.timeOutHideBanner = setTimeout(() => {
+          this.hideBanner = false;
+        }, 1200);
+      } else {
         this.hideBanner = false;
-      }, 1200);
+      }
     }
+  }
+
+  goToContactForm() {
+    document.querySelector('.hp-s9-contact').scrollIntoView({ behavior: 'smooth' });
   }
 
 }

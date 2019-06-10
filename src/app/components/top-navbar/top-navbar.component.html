@@ -2,7 +2,7 @@
   <div class="tnb-social-networks">
     <ul>
       <li>
-       <a target="_new" href="https://www.facebook.com/worldhopp/"> <i class="fab fa-facebook-f"></i></a>
+        <a target="_new" href="https://www.facebook.com/worldhopp/"> <i class="fab fa-facebook-f"></i></a>
       </li>
       <li>
         <a target="_new" href="https://www.instagram.com/worldhopp.com_/"><i class="fab fa-instagram"></i></a>
@@ -21,7 +21,7 @@
               </li>
             </ng-container>
             <li [attr.id]="(anchor['id']) ? 'link-' + anchor.id : ''">
-              <a [routerLink]="['./']" [fragment]="anchor.id">{{ anchor.name }}</a>
+              <a (click)="goTo(anchor.section)">{{ anchor.name }}</a>
             </li>
           </ng-container>
         </ng-template>

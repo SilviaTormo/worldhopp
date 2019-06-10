@@ -1,7 +1,8 @@
 <div class="hp-btn-goto-contact" (window:resize)="checkWindowWidth()" (window:touchstart)="hiddenBanner()"
   (window:touchmove)="hiddenBanner()" (window:touchend)="showBanner()"
   [ngClass]="{ 'desktop-version': !isMobile, 'mobile-version': isMobile, 'hide-banner': hideBanner }">
-  <a [routerLink]="['./']" [fragment]="anchor">
+  <a (click)="goToContactForm()">
+    <!-- <a [routerLink]="['./']" [fragment]="anchor"> -->
     <ng-container *ngIf="isMobile; then mobileContent; else desktopContent"></ng-container>
     <ng-template #desktopContent>
       <div class="hp-btn-gtc-btn-image"></div>

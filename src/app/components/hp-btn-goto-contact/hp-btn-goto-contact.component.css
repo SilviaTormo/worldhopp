@@ -14,6 +14,10 @@
   border-radius: 100%;
 }
 
+.hp-btn-goto-contact>a {
+  cursor: pointer;
+}
+
 .hp-btn-goto-contact.desktop-version>a>.hp-btn-gtc-btn-image {
   width: 100%;
   height: 100%;

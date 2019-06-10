@@ -121,7 +121,7 @@
   }
 
   #top-navbar .tnb-main-nav li.logo {
-    padding: 0;
+    padding: 0 !important;
     transition: 0.4s;
   }
 

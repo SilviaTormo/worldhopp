@@ -29,6 +29,7 @@
     "rellax": "^1.8.0",
     "rxjs": "~6.2.0",
     "scrollmagic": "^2.0.6",
+    "smoothscroll-polyfill": "^0.4.4",
     "typeface-indie-flower": "0.0.72",
     "zone.js": "~0.8.26"
   },

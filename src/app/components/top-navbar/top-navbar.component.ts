@@ -59,4 +59,8 @@ export class TopNavbarComponent implements OnInit, AfterViewInit {
     });
   }
 
+  goTo(sectionId) {
+    document.querySelector(sectionId).scrollIntoView({ behavior: 'smooth' });
+  }
+
 }

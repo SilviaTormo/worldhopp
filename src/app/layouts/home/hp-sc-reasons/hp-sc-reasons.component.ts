@@ -43,4 +43,8 @@ export class HpScReasonsComponent implements OnInit {
     }
   }
 
+  goToContactForm() {
+    document.querySelector('.hp-s9-contact').scrollIntoView({ behavior: 'smooth' });
+  }
+
 }
