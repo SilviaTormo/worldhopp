@@ -121,4 +121,12 @@ export class HpSidebarDoYouLackAHoppComponent implements OnInit, OnDestroy {
     });
   }
 
+  goToContact() {
+    this.closeSideBar();
+    setTimeout(() => {
+      console.log('Scroll to Contact Form!');
+      document.querySelector('.hp-s9-contact').scrollIntoView({ behavior: 'smooth' });
+    }, 400);
+  }
+
 }
