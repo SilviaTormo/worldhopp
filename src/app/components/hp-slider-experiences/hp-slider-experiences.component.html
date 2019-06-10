@@ -3,11 +3,11 @@
     <ng-container *ngFor="let slider of sliderList; let index = index">
       <div class="slider-item" [ngClass]="{'current-slider': currentSlider === index}" [attr.data-slider-index]="index"
         [style.background-image]="setBgImage(slider?.photo)">
-        <ng-container>
+        <ng-container *ngIf="slider?.user != '' || slider?.comment != ''">
           <div class="si-comment">
             <div>
-              <h5>{{ slider?.user }}</h5>
-              <p>{{ slider?.comment }}</p>
+              <h5 *ngIf="slider?.user != ''">{{ slider?.user }}</h5>
+              <p *ngIf="slider?.comment != ''">{{ slider?.comment }}</p>
             </div>
           </div>
         </ng-container>
