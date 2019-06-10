@@ -1,5 +1,6 @@
 .hp-s3-reasons {
-  padding: 60px 2% 0px 2%;
+  /* padding: 60px 2% 0px 2%; */
+  padding: 0px 2% 0px 2%;
 }
 
 .hp-s3-reasons .hp-s3-10-reasons-box {
@@ -10,8 +11,8 @@
 }
 
 .hp-s3-reasons .hp-s3-10-reasons-box .hp-s3-10rb-image {
-  width: 148px;
-  height: 148px;
+  width: 128px;
+  height: 128px;
   margin: 15px auto;
   border-radius: 100%;
   box-shadow: 0 4px 34px 0 rgba(0, 0, 0, 0.14);
