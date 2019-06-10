@@ -6,25 +6,12 @@
   overflow: hidden;
 }
 
-#claim  {
-  font-family: 'Caveat', cursive;
-  color: #fffe78;
-  font-size: 36px;
-  font-weight: bolder;
-  top:58%;
-  left:44%;
-  letter-spacing: 2px;
-  position: absolute;
-  z-index: 4;
-}
-
-
-
 
 /* BEGIN:: HERO */
 #home-page .hero {
   width: 100%;
-  height: 90vh;
+  height: 75vh;
+  /* max-height: 800px; */
   background-image: url('../../../assets/img/wave.svg'), url('../../../assets/img/new-zealand-583177-1920.jpg');
   background-size: 100% auto, cover;
   background-position: 0% 103%, 50% 80%;
@@ -38,15 +25,25 @@
   object-fit: contain;
 }
 
-#home-page .hero h1 {
-  top: 50%;
+#home-page .hero .box {
+  top: 45%;
   left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+
+#home-page .hero .box>* {
+  margin: auto;
+  display: block;
+}
+
+#home-page .hero h1 {
   /* font-size: 5.7vw; */
   font-size: 108px;
   color: white;
   letter-spacing: -3px;
-  transform: translate(-50%, -50%);
-  position: absolute;
 }
 
 #home-page .hero h1::after {
@@ -58,6 +55,15 @@
   border-radius: 20px;
   background-color: white;
   position: absolute;
+}
+
+#home-page .hero #claim {
+  font-family: 'Caveat', cursive;
+  color: #fffe78;
+  font-size: 36px;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  z-index: 4;
 }
 
 @media only screen and (max-width: 890px) {
@@ -84,21 +90,26 @@
 #home-page>.container:nth-of-type(2) {
   background-image: url('../../../assets/img/wave.svg'), url('../../../assets/img/sl_green_waves.svg'), url('../../../assets/img/sr_yellow_wave.svg'), linear-gradient(#ffffff, #f5f5f5);
   background-size: 100% auto, auto 35%, auto 30%;
-  background-position: 0% 101%, 0% 9%, 100% 55%;
+  background-position: 0% 101%, -2% 7%, 102% 55%;
   background-repeat: no-repeat;
 }
 
 #home-page>.container:nth-of-type(3) {
   background-image: url('../../../assets/img/sl_blue_wave.svg'), url('../../../assets/img/sr_blue_wave.svg'), url('../../../assets/img/sl_yellow_wave.svg');
   background-size: auto 20%, auto 20%, auto 20%;
-  background-position: 0% 8%, 100% 15%, 0% 97%;
+  background-position: -2% 8%, 102% 15%, -2% 97%;
   background-repeat: no-repeat;
 }
+
 @media only screen and (max-width: 1299px) {
   #home-page>.container:nth-of-type(2) {
     background-image: url('../../../assets/img/wave.svg'), linear-gradient(#ffffff, #f5f5f5);
     background-size: 100% auto;
     background-position: 0% 101%;
+  }
+
+  #home-page>.container:nth-of-type(3) {
+    background-image: none;
   }
 }
 
@@ -271,14 +282,14 @@
 }
 
 #home-page .img.paper-luna {
-  width:30vh;
+  width: 30vh;
   height: 30vh;
 }
 
 #home-page .container:nth-of-type(4) img.paper-plane {
   right: 15%;
   top: 0%;
-  width:30vh;
+  width: 30vh;
   height: 30vh;
   animation: animationFrames linear 3s;
   animation-name: move_bg_image_paper_plane;
@@ -286,7 +297,7 @@
   animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  transform: origin (50%,50%);
+  transform: origin (50%, 50%);
   position: absolute;
 }
 
@@ -294,40 +305,50 @@
 
 @keyframes move_bg_image_paper_plane {
 
-    0% {
-      transform:  translate(0%,3px)  rotate(0deg) ;
-    }
-    10% {
-      transform:  translate(3%,9px)  rotate(5deg) ;
-    }
-    20% {
-      transform:  translate(9%,15x)  rotate(15deg) ;
-    }
-    30% {
-      transform:  translate(15%,21px)  rotate(10deg) ;
-    }  
-    40% {
-      transform:  translate(21%,27px)  rotate(5deg) ;
-    }
-    50% {
-      transform:  translate(27%,33px)  rotate(0deg) ;
-    }  
-    60% {
-      transform:  translate(33%,21px)  rotate(-5deg) ;
-    }
-    70% {
-      transform:  translate(39%,24x)  rotate(-10deg) ;
-    }
-    80% {
-      transform:  translate(45%,27x)  rotate(-15deg) ;
-    }
-    90% {
-      transform:  translate(51%,30px)  rotate(-10deg) ;
-    }
-    100% {
-      transform:  translate(57%,33px)  rotate(0deg) ;
-    }
-  
+  0% {
+    transform: translate(0%, 3px) rotate(0deg);
+  }
+
+  10% {
+    transform: translate(3%, 9px) rotate(5deg);
+  }
+
+  20% {
+    transform: translate(9%, 15x) rotate(15deg);
+  }
+
+  30% {
+    transform: translate(15%, 21px) rotate(10deg);
+  }
+
+  40% {
+    transform: translate(21%, 27px) rotate(5deg);
+  }
+
+  50% {
+    transform: translate(27%, 33px) rotate(0deg);
+  }
+
+  60% {
+    transform: translate(33%, 21px) rotate(-5deg);
+  }
+
+  70% {
+    transform: translate(39%, 24x) rotate(-10deg);
+  }
+
+  80% {
+    transform: translate(45%, 27x) rotate(-15deg);
+  }
+
+  90% {
+    transform: translate(51%, 30px) rotate(-10deg);
+  }
+
+  100% {
+    transform: translate(57%, 33px) rotate(0deg);
+  }
+
 }
 
 #home-page .container:nth-of-type(4) img.clouds-left {
@@ -343,8 +364,13 @@
 }
 
 @keyframes move_bg_image_clouds_left {
-  0% {margin-left: 100px;}
-	100% {margin-left: -100px;}
+  0% {
+    margin-left: 100px;
+  }
+
+  100% {
+    margin-left: -100px;
+  }
 }
 
 
