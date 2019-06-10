@@ -7,6 +7,79 @@
   text-align: center;
 }
 
+.hp-s9-contact>* {
+  z-index: 2;
+}
+
+.hp-s9-contact>.star-canvas {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 0;
+}
+
+.hp-s9-contact>.star-canvas>.star {
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+
+  animation-name: new_star;
+  animation-duration: 6s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+}
+
+@keyframes new_star {
+  0% {
+    zoom: 0;
+    opacity: 0;
+  }
+
+  100% {
+    zoom: 1;
+    opacity: 1;
+  }
+}
+
+.hp-s9-contact>.star-canvas>.star.star-dying {
+  animation-name: star_dying;
+  animation-duration: 6s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+}
+
+@keyframes star_dying {
+  0% {
+    zoom: 1;
+    opacity: 1;
+  }
+
+  100% {
+    zoom: 0;
+    opacity: 0;
+  }
+}
+
+.hp-s9-contact>.star-canvas>.star.star-green {
+  background-color: #1bba99;
+}
+
+.hp-s9-contact>.star-canvas>.star.star-yellow {
+  background-color: #fffc78;
+}
+
+.hp-s9-contact>.star-canvas>.star.star-blue {
+  background-color: #1684f5;
+}
+
+.hp-s9-contact>.star-canvas>.star.star-white {
+  background-color: #ffffff;
+}
+
 .hp-s9-contact>.hp-s9-c-form,
 .hp-s9-contact>.hp-s9-c-form>form,
 .hp-s9-contact>.hp-s9-c-form>form>.form-group {
