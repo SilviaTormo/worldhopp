@@ -17,7 +17,7 @@ export class HpScOurDestinationsComponent implements OnInit {
       rellax: true,
       images: [
         {
-          img: '../../../assets/img/animals-1869759_1280.jpg',
+          img: '../../../assets/img/nz.jpg',
           text: 'KIWIhopp',
           color: '#1684F5',
           fontSize: '22px',
@@ -50,7 +50,7 @@ export class HpScOurDestinationsComponent implements OnInit {
           }
         },
         {
-          img: '../../../assets/img/spain-1276209_1280.jpg',
+          img: '../../../assets/img/bcn.jpg',
           text: 'BARCELONAhopp',
           color: '#CA3D4E',
           fontSize: '22px',
