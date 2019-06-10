@@ -9,7 +9,12 @@ import { Title } from '@angular/platform-browser';
 
 export class AppComponent implements OnInit {
 
-  title = 'WorldHopp';
+  withoutUser = false;
+  titles = {
+    original: 'WorldHopp',
+    leave: 'Hello?! We miss you 😥',
+    toReturn: '👋 Hey there! Welcome back ...'
+  };
 
   constructor(private titleService: Title) { }
 
@@ -19,13 +24,24 @@ export class AppComponent implements OnInit {
 
   @HostListener('window:visibilitychange', [])
   missTheUser() {
-    const newTitle = (document.hidden) ? 'Hello! We miss you 😥' : this.title;
+    const newTitle = (document.hidden) ? this.titles.leave : (this.withoutUser) ? this.titles.toReturn : this.titles.original;
+
     if (document.hidden) {
       setTimeout(() => {
         this.setTitle(newTitle);
       }, 500);
+      this.withoutUser = true;
     } else {
-      this.setTitle(newTitle);
+      setTimeout(() => {
+        this.setTitle(newTitle);
+      }, 400);
+    }
+
+    if (!document.hidden && this.withoutUser) {
+      this.withoutUser = false;
+      setTimeout(() => {
+        this.missTheUser();
+      }, 3000);
     }
   }
 
