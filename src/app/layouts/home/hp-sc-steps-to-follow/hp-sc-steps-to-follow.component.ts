@@ -8,7 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HpScStepsToFollowComponent implements OnInit {
 
   content = {
-    subtitle: 'No necesitas saber inglés, nosotros nos ocupamos de todo.',
+    // subtitle: 'No necesitas saber inglés, nosotros nos ocupamos de todo.',
+    subtitle: 'nosotros nos ocupamos de todo.',
     title: 'Pasos a seguir',
     // tslint:disable-next-line:max-line-length
     paragraph: 'Nuestro Hopper te informará y te ayudará a elegir. Además te matriculará y te asistirá con el Visado y todos los trámites de formalización. Realiza los preparativos, compra los vuelos y preguntanos las dudas de última hora. Te recibimos y damos los primeros pasos contigo. ',
