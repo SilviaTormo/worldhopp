@@ -23,12 +23,16 @@
 
 .cards-box>.cb-card-box>.cb-cb-icon {
   width: 100%;
-  transform: translateY(-25%);
+  margin-top: -25%;
+  padding-top: 100%;
   display: inline-block;
 }
 
 .cards-box>.cb-card-box>.cb-cb-icon>img {
-  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
 }
 
 
@@ -37,8 +41,12 @@
   margin-top: 0px;
   font-size: 18px;
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.2;
   text-align: center;
+}
+
+.cards-box>.cb-card-box>.cb-cb-texts * {
+  line-height: inherit;
 }
 
 .cards-box .hopp-name::after {

@@ -13,11 +13,11 @@ div {
 
 h3 {
   font-size: 18px;
-  font-weight: normal;
+  font-weight: 500;
   color: #1686F7;
   line-height: 22px;
   text-transform: uppercase;
-  margin-bottom:5px;
+  margin-bottom: 5px;
 }
 
 .theme-light h3 {
@@ -36,7 +36,7 @@ h2 {
 }
 
 p {
-  font-size: 28px;
+  font-size: 27px;
   font-weight: normal;
   color: #878787;
   line-height: 38px;
