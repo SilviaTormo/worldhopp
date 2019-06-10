@@ -49,12 +49,29 @@
 #home-page .hero h1::after {
   content: "";
   width: 4%;
-  top: 15%;
   right: 22.5%;
   padding-top: 4%;
   border-radius: 20px;
   background-color: white;
   position: absolute;
+  animation-name: salto;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+}
+@keyframes salto{
+  0% {
+    top: 80%;
+    right: 45%;
+  }20% {
+    top: 40%;
+    right: 35%;
+  }70% {
+    top:0%;
+    right: 25%;
+  }
+  100% {
+    top:0%;
+  }
 }
 
 #home-page .hero #claim {
