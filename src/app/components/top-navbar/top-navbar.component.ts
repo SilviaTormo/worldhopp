@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import { TweenMax } from 'gsap';
-import * as ScrollMagic from 'ScrollMagic';
-import 'ScrollMagic/scrollmagic/minified/plugins/debug.addIndicators.min.js';
+import * as ScrollMagic from 'scrollmagic';
 
 @Component({
   selector: 'app-top-navbar',
