@@ -43,7 +43,7 @@
   }
 }
 
-/* #home-page .hero::after {
+#home-page .hero::after {
   content: url('../../../assets/img/wave.svg');
   width: 100%;
   left: 0;
@@ -51,7 +51,7 @@
   position: absolute;
   overflow: hidden;
   z-index: 2;
-} */
+}
 
 #home-page .hero .box {
   top: 45%;
@@ -85,6 +85,102 @@
   position: absolute;
 }
 
+/* .hero>.box>h1::after {
+  top: 140%;
+  left: 37.5%;
+  opacity: 0;
+  animation-name: hopp;
+  animation-delay: 1s;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+
+@keyframes hopp {
+  0% {
+    top: 140%;
+    left: 37.5%;
+    opacity: 1;
+  }
+
+  8.3% {
+    top: 160%;
+    left: 40%;
+  }
+
+  16.6% {
+    top: 160%;
+    left: 45%;
+  }
+
+  24.9% {
+    top: 140%;
+    left: 47.5%;
+  }
+
+  33.2% {
+    top: 160%;
+    left: 50%;
+  }
+
+  41.5% {
+    top: 160%;
+    left: 55%;
+  }
+
+  50% {
+    top: 140%;
+    left: 60%;
+  }
+
+  55% {
+    top: 170%;
+    left: 75%;
+  }
+
+  60% {
+    top: 170%;
+    left: 90%;
+  }
+
+  65% {
+    top: 150%;
+    left: 110%;
+  }
+
+  70% {
+    top: 100%;
+    left: 120%;
+  }
+
+  80% {
+    top: 50%;
+    left: 120%;
+  }
+
+  85% {
+    top: 0%;
+    left: 110%;
+  }
+
+  90% {
+    top: -20%;
+    left: 90%;
+  }
+
+  95% {
+    top: -20%;
+    left: 90%;
+  }
+
+  100% {
+    top: 10%;
+    left: 72.5%;
+    opacity: 1;
+  }
+} */
+
 #home-page .hero #claim {
   font-family: 'Caveat', cursive;
   color: #fffe78;
@@ -94,7 +190,7 @@
   z-index: 4;
 }
 
-/* #home-page .hero video {
+#home-page .hero video {
   width: 100%;
   height: 130%;
   top: 50%;
@@ -102,7 +198,7 @@
   transform: translate(-50%, -50%);
   position: absolute;
   z-index: 1;
-} */
+}
 
 @media only screen and (max-width: 890px) {
   #home-page .hero {
