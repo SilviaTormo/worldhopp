@@ -11,16 +11,7 @@ export class HpCardsParalaxComponent implements OnInit, AfterViewInit {
 
   @ViewChild('cardsElement') cardsElement: ElementRef;
 
-  @Input() cards: Object[] = [{
-    icon: '../../../assets/img/icon_asesoria.PNG',
-    title: 'Asesoria gratis y trámites online'
-  }, {
-    icon: '../../../assets/img/icon_oportunidades.PNG',
-    title: 'Oportunidades para tí'
-  }, {
-    icon: '../../../assets/img/icon_informacion.PNG',
-    title: 'Información durante la experiencia'
-  }];
+  @Input() cards: Object[] = [];
 
   // tslint:disable-next-line:no-inferrable-types
   sliderClassName: string = '';
@@ -54,6 +45,11 @@ export class HpCardsParalaxComponent implements OnInit, AfterViewInit {
       url = this._sanitizer.bypassSecurityTrustUrl(url);
     }
     return url;
+  }
+
+  setAttrAlt(img) {
+    const alt = img.replace(/.*\/(.*\..*)$/gm, '$1');
+    return alt;
   }
 
   makeid(className) {

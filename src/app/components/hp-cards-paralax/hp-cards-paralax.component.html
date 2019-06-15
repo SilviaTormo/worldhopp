@@ -6,7 +6,7 @@
       (click)="(isMobile) ? currentSlider = index : false">
       <ng-container *ngIf="card['icon'] != undefined">
         <div class="cb-cb-icon">
-          <img [attr.src]="setBgCard(card.icon)" />
+          <img [attr.src]="setBgCard(card.icon)" [attr.alt]="setAttrAlt(card.icon)" />
         </div>
       </ng-container>
       <ng-container *ngIf="card['title'] != undefined || card['text'] != undefined">
