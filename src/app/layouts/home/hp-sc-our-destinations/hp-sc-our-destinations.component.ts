@@ -17,45 +17,65 @@ export class HpScOurDestinationsComponent implements OnInit {
       rellax: true,
       images: [
         {
-          img: '../../../assets/img/nz.jpg',
-          text: 'KIWIhopp',
-          color: '#1684F5',
-          fontSize: '22px',
-          fontWeight: '600',
-          textAlign: 'center',
+          img: {
+            path: '../../../assets/img/nz.jpg',
+            text: 'New Zeland',
+            textVisibility: 0,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+            color: '#1684F5'
+          },
+          title: {
+            text: 'KIWIhopp',
+            textVisibility: 2,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+            color: '#1684F5'
+          },
           rellax: {
             speed: -1
           }
         },
         {
-          img: '../../../assets/img/malta.jpg',
-          text: 'MALTAhopp',
-          color: '#F5A623',
-          fontSize: '22px',
-          fontWeight: '600',
-          textAlign: 'center',
+          img: {
+            path: '../../../assets/img/malta.jpg',
+            text: 'Malta',
+            textVisibility: 0,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+            color: '#F5A623'
+          },
+          title: {
+            text: 'MALTAhopp',
+            textVisibility: 2,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+            color: '#F5A623'
+          },
           rellax: {
             speed: 1
           }
         },
         {
-          img: '../../../assets/img/irlanda.jpg',
-          text: 'IRELANDhopp',
-          color: '#1BBA99',
-          fontSize: '22px',
-          fontWeight: '600',
-          textAlign: 'center',
+          img: {
+            path: '../../../assets/img/irlanda.jpg',
+            text: 'Ireland',
+            textVisibility: 0,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+            color: '#1BBA99'
+          },
+          title: {
+            text: 'IRELANDhopp',
+            textVisibility: 2,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+            color: '#1BBA99'
+          },
           rellax: {
             speed: -1
           }
         },
         {
-          img: '../../../assets/img/bcn.jpg',
-          text: 'BARCELONAhopp',
-          color: '#CA3D4E',
-          fontSize: '22px',
-          fontWeight: '600',
-          textAlign: 'center',
+          img: {
+            path: '../../../assets/img/bcn.jpg',
+            text: 'Barcelona',
+            textVisibility: 0,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+            color: '#CA3D4E'
+          },
+          title: {
+            text: 'BARCELONAhopp',
+            textVisibility: 2,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+            color: '#CA3D4E'
+          },
           rellax: {
             speed: 1
           }

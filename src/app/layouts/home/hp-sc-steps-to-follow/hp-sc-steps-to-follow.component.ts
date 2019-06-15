@@ -18,33 +18,49 @@ export class HpScStepsToFollowComponent implements OnInit {
       rellax: true,
       images: [
         {
-          img: '../../../assets/img/decide.jpg',
-          text: 'Infórmate y Decide',
-          fontWeight: '600',
+          img: {
+            path: '../../../assets/img/decide.jpg'
+          },
+          title: {
+            text: 'Infórmate y Decide',
+            textVisibility: 2,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+          },
           rellax: {
             speed: -1
           }
         },
         {
-          img: '../../../assets/img/city-1868530_1280.jpg',
-          text: 'Conviertete en Worldhopper',
-          fontWeight: '600',
+          img: {
+            path: '../../../assets/img/city-1868530_1280.jpg'
+          },
+          title: {
+            text: 'Conviertete en Worldhopper',
+            textVisibility: 2,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+          },
           rellax: {
             speed: 1
           }
         },
         {
-          img: '../../../assets/img/maletas.jpg',
-          text: 'Haz las maletas',
-          fontWeight: '600',
+          img: {
+            path: '../../../assets/img/maletas.jpg'
+          },
+          title: {
+            text: 'Haz las maletas',
+            textVisibility: 2,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+          },
           rellax: {
             speed: -1
           }
         },
         {
-          img: '../../../assets/img/welcome.jpg',
-          text: 'Welcome to the Jungle!',
-          fontWeight: '600',
+          img: {
+            path: '../../../assets/img/welcome.jpg'
+          },
+          title: {
+            text: 'Welcome to the Jungle!',
+            textVisibility: 2,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+          },
           rellax: {
             speed: 1
           }

@@ -17,19 +17,25 @@ export class HpScTeamComponent implements OnInit {
       rellax: true,
       images: [
         {
-          img: '../../../assets/img/woman-1149911_1280.jpg',
+          img: {
+            path: '../../../assets/img/woman-1149911_1280.jpg',
+          },
           rellax: {
             speed: -1
           }
         },
         {
-          img: '../../../assets/img/guy-598180_1280.jpg',
+          img: {
+            path: '../../../assets/img/guy-598180_1280.jpg',
+          },
           rellax: {
             speed: 1
           }
         },
         {
-          img: '../../../assets/img/beautiful-1274056_1280.jpg',
+          img: {
+            path: '../../../assets/img/beautiful-1274056_1280.jpg',
+          },
           rellax: {
             speed: -1
           }

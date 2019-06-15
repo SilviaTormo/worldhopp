@@ -11,6 +11,25 @@ import * as Hammer from 'hammerjs';
 export class HpGalleryParalaxComponent implements OnInit, AfterViewInit {
 
   @Input() gallery: Object[];
+  /* EXAMPLE OF ITEM
+    {
+      img: {
+        path: '../../../assets/img/nz.jpg',
+        text: 'New Zeland',
+        textVisibility: 0,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+        color: '#1684F5'
+      },
+      title: {
+        text: 'KIWIhopp',
+        textVisibility: 2,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+        color: '#1684F5'
+      },
+      rellax: {
+        speed: -1
+      }
+    },
+  */
+
   @ViewChild('galleryElement') galleryElement;
   rellaxClassName: String = '';
   sliderClassName: String = '';
@@ -41,6 +60,20 @@ export class HpGalleryParalaxComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.getSliderWidth();
+  }
+
+  checkVisibility(item) {
+    if (item != undefined && item['text'] != undefined && item['textVisibility'] != undefined) {
+      if (item.textVisibility == 0 && this.isMobile) {
+        return true;
+      } else if (item.textVisibility == 1 && !this.isMobile) {
+        return true;
+      } else if (item.textVisibility == 2) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   getFormat(text) {
