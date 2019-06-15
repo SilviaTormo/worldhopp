@@ -1,7 +1,9 @@
-<div class="cards-box">
-  <ng-container *ngFor="let card of cards">
+<div #cardsElement class="cards-box" (window:resize)="checkWindowWidth(); getSliderWidth()"
+  [ngStyle]="{'transform': 'translateX(-' + (currentSlider * sliderWidth) + 'px)'}" [ngClass]="[sliderClassName]">
+  <ng-container *ngFor="let card of cards; let index = index">
     <div class="cb-card-box" [ngClass]="{'rellax': card['rellax'] != undefined }"
-      [attr.data-rellax-speed]="(card['rellax'] != undefined && card['rellax']['speed'] != undefined) ? card['rellax']['speed'] : null">
+      [attr.data-rellax-speed]="(card['rellax'] != undefined && card['rellax']['speed'] != undefined) ? card['rellax']['speed'] : null"
+      (click)="(isMobile) ? currentSlider = index : false">
       <ng-container *ngIf="card['icon'] != undefined">
         <div class="cb-cb-icon">
           <img [attr.src]="setBgCard(card.icon)" />
