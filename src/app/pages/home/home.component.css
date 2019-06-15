@@ -12,18 +12,46 @@
   width: 100%;
   height: 75vh;
   /* max-height: 800px; */
-  background-image: url('../../../assets/img/wave.svg'), url('../../../assets/img/new-zealand-583177-1920.jpg');
   background-size: 100% auto, cover;
   background-position: 0% 103%, 50% 80%;
   background-repeat: no-repeat, no-repeat;
   transition: 0.4s;
+  overflow: hidden;
 }
 
-#home-page .new-zealand-583177_1920 {
-  width: 1920px;
-  height: 953px;
-  object-fit: contain;
+@media only screen and (min-width: 1920px) {
+  #home-page .hero {
+    background-image: url('../../../assets/img/wave.svg'), url('../../../assets/img/new-zealand-583177.jpg');
+  }
 }
+
+@media only screen and (max-width: 1920px) {
+  #home-page .hero {
+    background-image: url('../../../assets/img/wave.svg'), url('../../../assets/img/new-zealand-583177_1920.jpg');
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  #home-page .hero {
+    background-image: url('../../../assets/img/wave.svg'), url('../../../assets/img/new-zealand-583177_1280.jpg');
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  #home-page .hero {
+    background-image: url('../../../assets/img/wave.svg'), url('../../../assets/img/new-zealand-583177_640.jpg');
+  }
+}
+
+/* #home-page .hero::after {
+  content: url('../../../assets/img/wave.svg');
+  width: 100%;
+  left: 0;
+  bottom: -3%;
+  position: absolute;
+  overflow: hidden;
+  z-index: 2;
+} */
 
 #home-page .hero .box {
   top: 45%;
@@ -31,8 +59,8 @@
   text-align: center;
   transform: translate(-50%, -50%);
   position: absolute;
+  z-index: 2;
 }
-
 
 #home-page .hero .box>* {
   margin: auto;
@@ -50,7 +78,7 @@
   content: "";
   width: 4%;
   right: 22.5%;
-  top:4%;
+  top: 4%;
   padding-top: 4%;
   border-radius: 20px;
   background-color: white;
@@ -65,6 +93,16 @@
   letter-spacing: 2px;
   z-index: 4;
 }
+
+/* #home-page .hero video {
+  width: 100%;
+  height: 130%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 1;
+} */
 
 @media only screen and (max-width: 890px) {
   #home-page .hero {
