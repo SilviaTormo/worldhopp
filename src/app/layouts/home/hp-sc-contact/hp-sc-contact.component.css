@@ -91,6 +91,7 @@
   max-width: 100%;
   margin: auto;
   margin-top: 80px;
+  z-index: 3;
 }
 
 .hp-s9-contact>.hp-s9-c-form>form>.form-group {
@@ -302,8 +303,10 @@
   }
 
   .hp-s9-contact img.clouds-right {
-    max-width: 110%;
+    max-width: 90%;
     animation: none;
+    padding-top: 50px;
+
   }
   .hp-s9-contact .hill{
     position: absolute;
@@ -318,7 +321,6 @@
   .hp-s9-contact>.hp-s9-c-form>form>.form-group {
     flex-direction: column;
   }
-
   .hp-s9-contact>.hp-s9-c-form>form>.form-group label {
     padding: 5px 0;
   }
