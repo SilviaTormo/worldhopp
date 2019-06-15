@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { TweenMax } from 'gsap';
 import * as ScrollMagic from 'scrollmagic';
 
@@ -15,7 +16,9 @@ export class TopNavbarComponent implements OnInit, AfterViewInit {
 
   @Input() anchors = [];
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -60,6 +63,14 @@ export class TopNavbarComponent implements OnInit, AfterViewInit {
 
   goTo(sectionId) {
     document.querySelector(sectionId).scrollIntoView({ behavior: 'smooth' });
+  }
+
+  logoEvents() {
+    if (!this.scrollIsUp) {
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 
 }
