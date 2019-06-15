@@ -7,7 +7,7 @@
   border-radius: 20px;
   background-color: #17153B;
   position: absolute;
-  
+
 }
 
 /* BUTTONS */
@@ -25,10 +25,12 @@
   display: block;
   cursor: pointer;
 }
+
 ::selection {
   color: #1bbc9b;
   background: transparent;
 }
+
 .btn.btn-lg {
   min-width: 220px;
 }
@@ -58,4 +60,23 @@
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+
+/* Section 2: Destinations */
+.hp-s2-our-destinations .gallery-box .gb-ib-title>p {
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.hp-s2-our-destinations .gallery-box .gb-ib-image>.gb-ib-text {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.hp-s2-our-destinations .gallery-box .gb-ib-image>.gb-ib-text,
+.hp-s2-our-destinations .gallery-box .gb-ib-image>.gb-ib-text * {
+  font-size: 28px;
+  font-weight: 900;
+  color: white;
 }

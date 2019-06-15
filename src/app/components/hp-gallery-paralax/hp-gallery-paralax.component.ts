@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SecurityContext, ViewChild, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, Input, SecurityContext, ViewChild, AfterViewInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as Rellax from 'rellax';
 import * as Hammer from 'hammerjs';
@@ -8,9 +8,28 @@ import * as Hammer from 'hammerjs';
   templateUrl: './hp-gallery-paralax.component.html',
   styleUrls: ['./hp-gallery-paralax.component.css']
 })
-export class HpGalleryParalaxComponent implements OnInit, AfterContentChecked {
+export class HpGalleryParalaxComponent implements OnInit, AfterViewInit {
 
   @Input() gallery: Object[];
+  /* EXAMPLE OF ITEM
+    {
+      img: {
+        path: '../../../assets/img/nz.jpg',
+        text: 'New Zeland',
+        textVisibility: 0,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+        color: '#1684F5'
+      },
+      title: {
+        text: 'KIWIhopp',
+        textVisibility: 2,  // 0 (only mobile), 1 (only desktop), 2 (both device)
+        color: '#1684F5'
+      },
+      rellax: {
+        speed: -1
+      }
+    },
+  */
+
   @ViewChild('galleryElement') galleryElement;
   rellaxClassName: String = '';
   sliderClassName: String = '';
@@ -39,8 +58,22 @@ export class HpGalleryParalaxComponent implements OnInit, AfterContentChecked {
     this.newSlider();
   }
 
-  ngAfterContentChecked(): void {
+  ngAfterViewInit(): void {
     this.getSliderWidth();
+  }
+
+  checkVisibility(item) {
+    if (item != undefined && item['text'] != undefined && item['textVisibility'] != undefined) {
+      if (item.textVisibility == 0 && this.isMobile) {
+        return true;
+      } else if (item.textVisibility == 1 && !this.isMobile) {
+        return true;
+      } else if (item.textVisibility == 2) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   getFormat(text) {

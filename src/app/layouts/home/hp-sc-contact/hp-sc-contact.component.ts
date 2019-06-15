@@ -93,7 +93,6 @@ export class HpScContactComponent implements OnInit {
         y: this.getRandomNumberBetweenTwoNumbers(0, this.starCanvasPropierties.height)
       }
     };
-    console.log(newStar.color);
     return newStar;
   }
 

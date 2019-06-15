@@ -61,6 +61,10 @@
 }
 
 @media only screen and (max-width: 995px) {
+  #footer-content {
+    padding-bottom: 80px;
+  }
+
   #footer-content>ul {
     flex-direction: column;
   }

@@ -17,7 +17,7 @@
           <ng-container *ngFor="let anchor of anchors; let num = index">
             <ng-container *ngIf="printLogo(num, anchors.length)">
               <li id="worldhopp-logo" class="logo">
-                <img class="logo-image" src="../../../assets/img/saltamontes.svg" />
+                <img class="logo-image" src="../../../assets/img/saltamontes.svg" alt="saltamontes.svg" />
               </li>
             </ng-container>
             <li [attr.id]="(anchor['id']) ? 'link-' + anchor.id : ''">
@@ -27,7 +27,7 @@
         </ng-template>
         <ng-template #printOnlyLogo>
           <li id=" worldhopp-logo" class="logo">
-            <img class="logo-image" src="../../../assets/img/saltamontes.svg" />
+            <img class="logo-image" src="../../../assets/img/saltamontes.svg" alt="saltamontes.svg" />
           </li>
         </ng-template>
       </ul>
