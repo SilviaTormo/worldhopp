@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SecurityContext, ViewChild, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, Input, SecurityContext, ViewChild, AfterViewInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as Rellax from 'rellax';
 import * as Hammer from 'hammerjs';
@@ -8,7 +8,7 @@ import * as Hammer from 'hammerjs';
   templateUrl: './hp-gallery-paralax.component.html',
   styleUrls: ['./hp-gallery-paralax.component.css']
 })
-export class HpGalleryParalaxComponent implements OnInit, AfterContentChecked {
+export class HpGalleryParalaxComponent implements OnInit, AfterViewInit {
 
   @Input() gallery: Object[];
   @ViewChild('galleryElement') galleryElement;
@@ -39,7 +39,7 @@ export class HpGalleryParalaxComponent implements OnInit, AfterContentChecked {
     this.newSlider();
   }
 
-  ngAfterContentChecked(): void {
+  ngAfterViewInit(): void {
     this.getSliderWidth();
   }
 
