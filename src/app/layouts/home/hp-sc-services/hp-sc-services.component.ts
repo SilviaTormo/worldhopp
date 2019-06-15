@@ -15,6 +15,17 @@ export class HpScServicesComponent implements OnInit {
     paragraph: 'Una experiencia completa. Con los mejores programas de estudio en el extranjero adaptados a tus necesidades. Te asesoramos con los trámites y los visados para que no tengas que preocuparte de nada.'
   };
 
+  cards = [{
+    icon: '../../../assets/img/icon_asesoria.PNG',
+    title: 'Asesoria gratis y trámites online'
+  }, {
+    icon: '../../../assets/img/icon_oportunidades.PNG',
+    title: 'Oportunidades para tí'
+  }, {
+    icon: '../../../assets/img/icon_informacion.PNG',
+    title: 'Información durante la experiencia'
+  }];
+
   constructor() { }
 
   ngOnInit() {

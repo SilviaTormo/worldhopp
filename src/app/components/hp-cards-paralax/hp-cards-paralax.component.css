@@ -33,6 +33,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
+  user-select: none;
 }
 
 .cards-box>.cb-card-box>.cb-cb-texts {
@@ -73,6 +74,7 @@
   }
 
   .cards-box>.cb-card-box {
+    width: 260px;
     left: 0%;
     margin: 0;
     margin-right: 10px;
