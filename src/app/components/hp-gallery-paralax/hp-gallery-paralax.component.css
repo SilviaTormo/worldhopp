@@ -55,7 +55,6 @@
   border-radius: 4px;
   background-color: #c2c2c2;
   box-shadow: 0px 5px 20px -3px #c2c2c2;
-  overflow: hidden;
 }
 
 .gallery-box>.gb-image-box>.gb-ib-image>div {
@@ -82,7 +81,7 @@
 }
 
 .gallery-box>.gb-image-box>.gb-ib-title {
-  width: 100%;
+  width: 218px;
   margin: 0 5px;
   margin-top: 20px;
   /* font-size: 18px; */
@@ -93,7 +92,7 @@
 
 .gallery-box>.gb-image-box>.gb-ib-title>p {
   width: 100%;
-  line-height: 1.2;
+  line-height: 1.4;
   white-space: normal;
 }
 

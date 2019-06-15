@@ -84,6 +84,12 @@
 
 /* Section 5: Steps to Follow */
 .hp-s5-steps-to-follow .gallery-box .gb-ib-title>p {
-  font-size: 22px !important;
+  font-size: 18px !important;
   font-weight: 900;
+}
+
+@media only screen and (max-width: 560px) {
+  .hp-s5-steps-to-follow .gallery-box .gb-ib-title>p {
+    font-size: 22px !important;
+  }
 }
