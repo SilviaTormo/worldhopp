@@ -80,3 +80,10 @@
   font-weight: 900;
   color: white;
 }
+
+
+/* Section 5: Steps to Follow */
+.hp-s5-steps-to-follow .gallery-box .gb-ib-title>p {
+  font-size: 22px !important;
+  font-weight: 900;
+}
