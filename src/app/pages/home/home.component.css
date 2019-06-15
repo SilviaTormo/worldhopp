@@ -50,29 +50,11 @@
   content: "";
   width: 4%;
   right: 22.5%;
+  top:4%;
   padding-top: 4%;
   border-radius: 20px;
   background-color: white;
   position: absolute;
-  animation-name: salto;
-  animation-delay: 2s;
-  animation-duration: 1s;
-  animation-iteration-count: 1;
-}
-@keyframes salto{
-  0% {
-    top: 80%;
-    right: 35%;
-  }20% {
-    top: 40%;
-    right: 30%;
-  }70% {
-    top:0%;
-    right: 25%;
-  }
-  100% {
-    top:0%;
-  }
 }
 
 #home-page .hero #claim {

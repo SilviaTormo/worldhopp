@@ -305,6 +305,13 @@
     max-width: 110%;
     animation: none;
   }
+  .hp-s9-contact .hill{
+    position: absolute;
+    bottom:100px;
+    top:170px;
+    width: 1300px;
+    z-index: 1;
+  }
 }
 
 @media only screen and (max-width: 590px) {
