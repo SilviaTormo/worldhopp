@@ -19,7 +19,9 @@
   flex-direction: column;
   justify-content: flex-start;
   align-content: center;
+  transition: transform 0.5s;
 }
+
 
 .cards-box>.cb-card-box>.cb-cb-icon {
   width: 100%;
@@ -59,8 +61,12 @@
   background-color: #17153B;
   position: absolute;
 }
-
-
+@media only screen and (min-width: 620px) {
+.cards-box>.cb-card-box:hover{
+  transform: translateY(-15px);
+ 
+ }
+}
 @media only screen and (max-width: 750px) {
   .cards-box {
     width: 95%;
