@@ -86,6 +86,58 @@
 }
 
 /* .hero>.box>h1::after {
+  animation-name: hopp;
+  animation-delay: 0s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  
+}
+
+@keyframes hopp {
+  0% {
+    top: -20%;
+    left: -10%;
+  }
+  
+  5% {
+    top: -10%;
+    left: 0%;
+  }
+  
+  10% {
+    top: 20%;
+    left: 6%;
+  }
+  
+  20% {
+    top: -20%;
+    left: 10%;
+  }
+  
+  25% {
+    top: -30%;
+    left: 15%;
+  }
+  
+  30% {
+    top: -30%;
+    left: 20%;
+  }
+  
+  35% {
+    top: -25%;
+    left: 25%;
+  }
+  
+  100% {
+    top: -25%;
+    left: 25%;
+  }
+} */
+
+/* .hero>.box>h1::after {
   top: 140%;
   left: 37.5%;
   opacity: 0;
