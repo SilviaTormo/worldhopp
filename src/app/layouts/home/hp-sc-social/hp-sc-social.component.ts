@@ -10,7 +10,7 @@ export class HpScSocialComponent implements OnInit {
   content = {
     subtitle: 'Unete a la comunidad de WorldHoppers',
     title: 'Es tu turno, el mundo está a tu alcance',
-    paragraph: ''
+    paragraph: 'Explora nuestras redes y comparte con nosotros tu aventura.'
   };
 
   constructor() { }
