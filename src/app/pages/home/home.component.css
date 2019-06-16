@@ -70,7 +70,7 @@
   content: "";
   width: 4%;
   right: 22.5%;
-  top: 4%;
+  top: 10%;
   padding-top: 4%;
   border-radius: 20px;
   background-color: white;
@@ -235,25 +235,40 @@
 }
 
 #home-page .hero video {
-  position: absolute; 
-	bottom: 0px; 
-	right: 0px; 
-	min-width: 100%; 
-	min-height: 100%; 
-	width: auto; 
-	height: auto; 
-  overflow: hidden; 
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  overflow: hidden;
 }
 
 @media only screen and (max-width: 890px) {
   #home-page .hero {
-    height: 50vh;
+    height: 65vh;
     background-position: 0% 102%, 50% 50%;
   }
 
   #home-page .hero h1 {
     font-size: 58px;
   }
+}
+
+#home-page .hero::after {
+  content: '';
+  width: 100%;
+  height: 20%;
+  top: 100%;
+  left: 0;
+  transform: translateY(-90%);
+  background-image: url('../../../assets/img/wave.svg');
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
 }
 
 /* END:: HERO */
@@ -326,11 +341,16 @@
 }
 
 #home-page .container:nth-of-type(4)::before {
-  content: url('../../../assets/img/wave.svg');
+  content: '';
   width: 100%;
-  top: 0;
+  height: 20%;
   left: 0;
-  transform: rotate(180deg) translateY(35%);
+  bottom: 100%;
+  transform: translateY(90%) rotate(180deg);
+  background-image: url('../../../assets/img/wave.svg');
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: absolute;
   z-index: 1;
 }
