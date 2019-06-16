@@ -263,11 +263,11 @@
   height: 20%;
   top: 100%;
   left: 0;
-  transform: translateY(-90%);
+  transform: translateY(-85%);
   background-image: url('../../../assets/img/wave.svg');
-  background-position: 50% 0%;
+  background-position: 50% 100%;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 95%;
   position: absolute;
 }
 
@@ -310,6 +310,7 @@
 
 @media only screen and (max-width: 920px) {
   #home-page>.container:nth-of-type(2) {
+    padding-bottom: 50px;
     background-size: 200% auto;
     background-position: 65% 101%;
   }
