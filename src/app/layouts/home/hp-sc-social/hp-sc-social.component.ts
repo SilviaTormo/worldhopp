@@ -9,7 +9,7 @@ export class HpScSocialComponent implements OnInit {
 
   content = {
     subtitle: 'Unete a la comunidad de WorldHoppers',
-    title: 'Siguenos en Instagram para conocer las ultimas novedades de nuestros hábitats.',
+    title: 'Es tu turno, el mundo está a tu alcance',
     paragraph: ''
   };
 
