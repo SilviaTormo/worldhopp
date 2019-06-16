@@ -71,6 +71,9 @@ export class HpSidebarDoYouLackAHoppComponent implements OnInit, OnDestroy {
     }
   ];
 
+  // tslint:disable-next-line:no-inferrable-types
+  isMobile: boolean = false;
+
   @ViewChild('sbHeader') sbHeader: ElementRef;
   @ViewChild('sbHeaderTitle') sbHeaderTitle: ElementRef;
 
@@ -82,6 +85,7 @@ export class HpSidebarDoYouLackAHoppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.renderer2.setStyle(document.documentElement, 'overflow', 'hidden');
+    this.checkWindowWidth();
   }
 
   ngOnDestroy(): void {
@@ -105,9 +109,15 @@ export class HpSidebarDoYouLackAHoppComponent implements OnInit, OnDestroy {
     this.hideSideBar = true;
     // this.renderer2.removeStyle(document.body, 'overflow');
 
-    setTimeout(() => {
-      this.exportAction('close');
-    }, 400);
+    if (!this.isMobile) {
+      setTimeout(() => {
+        this.exportAction('close');
+      }, 400);
+    } else {
+      setTimeout(() => {
+        this.exportAction('close');
+      }, 200);
+    }
   }
 
   stopPropagation(e) {
@@ -127,6 +137,15 @@ export class HpSidebarDoYouLackAHoppComponent implements OnInit, OnDestroy {
       console.log('Scroll to Contact Form!');
       document.querySelector('.hp-s9-contact').scrollIntoView({ behavior: 'smooth' });
     }, 400);
+  }
+
+  checkWindowWidth() {
+    const windowWidth = window.innerWidth;
+    if (windowWidth > 920) {
+      this.isMobile = false;
+    } else {
+      this.isMobile = true;
+    }
   }
 
 }

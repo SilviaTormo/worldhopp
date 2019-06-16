@@ -1,11 +1,15 @@
-<div class="sidebar-container" (click)="closeSideBar()" [ngClass]="{'hide-sidebar': hideSideBar}">
-  <div class="sidebar" (click)="stopPropagation($event)" (scroll)="scrollEffects($event)">
+<div class="sidebar-container" (click)="closeSideBar()" (window:resize)="checkWindowWidth()"
+  [ngClass]="{'hide-sidebar': hideSideBar}">
+  <div class="sidebar" (click)="stopPropagation($event)">
     <div class="sb-header" #sbHeader>
       <div #sbHeaderTitle>
         <h2 class="worlhopp-name">world<span class="hopp-name">hopp</span></h2>
         <p>Cambiamos <strong>sueños por planes</strong></p>
       </div>
       <img src="../../../../assets/img/wave.1.svg" alt="" />
+      <div class="close-sidebar" (click)="closeSideBar()">
+        <i class="fas fa-times"></i>
+      </div>
     </div>
     <div class="sb-body">
       <div class="sb-b-description">
