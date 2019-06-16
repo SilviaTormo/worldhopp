@@ -37,14 +37,14 @@
   z-index: 999;
 }
 
-.gallery-box.gb-with-steps .gb-image-box:nth-child(2n):not(:last-of-type)::after {
+/*.gallery-box.gb-with-steps .gb-image-box:nth-child(2n):not(:last-of-type)::after {
   top: 100%;
   right: 0;
   border: 3px solid transparent;
   border-bottom: 3px dashed black;
   border-radius: 100%;
   transform: translate(50%, -80%);
-}
+}*/
 
 .gallery-box>.gb-image-box>.gb-ib-image {
   /* width: 178px; */
