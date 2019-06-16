@@ -23,7 +23,8 @@ export class HpScExperiencesComponent implements OnInit {
         photo: '../../../assets/img/girls-1209321_1280.jpg',
         user: '',
         // tslint:disable-next-line:max-line-length
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis.'
+        comment: 'Jaime, 30 Años,  Chile - Cork. Conocer a Natalia fue lo que necesitaba para que me pareciera el viaje posible. ¡Todo salió perfecto! Muchas gracias Worldhopp.'
+        
       },
       {
         photo: '../../../assets/img/men-2425121_1280.jpg',

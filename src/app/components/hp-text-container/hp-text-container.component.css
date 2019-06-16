@@ -3,6 +3,7 @@ div {
   max-width: 560px;
   margin: auto;
   display: block;
+  margin-top: -30px;
 }
 
 @media only screen and (max-width: 560px) {

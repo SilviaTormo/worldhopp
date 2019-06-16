@@ -10,7 +10,7 @@
 /* BEGIN:: HERO */
 #home-page .hero {
   width: 100%;
-  height: 75vh;
+  height: 85vh;
   /* max-height: 800px; */
   background-size: 100% auto, cover;
   background-position: 0% 103%, 50% 80%;
