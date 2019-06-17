@@ -26,7 +26,7 @@ export class HpScTeamComponent implements OnInit {
         },
         {
           img: {
-            path: '../../../assets/img/guy-598180_1280.jpg',
+            path: '../../../assets/img/silvia.jpg',
           },
           rellax: {
             speed: 1
@@ -34,7 +34,7 @@ export class HpScTeamComponent implements OnInit {
         },
         {
           img: {
-            path: '../../../assets/img/beautiful-1274056_1280.jpg',
+            path: '../../../assets/img/tania.jpg',
           },
           rellax: {
             speed: -1
