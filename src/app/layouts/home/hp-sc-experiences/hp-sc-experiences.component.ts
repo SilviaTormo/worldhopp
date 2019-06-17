@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { OriginalSource } from 'webpack-sources';
 
 @Component({
   selector: 'app-hp-sc-experiences',
@@ -14,23 +15,30 @@ export class HpScExperiencesComponent implements OnInit {
     paragraph: 'Estás a punto de emprender una nueva aventura, conoce la historia de otros Worldhoppers que se han lanzado a estudiar, trabajar y vivir en el extranjero.',
     slider: [
       {
-        photo: '../../../assets/img/water-1245677_1280.jpg',
+        photo: '../../../assets/img/fabio.jpg',
         user: '',
         // tslint:disable-next-line:max-line-length
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis.'
+        nombre: 'Fabio',
+        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis.',
+        origen:'Chile',
+        destino: 'Nueva Zelanda'
       },
       {
-        photo: '../../../assets/img/girls-1209321_1280.jpg',
+        photo: '../../../assets/img/leidy.jpg',
         user: '',
         // tslint:disable-next-line:max-line-length
-        comment: 'Jaime, 30 Años,  Chile - Cork. Conocer a Natalia fue lo que necesitaba para que me pareciera el viaje posible. ¡Todo salió perfecto! Muchas gracias Worldhopp.'
-        
+        nombre: 'Leidy',
+        comment: '"Cuando decidí venir a Irlanda a aprender inglés me sorprendió un pais maravilloso en el que las personas están dispuestas a ayudarte siempre".',
+        origen: 'Colombia',
+        destino: 'Irlanda'
       },
       {
-        photo: '../../../assets/img/men-2425121_1280.jpg',
-        user: '',
+        photo: '../../../assets/img/marina.jpg',
+        nombre: 'Marina',
         // tslint:disable-next-line:max-line-length
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis.'
+        comment: '"No tenía nada claro todo lo necesario para poder salir del país con tranquilidad. Worldhopp me lo puso fácil"',
+        origen: 'Colombia',
+        destino: 'Irlanda'
       }
     ]
   };

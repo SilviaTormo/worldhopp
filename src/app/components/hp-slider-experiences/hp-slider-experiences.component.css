@@ -33,6 +33,7 @@
 
 .slider-container>.slider-list>.slider-item.current-slider {
   margin: 10px 2%;
+  
 }
 
 .slider-container>.slider-list>.slider-item:last-of-type {
@@ -80,7 +81,9 @@
   /* transform: translate(-50%, -50%);
   position: absolute; */
 }
-
+ .arrow {
+  color: #fffd78 !important;
+}
 .slider-container>.slider-list>.slider-item>.si-comment>div * {
   width: 100%;
   margin: 10px 0px;

@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { HpScLearnEnglishComponent } from './hp-sc-learn-english.component';
 
 describe('HpScLearnEnglishComponent', () => {

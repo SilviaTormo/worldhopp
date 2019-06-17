@@ -6,7 +6,10 @@
         <ng-container *ngIf="slider?.user != '' || slider?.comment != ''">
           <div class="si-comment">
             <div>
-              <h5 *ngIf="slider?.user != ''">{{ slider?.user }}</h5>
+              <h5 *ngIf="slider?.nombre != ''">{{ slider?.nombre }}</h5>
+              <span *ngIf="slider?.origen != ''">{{ slider?.origen }}</span>
+              <span class="arrow" *ngIf="slider?.origen != '' && slider?.destino != ''">&#8594;</span>
+              <span *ngIf="slider?.destino != ''">{{ slider?.destino }}</span>
               <p *ngIf="slider?.comment != ''">{{ slider?.comment }}</p>
             </div>
           </div>
