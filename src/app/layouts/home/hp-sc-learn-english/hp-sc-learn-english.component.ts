@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import Typed from 'typed.js';
 
 @Component({
   selector: 'app-hp-sc-learn-english',
@@ -18,6 +19,16 @@ export class HpScLearnEnglishComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    var options = {
+      strings: ['Inglés.', 'Tecnología','Deporte'],
+      typeSpeed: 10,
+      backSpeed: 10,
+      showCursor: true,
+      cursorChar: '|',
+      loop: true
+ };
+ 
+ const typed = new Typed('.typed-element', options);
   }
 
 }

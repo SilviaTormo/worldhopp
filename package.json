@@ -32,8 +32,8 @@
     "scrollmagic": "^2.0.7",
     "smoothscroll": "^0.4.0",
     "smoothscroll-polyfill": "^0.4.4",
+    "typed.js": "^2.0.10",
     "typeface-indie-flower": "0.0.72",
-    "typeit": "^6.0.3",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
