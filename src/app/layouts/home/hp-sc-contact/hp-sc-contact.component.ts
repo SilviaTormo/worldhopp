@@ -97,11 +97,10 @@ export class HpScContactComponent implements OnInit {
   }
 
   getRandomNumberBetweenTwoNumbers(min, max) {
-    if (min <= max) {
-      return Math.floor(Math.random() * max) + min;
-    } else {
+    if (min > max) {
       return;
     }
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
 }
