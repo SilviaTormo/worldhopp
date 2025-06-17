@@ -1,0 +1,8 @@
+<div class="news-feed">
+  <h2>Noticias destacadas</h2>
+  <ul>
+    <li *ngFor="let article of articles">
+      <a [href]="article.url" target="_blank">{{ article.title }}</a>
+    </li>
+  </ul>
+</div>

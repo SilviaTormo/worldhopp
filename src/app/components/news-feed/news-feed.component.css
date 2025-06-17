@@ -1,0 +1,7 @@
+.news-feed ul {
+  list-style: none;
+  padding: 0;
+}
+.news-feed li {
+  margin-bottom: 8px;
+}
