@@ -1,5 +1,7 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
@@ -24,6 +26,8 @@ import { HpSidebarDoYouLackAHoppComponent } from './layouts/home/hp-sidebar-do-y
 import { EyeFollowMyCursorComponent } from './components/eye-follow-my-cursor/eye-follow-my-cursor.component';
 import { HpScSocialComponent } from './layouts/home/hp-sc-social/hp-sc-social.component';
 import { SmartphoneSocialComponent } from './components/smartphone-social/smartphone-social.component';
+import { NewsFeedComponent } from './components/news-feed/news-feed.component';
+import { PlannerComponent } from './pages/planner/planner.component';
 
 
 
@@ -53,10 +57,14 @@ import { SmartphoneSocialComponent } from './components/smartphone-social/smartp
     HpSidebarDoYouLackAHoppComponent,
     EyeFollowMyCursorComponent,
     HpScSocialComponent,
-    SmartphoneSocialComponent
+    SmartphoneSocialComponent,
+    NewsFeedComponent,
+    PlannerComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
     AppRoutingModule,
   ],
   providers: [

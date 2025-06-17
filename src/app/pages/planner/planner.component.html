@@ -1,0 +1,11 @@
+<div class="planner">
+  <h2>Planner de publicaciones</h2>
+  <input [(ngModel)]="newTask" placeholder="Nueva tarea" />
+  <button (click)="addTask()">Agregar</button>
+
+  <ul>
+    <li *ngFor="let task of tasks">
+      {{ task.title }} - {{ task.dueDate | date:'short' }}
+    </li>
+  </ul>
+</div>
