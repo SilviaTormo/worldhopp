@@ -24,6 +24,7 @@ import { HpSidebarDoYouLackAHoppComponent } from './layouts/home/hp-sidebar-do-y
 import { EyeFollowMyCursorComponent } from './components/eye-follow-my-cursor/eye-follow-my-cursor.component';
 import { HpScSocialComponent } from './layouts/home/hp-sc-social/hp-sc-social.component';
 import { SmartphoneSocialComponent } from './components/smartphone-social/smartphone-social.component';
+import { UltronInterfaceComponent } from './components/ultron-interface/ultron-interface.component';
 
 
 
@@ -53,7 +54,8 @@ import { SmartphoneSocialComponent } from './components/smartphone-social/smartp
     HpSidebarDoYouLackAHoppComponent,
     EyeFollowMyCursorComponent,
     HpScSocialComponent,
-    SmartphoneSocialComponent
+    SmartphoneSocialComponent,
+    UltronInterfaceComponent
   ],
   imports: [
     BrowserModule,

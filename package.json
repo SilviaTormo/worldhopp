@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "@types/hammerjs": "^2.0.36",
+    "@types/three": "^0.177.0",
     "ajv": "^6.10.0",
     "core-js": "^2.6.9",
     "gsap": "^2.1.3",
@@ -32,6 +33,7 @@
     "scrollmagic": "^2.0.7",
     "smoothscroll": "^0.4.0",
     "smoothscroll-polyfill": "^0.4.4",
+    "three": "^0.177.0",
     "typed.js": "^2.0.10",
     "typeface-indie-flower": "0.0.72",
     "zone.js": "~0.8.26"
