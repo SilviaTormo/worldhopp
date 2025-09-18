@@ -1,0 +1,19 @@
+<header>
+  <app-top-navbar></app-top-navbar>
+</header>
+<main id="booking-page">
+  <h1>Reserva tu sesión</h1>
+  <p>Selecciona fecha y hora para tu masaje sanador.</p>
+  <div *ngFor="let slot of slots" class="day">
+    <h3>{{ slot.date }}</h3>
+    <ul class="times">
+      <li *ngFor="let t of slot.times">
+        <button (click)="book(t)">{{ t }}</button>
+      </li>
+    </ul>
+  </div>
+  <p class="note">Las reservas se sincronizarán con tu calendario de Google.</p>
+</main>
+<footer>
+  <app-footer></app-footer>
+</footer>
