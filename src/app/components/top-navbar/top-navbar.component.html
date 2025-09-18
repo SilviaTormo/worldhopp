@@ -24,10 +24,22 @@
               <a (click)="goTo(anchor.section)">{{ anchor.name }}</a>
             </li>
           </ng-container>
+          <li>
+            <a routerLink="/services">Servicios</a>
+          </li>
+          <li>
+            <a routerLink="/booking">Reserva</a>
+          </li>
         </ng-template>
         <ng-template #printOnlyLogo>
           <li id="worldhopp-logo" class="logo" (click)="logoEvents()">
             <img class="logo-image" src="../../../assets/img/saltamontes.svg" alt="saltamontes.svg" />
+          </li>
+          <li>
+            <a routerLink="/services">Servicios</a>
+          </li>
+          <li>
+            <a routerLink="/booking">Reserva</a>
           </li>
         </ng-template>
       </ul>

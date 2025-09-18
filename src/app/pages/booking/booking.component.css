@@ -1,0 +1,14 @@
+#booking-page {
+  padding: 2rem;
+}
+.day {
+  margin-bottom: 1rem;
+}
+.times button {
+  margin-right: 0.5rem;
+}
+.note {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #555;
+}

@@ -24,6 +24,9 @@ import { HpSidebarDoYouLackAHoppComponent } from './layouts/home/hp-sidebar-do-y
 import { EyeFollowMyCursorComponent } from './components/eye-follow-my-cursor/eye-follow-my-cursor.component';
 import { HpScSocialComponent } from './layouts/home/hp-sc-social/hp-sc-social.component';
 import { SmartphoneSocialComponent } from './components/smartphone-social/smartphone-social.component';
+import { BookingComponent } from './pages/booking/booking.component';
+import { ServicesComponent } from './pages/services/services.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -53,11 +56,14 @@ import { SmartphoneSocialComponent } from './components/smartphone-social/smartp
     HpSidebarDoYouLackAHoppComponent,
     EyeFollowMyCursorComponent,
     HpScSocialComponent,
-    SmartphoneSocialComponent
+    SmartphoneSocialComponent,
+    BookingComponent,
+    ServicesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
   ],
   providers: [
     Title
