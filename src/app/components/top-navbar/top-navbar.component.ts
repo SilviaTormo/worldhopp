@@ -1,71 +1,70 @@
-import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  inject,
+} from '@angular/core';
+import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
-import { TweenMax } from 'gsap';
-import * as ScrollMagic from 'scrollmagic';
+
+export interface MenuAnchor {
+  name: string;
+  id: string;
+  section: string;
+}
 
 @Component({
   selector: 'app-top-navbar',
+  imports: [NgClass],
   templateUrl: './top-navbar.component.html',
-  styleUrls: ['./top-navbar.component.css']
+  styleUrl: './top-navbar.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TopNavbarComponent implements OnInit, AfterViewInit {
+export class TopNavbarComponent implements OnInit, AfterViewInit, OnDestroy {
+  @Input() anchors: MenuAnchor[] = [];
 
-  // tslint:disable-next-line:no-inferrable-types
-  scrollIsUp: boolean = true;
-  controller = new ScrollMagic.Controller();
+  scrollIsUp = true;
+  activeId = '';
 
-  @Input() anchors = [];
+  private zone = inject(NgZone);
+  private router = inject(Router);
+  private host = inject<ElementRef<HTMLElement>>(ElementRef);
 
-  constructor(
-    private router: Router
-  ) { }
+  private scrollObserver?: IntersectionObserver;
+  private ticking = false;
 
-  ngOnInit() {
-  }
-
-  ngAfterViewInit() {
-    if (this.anchors.length > 0) {
-      this.toogleClass();
-    }
-  }
-
-  printLogo(num, total) {
-    return num === (total / 2);
-  }
-
-  handleScroll() {
-    const scrollYPos = window.scrollY;
-
-    if (scrollYPos > 10) {
-      this.scrollIsUp = false;
-    } else {
-      this.scrollIsUp = true;
-    }
-  }
-
-  toogleClass() {
-    this.anchors.forEach((anchor) => {
-      if (document.querySelector(anchor.section)) {
-        const scene = new ScrollMagic.Scene({
-          triggerElement: anchor.section,
-          duration: document.querySelector(anchor.section).getBoundingClientRect().height
-        });
-        scene.setClassToggle('#link-' + anchor.id, 'active');
-        // scene.addIndicators();
-        scene.addTo(this.controller);
-      } else {
-        setTimeout(() => {
-          this.toogleClass();
-        }, 200);
-      }
+  ngOnInit(): void {
+    // Scroll state (logo grows when at the top): passive rAF-throttled listener.
+    this.zone.runOutsideAngular(() => {
+      window.addEventListener('scroll', this.onScroll, { passive: true });
     });
   }
 
-  goTo(sectionId) {
-    document.querySelector(sectionId).scrollIntoView({ behavior: 'smooth' });
+  ngAfterViewInit(): void {
+    if (this.anchors.length > 0) {
+      this.initActiveSectionObserver();
+    }
   }
 
-  logoEvents() {
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.onScroll);
+    this.scrollObserver?.disconnect();
+  }
+
+  printLogo(num: number, total: number): boolean {
+    return num === total / 2;
+  }
+
+  goTo(sectionId: string): void {
+    document.querySelector(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  logoEvents(): void {
     if (!this.scrollIsUp) {
       window.scroll({ top: 0, left: 0, behavior: 'smooth' });
     } else {
@@ -73,4 +72,55 @@ export class TopNavbarComponent implements OnInit, AfterViewInit {
     }
   }
 
+  private onScroll = (): void => {
+    if (this.ticking) {
+      return;
+    }
+    this.ticking = true;
+    requestAnimationFrame(() => {
+      this.ticking = false;
+      const up = window.scrollY <= 10;
+      if (up !== this.scrollIsUp) {
+        this.zone.run(() => (this.scrollIsUp = up));
+      }
+    });
+  };
+
+  /**
+   * Replaces ScrollMagic: one IntersectionObserver marks the menu link
+   * of the section currently crossing the viewport middle as `.active`.
+   */
+  private initActiveSectionObserver(): void {
+    const sections = this.anchors
+      .map((anchor) => document.querySelector(anchor.section))
+      .filter((el): el is Element => el !== null);
+
+    if (sections.length === 0) {
+      // Sections render after their images/layout; retry briefly (same
+      // behavior as the old ScrollMagic retry loop).
+      setTimeout(() => this.initActiveSectionObserver(), 200);
+      return;
+    }
+
+    this.scrollObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) {
+            continue;
+          }
+          const anchor = this.anchors.find((a) => document.querySelector(a.section) === entry.target);
+          if (anchor && anchor.id !== this.activeId) {
+            this.zone.run(() => (this.activeId = anchor.id));
+          }
+        }
+      },
+      {
+        // A thin horizontal band at the middle of the viewport decides
+        // which section is "current".
+        rootMargin: '-45% 0px -45% 0px',
+        threshold: 0,
+      }
+    );
+    sections.forEach((section) => this.scrollObserver!.observe(section));
+  }
 }

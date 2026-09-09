@@ -1,52 +1,35 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { HpTextContainerComponent } from '../../../components/hp-text-container/hp-text-container.component';
+import { HpGalleryParalaxComponent } from '../../../components/hp-gallery-paralax/hp-gallery-paralax.component';
+import { RevealDirective } from '../../../shared/reveal.directive';
+import { GalleryConfig } from '../../../components/hp-gallery-paralax/hp-gallery-paralax.component';
 
 @Component({
   selector: 'app-hp-sc-team',
+  imports: [HpTextContainerComponent, HpGalleryParalaxComponent, RevealDirective],
   templateUrl: './hp-sc-team.component.html',
-  styleUrls: ['./hp-sc-team.component.css']
+  styleUrl: './hp-sc-team.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HpScTeamComponent implements OnInit {
-
-  content = {
+export class HpScTeamComponent {
+  content: {
+    subtitle: string;
+    title: string;
+    paragraph: string;
+    gallery: GalleryConfig;
+  } = {
     subtitle: 'Un equipo entero a tu disposición',
     title: 'Nuestro equipo',
-    // tslint:disable-next-line:max-line-length
-    paragraph: 'Te asesoramos gratuitamente sobre vuelos, seguros, preparativos para el viaje y resolvemos todas las dudas que tengas. Tu Hopper está allí y te lo cuenta todo, el también pasó por ello!',
+    paragraph:
+      'Te asesoramos gratuitamente sobre vuelos, seguros, preparativos para el viaje y resolvemos todas las dudas que tengas. Tu Hopper está allí y te lo cuenta todo, el también pasó por ello!',
     gallery: {
       steps: false,
       rellax: true,
       images: [
-        {
-          img: {
-            path: '../../../assets/img/natalia.jpg',
-          },
-          rellax: {
-            speed: -1
-          }
-        },
-        {
-          img: {
-            path: '../../../assets/img/silvia.jpg',
-          },
-          rellax: {
-            speed: 1
-          }
-        },
-        {
-          img: {
-            path: '../../../assets/img/tania.jpg',
-          },
-          rellax: {
-            speed: -1
-          }
-        }
-      ]
-    }
+        { img: { path: 'img/natalia.jpg' }, rellax: { speed: -1 } },
+        { img: { path: 'img/silvia.jpg' }, rellax: { speed: 1 } },
+        { img: { path: 'img/tania.jpg' }, rellax: { speed: -1 } },
+      ],
+    },
   };
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }

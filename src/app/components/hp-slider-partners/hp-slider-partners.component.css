@@ -28,6 +28,7 @@
   box-shadow: none;
   display: inline-block;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .slider-container>.slider-dots,

@@ -1,25 +1,36 @@
-<div #galleryElement
-  [ngClass]="['gallery-box', (gallery['steps'] != undefined && gallery['steps'] == true) ? 'gb-with-steps' : '', sliderClassName]"
-  (window:resize)="checkWindowWidth(); getSliderWidth()"
-  [ngStyle]="{'transform': 'translateX(-' + (currentSlider * sliderWidth) + 'px)'}">
-  <ng-container *ngFor="let image of gallery['images']; let index = index">
-    <div [ngClass]="['gb-image-box', rellaxClassName]" (click)="(isMobile) ? currentSlider = index : false"
-      [attr.data-rellax-speed]="(gallery?.rellax && image['rellax'] != undefined && image['rellax']['speed'] != undefined) ? image['rellax']['speed'] : null"
-      [attr.data-step-number]="(gallery?.steps) ? (index + 1) : null">
-      <div class="gb-ib-image">
-        <div [style.background-image]="setBgImage(image.img.path)"></div>
-        <ng-container *ngIf="checkVisibility(image['img'])">
-          <div class="gb-ib-text">
-            <span>{{ image.img.text }}</span>
-          </div>
-        </ng-container>
-      </div>
-      <ng-container *ngIf="checkVisibility(image['title'])">
-        <div class="gb-ib-title">
-          <p [ngStyle]="{'color': (image['title']['color'] != undefined) ? image['title']['color'] : null }"
-            [innerHTML]="getFormat(image.title.text)"></p>
+<div
+  #galleryElement
+  class="gallery-box"
+  [ngClass]="{ 'gb-with-steps': gallery.steps === true }"
+  [style.transform]="isMobile ? 'translateX(-' + (currentSlider * sliderWidth) + 'px)' : null"
+  (pointerdown)="onPointerDown($event)"
+  (pointerup)="onPointerUp($event)"
+>
+  @for (image of gallery.images; track $index; let index = $index) {
+    <div
+      class="gb-image-box"
+      [attr.data-rellax-speed]="gallery.rellax && image.rellax?.speed !== undefined ? image.rellax?.speed : null"
+      [attr.data-step-number]="gallery.steps ? index + 1 : null"
+      (click)="onImageClick(index)"
+    >
+      @if (image.img; as img) {
+        <div class="gb-ib-image">
+          <div [style.background-image]="'url(' + img.path + ')'"></div>
+          @if (checkVisibility(img)) {
+            <div class="gb-ib-text">
+              <span>{{ img.text }}</span>
+            </div>
+          }
         </div>
-      </ng-container>
+      }
+      @if (checkVisibility(image.title)) {
+        <div class="gb-ib-title">
+          <p
+            [ngStyle]="{ color: image.title?.color !== undefined ? image.title?.color : null }"
+            [innerHTML]="getFormat(image.title!.text)"
+          ></p>
+        </div>
+      }
     </div>
-  </ng-container>
+  }
 </div>

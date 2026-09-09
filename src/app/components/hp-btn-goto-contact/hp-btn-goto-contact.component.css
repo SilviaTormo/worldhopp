@@ -23,7 +23,7 @@
   height: 100%;
   top: 0px;
   left: 0px;
-  background-image: url('../../../assets/img/te_ayudamos_a_dar_el_hopp.svg');
+  background-image: url('../../../../public/img/te_ayudamos_a_dar_el_hopp.svg');
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -59,7 +59,7 @@
   width: 60px;
   height: 100%;
   margin-right: 5%;
-  background-image: url('../../../assets/img/saltamontes.svg');
+  background-image: url('../../../../public/img/saltamontes.svg');
   background-size: contain;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -71,6 +71,4 @@
   color: #353b50;
   text-transform: uppercase;
 }
-
-
 /* END:: BUTTON GO TO CONTACT */

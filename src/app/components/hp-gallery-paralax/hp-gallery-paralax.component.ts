@@ -1,171 +1,194 @@
-import { Component, OnInit, Input, SecurityContext, ViewChild, AfterViewInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import * as Rellax from 'rellax';
-import * as Hammer from 'hammerjs';
+import { NgClass, NgStyle } from '@angular/common';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  inject,
+} from '@angular/core';
 
+export interface GalleryImage {
+  img?: {
+    path: string;
+    text?: string;
+    textVisibility?: 0 | 1 | 2;
+    color?: string;
+  };
+  title?: {
+    text: string;
+    textVisibility?: 0 | 1 | 2;
+    color?: string;
+  };
+  rellax?: { speed: number };
+}
+
+export interface GalleryConfig {
+  steps?: boolean;
+  rellax?: boolean;
+  images: GalleryImage[];
+}
+
+/**
+ * Destination/team/steps gallery. Parallax is done with one rAF loop that
+ * translates visible boxes (replaces Rellax); on mobile it becomes a
+ * swipeable strip using native Pointer Events (replaces Hammer.js).
+ */
 @Component({
   selector: 'app-hp-gallery-paralax',
+  imports: [NgClass, NgStyle],
   templateUrl: './hp-gallery-paralax.component.html',
-  styleUrls: ['./hp-gallery-paralax.component.css']
+  styleUrl: './hp-gallery-paralax.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HpGalleryParalaxComponent implements OnInit, AfterViewInit {
+export class HpGalleryParalaxComponent implements OnInit, AfterViewInit, OnDestroy {
+  @Input() gallery!: GalleryConfig;
 
-  @Input() gallery: Object[];
-  /* EXAMPLE OF ITEM
-    {
-      img: {
-        path: '../../../assets/img/nz.jpg',
-        text: 'New Zeland',
-        textVisibility: 0,  // 0 (only mobile), 1 (only desktop), 2 (both device)
-        color: '#1684F5'
-      },
-      title: {
-        text: 'KIWIhopp',
-        textVisibility: 2,  // 0 (only mobile), 1 (only desktop), 2 (both device)
-        color: '#1684F5'
-      },
-      rellax: {
-        speed: -1
-      }
-    },
-  */
+  isMobile = window.innerWidth <= 920;
+  currentSlider = 0;
+  sliderWidth = 800;
+  cardOffset = 0;
 
-  @ViewChild('galleryElement') galleryElement;
-  rellaxClassName: String = '';
-  sliderClassName: String = '';
+  private zone = inject(NgZone);
+  private cdr = inject(ChangeDetectorRef);
+  private host = inject<ElementRef<HTMLElement>>(ElementRef);
 
-  // tslint:disable-next-line:no-inferrable-types
-  isMobile: boolean = false;
+  private boxes: HTMLElement[] = [];
+  private visible = new Set<HTMLElement>();
+  private galleryObserver?: IntersectionObserver;
+  private rafId = 0;
+  private resizeObserver?: ResizeObserver;
+  private pointerStart: { x: number; index: number } | null = null;
 
-  // tslint:disable-next-line:no-inferrable-types
-  currentSlider: number = 0;
-  // tslint:disable-next-line:no-inferrable-types
-  sliderWidth: number = 800;
-
-  constructor(
-    private _sanitizer: DomSanitizer
-  ) { }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.checkWindowWidth();
-
-    if (this.gallery['rellax'] != undefined && this.gallery['rellax']) {
-      this.rellaxClassName = this.makeid('g-rellax');
-      this.newRellax();
-    }
-
-    this.sliderClassName = this.makeid('g-slider');
-    this.newSlider();
   }
 
   ngAfterViewInit(): void {
-    this.getSliderWidth();
+    this.setupParallax();
+    this.setupSliderWidth();
   }
 
-  checkVisibility(item) {
-    if (item != undefined && item['text'] != undefined && item['textVisibility'] != undefined) {
-      if (item.textVisibility == 0 && this.isMobile) {
-        return true;
-      } else if (item.textVisibility == 1 && !this.isMobile) {
-        return true;
-      } else if (item.textVisibility == 2) {
-        return true;
-      }
-    }
+  ngOnDestroy(): void {
+    this.galleryObserver?.disconnect();
+    this.resizeObserver?.disconnect();
+    cancelAnimationFrame(this.rafId);
+  }
 
+  checkVisibility(item?: { text?: string; textVisibility?: 0 | 1 | 2 }): boolean {
+    if (item !== undefined && item.text !== undefined && item.textVisibility !== undefined) {
+      if (item.textVisibility === 0 && this.isMobile) return true;
+      if (item.textVisibility === 1 && !this.isMobile) return true;
+      if (item.textVisibility === 2) return true;
+    }
     return false;
   }
 
-  getFormat(text) {
+  getFormat(text: string): string {
     if (/^[\w]+hopp$/.test(text)) {
       return text.replace(/^([\w]+)hopp$/, '$1') + '<span class="hopp-name">hopp</span>';
+    }
+    return text;
+  }
+
+  onPointerDown(event: PointerEvent): void {
+    if (!this.isMobile) return;
+    this.pointerStart = { x: event.clientX, index: this.currentSlider };
+  }
+
+  onPointerUp(event: PointerEvent): void {
+    if (!this.pointerStart) return;
+    const dx = event.clientX - this.pointerStart.x;
+    if (dx < -40 && this.currentSlider < this.gallery.images.length - 1) {
+      this.currentSlider++;
+    } else if (dx > 40 && this.currentSlider > 0) {
+      this.currentSlider--;
     } else {
-      return text;
+      this.currentSlider = this.pointerStart.index;
+    }
+    this.pointerStart = null;
+    this.cdr.detectChanges();
+  }
+
+  onImageClick(index: number): void {
+    if (this.isMobile) {
+      this.currentSlider = index;
+      this.cdr.detectChanges();
     }
   }
 
-  setBgImage(url) {
-    if (url !== '') {
-      // safe value type URL
-      url = this._sanitizer.bypassSecurityTrustStyle('url(' + url + ')');
-    }
-    return url;
-  }
-
-  makeid(className) {
-    const length = 5;
-    let text = '';
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < length; i++) {
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    if ((<HTMLElement>document.getElementsByClassName(className + '_' + text)[0])) {
-      this.makeid(className);
-    } else {
-      return className + '_' + text;
-    }
-  }
-
-  newRellax() {
-    if ((<HTMLElement>document.getElementsByClassName('' + this.rellaxClassName)[0])) {
-      const rellax = new Rellax('.' + this.rellaxClassName, {
-        center: true
-      });
-    } else {
-      setTimeout(() => {
-        this.newRellax();
-      }, 100);
-    }
-  }
-
-  newSlider() {
-    if ((<HTMLElement>document.getElementsByClassName('' + this.sliderClassName)[0])) {
-      const slider = (<HTMLElement>document.getElementsByClassName('' + this.sliderClassName)[0]);
-      const mc = new Hammer.Manager(slider);
-      const Swipe = new Hammer.Swipe({
-        direction: Hammer.DIRECTION_HORIZONTAL
-      });
-      mc.add(Swipe);
-      mc.on('swipeleft', () => {
-        if (this.isMobile) {
-          if (this.currentSlider !== (this.gallery['images'].length - 1)) {
-            // console.log('Swipe Left!');
-            this.currentSlider = ++this.currentSlider;
-          }
-        }
-      });
-      mc.on('swiperight', () => {
-        if (this.isMobile) {
-          if (this.currentSlider !== 0) {
-            // console.log('Swipe Right!');
-            this.currentSlider = --this.currentSlider;
-          }
-        }
-      });
-    } else {
-      setTimeout(() => {
-        this.newSlider();
-      }, 100);
-    }
-  }
-
-  getSliderWidth() {
-    const element = this.galleryElement.nativeElement.getBoundingClientRect();
-    const widthSize = element.width;
-    const marginSize = 10;
-    const realWidthSize = (marginSize + widthSize);
-    // console.log(realWidthSize);
-    this.sliderWidth = realWidthSize;
-  }
-
-  checkWindowWidth() {
-    const windowWidth = window.innerWidth;
-    if (windowWidth > 920) {
-      this.isMobile = false;
+  private checkWindowWidth(): void {
+    const wasMobile = this.isMobile;
+    this.isMobile = window.innerWidth <= 920;
+    if (wasMobile && !this.isMobile) {
       this.currentSlider = 0;
-    } else {
-      this.isMobile = true;
     }
   }
 
+  private setupParallax(): void {
+    if (typeof IntersectionObserver === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+    this.boxes = Array.from(this.host.nativeElement.querySelectorAll<HTMLElement>('.gb-image-box'));
+    if (this.boxes.length === 0 || !this.gallery.rellax) {
+      return;
+    }
+
+    this.zone.runOutsideAngular(() => {
+      this.galleryObserver = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              this.visible.add(entry.target as HTMLElement);
+            } else {
+              this.visible.delete(entry.target as HTMLElement);
+            }
+          }
+          if (this.visible.size > 0 && this.rafId === 0) {
+            this.rafId = requestAnimationFrame(this.parallaxFrame);
+          }
+        },
+        { rootMargin: '15% 0px 15% 0px' }
+      );
+      this.boxes.forEach((box) => this.galleryObserver!.observe(box));
+
+      const tick = () => {
+        this.rafId = this.visible.size > 0 ? requestAnimationFrame(this.parallaxFrame) : 0;
+      };
+      this.parallaxFrame = () => {
+        const viewportCenter = window.innerHeight / 2;
+        this.visible.forEach((box) => {
+          const speed = Number(box.dataset['rellaxSpeed'] ?? 0);
+          if (!speed) return;
+          const rect = box.getBoundingClientRect();
+          const delta = rect.top + rect.height / 2 - viewportCenter;
+          box.style.transform = `translate3d(0, ${(delta * speed * 0.08).toFixed(2)}px, 0)`;
+        });
+        tick();
+      };
+    });
+  }
+
+  private parallaxFrame: () => void = () => undefined;
+
+  private setupSliderWidth(): void {
+    const box = this.host.nativeElement.querySelector<HTMLElement>('.gb-ib-image');
+    if (box) {
+      this.sliderWidth = box.getBoundingClientRect().width + 10;
+    }
+    if (typeof ResizeObserver !== 'undefined') {
+      this.resizeObserver = new ResizeObserver(() => {
+        if (box) {
+          this.sliderWidth = box.getBoundingClientRect().width + 10;
+        }
+      });
+      if (box) {
+        this.resizeObserver.observe(box);
+      }
+    }
+  }
 }

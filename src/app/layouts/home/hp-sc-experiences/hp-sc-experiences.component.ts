@@ -1,51 +1,50 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { OriginalSource } from 'webpack-sources';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { HpTextContainerComponent } from '../../../components/hp-text-container/hp-text-container.component';
+import { HpSliderExperiencesComponent } from '../../../components/hp-slider-experiences/hp-slider-experiences.component';
+import { RevealDirective } from '../../../shared/reveal.directive';
+import { ExperienceSlide } from '../../../components/hp-slider-experiences/hp-slider-experiences.component';
 
 @Component({
   selector: 'app-hp-sc-experiences',
+  imports: [HpTextContainerComponent, HpSliderExperiencesComponent, RevealDirective],
   templateUrl: './hp-sc-experiences.component.html',
-  styleUrls: ['./hp-sc-experiences.component.css']
+  styleUrl: './hp-sc-experiences.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HpScExperiencesComponent implements OnInit {
-
+export class HpScExperiencesComponent {
   content = {
     subtitle: 'Conoce la comunidad de Worldhoppers',
     title: 'Otros ya lo han hecho!',
-    // tslint:disable-next-line:max-line-length
-    paragraph: 'Estás a punto de emprender una nueva aventura, conoce la historia de otros Worldhoppers que se han lanzado a estudiar, trabajar y vivir en el extranjero.',
+    paragraph:
+      'Estás a punto de emprender una nueva aventura, conoce la historia de otros Worldhoppers que se han lanzado a estudiar, trabajar y vivir en el extranjero.',
     slider: [
       {
-        photo: '../../../assets/img/fabio.jpg',
+        photo: 'img/fabio.jpg',
         user: '',
-        // tslint:disable-next-line:max-line-length
         nombre: 'Fabio',
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis.',
-        origen:'Chile',
-        destino: 'Nueva Zelanda'
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum erat quis nibh pulvinar mattis.',
+        origen: 'Chile',
+        destino: 'Nueva Zelanda',
       },
       {
-        photo: '../../../assets/img/leidy.jpg',
+        photo: 'img/leidy.jpg',
         user: '',
-        // tslint:disable-next-line:max-line-length
         nombre: 'Leidy',
-        comment: '"Cuando decidí venir a Irlanda a aprender inglés me sorprendió un pais maravilloso en el que las personas están dispuestas a ayudarte siempre".',
+        comment:
+          '"Cuando decidí venir a Irlanda a aprender inglés me sorprendió un pais maravilloso en el que las personas están dispuestas a ayudarte siempre".',
         origen: 'Colombia',
-        destino: 'Irlanda'
+        destino: 'Irlanda',
       },
       {
-        photo: '../../../assets/img/marina.jpg',
+        photo: 'img/marina.jpg',
+        user: '',
         nombre: 'Marina',
-        // tslint:disable-next-line:max-line-length
-        comment: '"No tenía nada claro todo lo necesario para poder salir del país con tranquilidad. Worldhopp me lo puso fácil"',
+        comment:
+          '"No tenía nada claro todo lo necesario para poder salir del país con tranquilidad. Worldhopp me lo puso fácil"',
         origen: 'Colombia',
-        destino: 'Irlanda'
-      }
-    ]
+        destino: 'Irlanda',
+      },
+    ] as ExperienceSlide[],
   };
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }

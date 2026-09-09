@@ -3,16 +3,13 @@
   height: 585px;
   margin: auto;
   margin-top: 60px;
-  /* border: 7px solid #ddd;
-  border-top-width: 14px;
-  border-bottom: none; */
   border-radius: 20px 20px 0px 0px;
   box-shadow: 0px -25px 75px -23px #dfdfdfab;
   background-color: #ddd;
   display: block;
 }
 
-.smartphone-shape[_ngcontent-c21]::after {
+.smartphone-shape::after {
   content: "";
   width: 110%;
   height: 190px;
@@ -56,7 +53,6 @@
   height: 77px;
   border-radius: 100%;
   background-color: #c2c2c2;
-  background-image: url('https://instagram.fbcn3-1.fna.fbcdn.net/vp/baf8dfa64fbd2172ea6f0a31532dd6f8/5D7B308C/t51.2885-19/s150x150/59490831_1213407738827161_9002657404134883328_n.jpg?_nc_ht=instagram.fbcn3-1.fna.fbcdn.net');
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -111,10 +107,8 @@
 }
 
 .smartphone-shape>.ss-box>.ss-b-header>.ss-b-h-user-details>.ss-b-h-ud-actions>.btn-follow {
-  /* // width: calc(100% - 8px - 34px); */
   width: 100%;
   max-width: 240px;
-  /* // margin-right: 8px; */
 }
 
 .smartphone-shape>.ss-box>.ss-b-header>.ss-b-h-user-details>.ss-b-h-ud-actions>.btn-others {
@@ -199,7 +193,7 @@
 .smartphone-shape>.ss-box>.ss-b-display-options>ul>li>span {
   height: 24px;
   width: 24px;
-  background-image: url('../../../assets/img/xxss/instagram/icons_and_buttons.png');
+  background-image: url('../../../../public/img/xxss/icons_and_buttons.png');
   background-size: 301px 273px;
   background-repeat: no-repeat;
 }

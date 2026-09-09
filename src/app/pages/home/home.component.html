@@ -8,8 +8,9 @@
         <h1>worldhopp</h1>
         <div id="claim">¡Sube de Nivel!</div>
       </div>
-      <video autoplay loop poster="../../../assets/img/new-zealand-583177-1920.png">
-        <source src="../../../assets/video/hero.mp4" type="video/mp4">
+      <!-- Poster first; video lazy + muted so it never blocks LCP or autoplay-blocks -->
+      <video autoplay loop muted playsinline preload="none" poster="img/new-zealand-583177_1280.jpg">
+        <source src="video/hero.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>

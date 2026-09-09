@@ -46,6 +46,10 @@
   padding: 10px;
 }
 
+#top-navbar .tnb-social-networks a {
+  color: #353b50;
+}
+
 #top-navbar .tnb-main-nav {
   width: calc(100% - 160px);
 }
@@ -113,6 +117,7 @@
 #top-navbar .tnb-menu {
   text-align: right;
   cursor: pointer;
+  color: #353b50;
 }
 
 @media only screen and (max-width: 775px) {

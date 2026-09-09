@@ -1,107 +1,111 @@
-import { Component, OnInit, Input, ElementRef, ViewChild, Renderer2 } from '@angular/core';
+import { HpTextContainerComponent } from '../../../components/hp-text-container/hp-text-container.component';
+import { HpBtnGotoContactComponent } from '../../../components/hp-btn-goto-contact/hp-btn-goto-contact.component';
+import { RevealDirective } from '../../../shared/reveal.directive';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  NgZone,
+  OnDestroy,
+  ViewChild,
+  inject,
+} from '@angular/core';
 
+interface StarSpec {
+  size: number;
+  color: string;
+  pos: { x: number; y: number };
+}
+
+/**
+ * Contact section with the floating "stars" decoration. Same look as the
+ * original (max 40 living stars, green/blue/yellow, fade in/out) but with
+ * bounded timeouts and full cleanup on destroy.
+ */
 @Component({
   selector: 'app-hp-sc-contact',
+  imports: [HpTextContainerComponent, HpBtnGotoContactComponent, RevealDirective],
   templateUrl: './hp-sc-contact.component.html',
-  styleUrls: ['./hp-sc-contact.component.css']
+  styleUrl: './hp-sc-contact.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HpScContactComponent implements OnInit {
-
+export class HpScContactComponent implements AfterViewInit, OnDestroy {
   content = {
     title: '¿Quieres dar el Hopp?',
     paragraph: 'Contáctanos! Te contestaremos cuanto antes.',
   };
 
-  nationalitiesAvailable = [
-    'España',
-    'Chile',
-    'Brasil'
-  ];
+  nationalitiesAvailable = ['España', 'Chile', 'Brasil'];
 
-  /* Stars Variables */
-  maxStars = 40;
-  curStars = 0;
-  starLifeTime = 6000; // time in ms
-  @ViewChild('starCanvas') starCanvas: ElementRef;
-  starCanvasPropierties = {
-    element: undefined,
-    width: undefined,
-    height: undefined
-  };
-  availableStarColors = {
-    colors: [
-      'green',
-      'blue',
-      'yellow'
-    ],
-    length: undefined
-  };
-  starStored = [];
+  private maxStars = 40;
+  private starLifeTime = 6000;
+  private colors = ['green', 'blue', 'yellow'];
 
-  constructor(
-    private renderer2: Renderer2
-  ) { }
+  @ViewChild('starCanvas') starCanvas?: ElementRef<HTMLElement>;
 
-  ngOnInit() {
-    if (this.maxStars > 0) {
-      this.starCanvasPropierties.element = this.starCanvas.nativeElement.getBoundingClientRect();
-      this.starCanvasPropierties.width = this.starCanvasPropierties.element.width;
-      this.starCanvasPropierties.height = this.starCanvasPropierties.element.height;
-      this.availableStarColors.length = this.availableStarColors.colors.length;
-      this.generateStars();
-    }
-  }
+  private zone = inject(NgZone);
+  private timers: ReturnType<typeof setTimeout>[] = [];
+  private starCount = 0;
 
-  generateStars() {
-    const newStar = this.setStar();
-    // tslint:disable-next-line:max-line-length
-    const elemnt = this.renderer2.createElement('div');
-    this.renderer2.setAttribute(elemnt, 'class', 'star star-' + newStar.color);
-    this.renderer2.setStyle(elemnt, 'width', newStar.size + 'px');
-    this.renderer2.setStyle(elemnt, 'height', newStar.size + 'px');
-    this.renderer2.setStyle(elemnt, 'top', newStar.pos.y + 'px');
-    this.renderer2.setStyle(elemnt, 'left', newStar.pos.x + 'px');
-    this.starStored.push(elemnt);
-    this.renderer2.appendChild(this.starCanvas.nativeElement, elemnt);
-    this.curStars++;
-    setTimeout(() => {
-      this.removeStars();
-    }, 6000);
-    if (this.curStars < this.maxStars) {
-      this.generateStars();
-    }
-  }
-
-  removeStars() {
-    const starSelected = this.getRandomNumberBetweenTwoNumbers(0, this.starStored.length);
-    this.renderer2.addClass(this.starCanvas.nativeElement.getElementsByClassName('star')[starSelected], 'star-dying');
-    setTimeout(() => {
-      if (this.starCanvas.nativeElement.getElementsByClassName('star')[starSelected].classList.contains('star-dying')) {
-        this.renderer2.removeChild(this.starCanvas.nativeElement, this.starStored[starSelected]);
-        this.starStored.splice(starSelected, 1);
-        this.generateStars();
-      }
-    }, this.starLifeTime);
-  }
-
-  setStar() {
-    const newStar = {
-      size: this.getRandomNumberBetweenTwoNumbers(4, 10),
-      color: this.availableStarColors.colors[this.getRandomNumberBetweenTwoNumbers(0, this.availableStarColors.length)],
-      pos: {
-        x: this.getRandomNumberBetweenTwoNumbers(0, this.starCanvasPropierties.width),
-        y: this.getRandomNumberBetweenTwoNumbers(0, this.starCanvasPropierties.height)
-      }
-    };
-    return newStar;
-  }
-
-  getRandomNumberBetweenTwoNumbers(min, max) {
-    if (min <= max) {
-      return Math.floor(Math.random() * max) + min;
-    } else {
+  ngAfterViewInit(): void {
+    if (!this.starCanvas) {
       return;
     }
+    this.zone.runOutsideAngular(() => this.generateStar());
   }
 
+  ngOnDestroy(): void {
+    this.timers.forEach(clearTimeout);
+    this.timers = [];
+    if (this.starCanvas) {
+      this.starCanvas.nativeElement.innerHTML = '';
+    }
+  }
+
+  private generateStar(): void {
+    const canvas = this.starCanvas?.nativeElement;
+    if (!canvas) {
+      return;
+    }
+    const rect = canvas.getBoundingClientRect();
+    const star = this.setStar(rect.width, rect.height);
+    const el = document.createElement('div');
+    el.className = `star star-${star.color}`;
+    el.style.width = `${star.size}px`;
+    el.style.height = `${star.size}px`;
+    el.style.top = `${star.pos.y}px`;
+    el.style.left = `${star.pos.x}px`;
+    canvas.appendChild(el);
+    this.starCount++;
+
+    this.timers.push(
+      setTimeout(() => {
+        el.classList.add('star-dying');
+        this.timers.push(
+          setTimeout(() => {
+            el.remove();
+            this.starCount--;
+            this.generateStar();
+          }, this.starLifeTime)
+        );
+      }, this.starLifeTime)
+    );
+
+    if (this.starCount < this.maxStars) {
+      this.generateStar();
+    }
+  }
+
+  private setStar(width: number, height: number): StarSpec {
+    return {
+      size: this.random(4, 10),
+      color: this.colors[this.random(0, this.colors.length - 1)],
+      pos: { x: this.random(0, width), y: this.random(0, height) },
+    };
+  }
+
+  private random(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 }

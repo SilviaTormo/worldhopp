@@ -1,10 +1,5 @@
-<!-- <div class="smartphone-container">
-  <div class="sm-smartphone"></div>
-</div> -->
-
-
 <div class="smartphone-shape">
-  <img class="img-sheep" src="../../../assets/img/xxss_solo_sheep.svg" alt="xxss_solo_sheep.svg" />
+  <img class="img-sheep" src="img/xxss_solo_sheep.svg" alt="" />
   <div class="ss-box">
     <div class="ss-b-header">
       <div class="ss-b-h-avatar">
@@ -16,7 +11,7 @@
         </div>
         <div class="ss-b-h-ud-actions">
           <button class="btn-follow" type="button">
-            <a href="https://www.instagram.com/worldhopp.com_/" target="_blank">Seguir</a>
+            <a href="https://www.instagram.com/worldhopp.com_/" target="_blank" rel="noopener">Seguir</a>
           </button>
           <button class="btn-others" type="button">v</button>
         </div>
@@ -24,8 +19,8 @@
     </div>
     <div class="ss-b-description">
       <h6>WorldHopp</h6>
-      <p>Estudia, trabaja, viaja y descubre:<br>👉 Malta<br>👉 Irlanda<br>👉 Nueva Zelanda<br>Gana una beca para
-        estudiar en Nueva Zelanda 👇👇👇👇</p>
+      <p>Estudia, trabaja, viaja y descubre:<br />👉 Malta<br />👉 Irlanda<br />👉 Nueva Zelanda<br />Gana una beca
+        para estudiar en Nueva Zelanda 👇👇👇👇</p>
     </div>
     <div class="ss-b-counter">
       <ul>
@@ -61,11 +56,11 @@
     </div>
     <div class="ss-b-gallery">
       <div>
-        <ng-container *ngFor="let picture of ['','','','','','','','','']">
+        @for (picture of [0, 1, 2, 3, 4, 5, 6, 7, 8]; track picture) {
           <div class="ss-b-g-picture"></div>
-        </ng-container>
+        }
       </div>
     </div>
   </div>
-  <img class="img-grasshopper" src="../../../../assets/img/xxss_solo_grasshopper.svg" alt="xxss_solo_grasshopper.svg" />
+  <img class="img-grasshopper" src="img/xxss_solo_grasshopper.svg" alt="" />
 </div>

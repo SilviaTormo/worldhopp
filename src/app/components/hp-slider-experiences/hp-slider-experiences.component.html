@@ -1,28 +1,51 @@
 <div class="slider-container">
-  <div #eSliderList [ngClass]="['slider-list', sliderClassName]" (window:resize)="getSliderWidth()">
-    <ng-container *ngFor="let slider of sliderList; let index = index">
-      <div class="slider-item" [ngClass]="{'current-slider': currentSlider === index}" [attr.data-slider-index]="index"
-        [style.background-image]="setBgImage(slider?.photo)">
-        <ng-container *ngIf="slider?.user != '' || slider?.comment != ''">
+  <div
+    class="slider-list"
+    [class.is-animating]="!dragging"
+    [style.transform]="dragging && dragDelta !== 0 ? 'translateX(calc(-' + currentSlider * 100 + '% + ' + dragDelta + 'px))' : 'translateX(-' + currentSlider * 100 + '%)'"
+    (pointerdown)="onPointerDown($event)"
+    (pointermove)="onPointerMove($event)"
+    (pointerup)="onPointerUp()"
+    (pointercancel)="onPointerUp()"
+  >
+    @for (slider of sliderList; track $index; let index = $index) {
+      <div
+        class="slider-item"
+        [ngClass]="{ 'current-slider': currentSlider === index }"
+        [attr.data-slider-index]="index"
+        [style.background-image]="'url(' + slider.photo + ')'"
+      >
+        @if (slider.user !== '' || slider.comment !== '') {
           <div class="si-comment">
             <div>
-              <h5 *ngIf="slider?.nombre != ''">{{ slider?.nombre }}</h5>
-              <span *ngIf="slider?.origen != ''">{{ slider?.origen }}</span>
-              <span class="arrow" *ngIf="slider?.origen != '' && slider?.destino != ''">&#8594;</span>
-              <span *ngIf="slider?.destino != ''">{{ slider?.destino }}</span>
-              <p *ngIf="slider?.comment != ''">{{ slider?.comment }}</p>
+              @if (slider.nombre !== '') {
+                <h5>{{ slider.nombre }}</h5>
+              }
+              @if (slider.origen !== '') {
+                <span>{{ slider.origen }}</span>
+              }
+              @if (slider.origen !== '' && slider.destino !== '') {
+                <span class="arrow">&#8594;</span>
+              }
+              @if (slider.destino !== '') {
+                <span>{{ slider.destino }}</span>
+              }
+              @if (slider.comment !== '') {
+                <p>{{ slider.comment }}</p>
+              }
             </div>
           </div>
-        </ng-container>
+        }
       </div>
-    </ng-container>
+    }
   </div>
-  <ng-container *ngIf="sliderList.length > 1">
+  @if (sliderList.length > 1) {
     <div class="slider-dots">
       <ul>
-        <li *ngFor="let slider of sliderList; let index = index" [ngClass]="{'current-slider': currentSlider === index}"
-          (click)="goTo(index)"></li>
+        @for (slider of sliderList; track $index; let index = $index) {
+          <li [ngClass]="{ 'current-slider': currentSlider === index }" (click)="goTo(index)"></li>
+        }
       </ul>
     </div>
-  </ng-container>
+  }
 </div>

@@ -1,24 +1,27 @@
-<div #cardsElement class="cards-box" (window:resize)="checkWindowWidth(); getSliderWidth()"
-  [ngStyle]="{'transform': 'translateX(-' + (currentSlider * sliderWidth) + 'px)'}" [ngClass]="[sliderClassName]">
-  <ng-container *ngFor="let card of cards; let index = index">
-    <div class="cb-card-box" [ngClass]="{'rellax': card['rellax'] != undefined }"
-      [attr.data-rellax-speed]="(card['rellax'] != undefined && card['rellax']['speed'] != undefined) ? card['rellax']['speed'] : null"
-      (click)="(isMobile) ? currentSlider = index : false">
-      <ng-container *ngIf="card['icon'] != undefined">
+<div
+  #cardsElement
+  class="cards-box"
+  [style.transform]="isMobile ? 'translateX(-' + (currentSlider * sliderWidth) + 'px)' : null"
+  (pointerdown)="onPointerDown($event)"
+  (pointerup)="onPointerUp($event)"
+>
+  @for (card of cards; track $index; let index = $index) {
+    <div class="cb-card-box" (click)="onCardClick(index)">
+      @if (card.icon !== undefined) {
         <div class="cb-cb-icon">
-          <img [attr.src]="setBgCard(card.icon)" [attr.alt]="setAttrAlt(card.icon)" />
+          <img [src]="card.icon" [alt]="setAttrAlt(card.icon)" loading="lazy" />
         </div>
-      </ng-container>
-      <ng-container *ngIf="card['title'] != undefined || card['text'] != undefined">
+      }
+      @if (card.title !== undefined || card.text !== undefined) {
         <div class="cb-cb-texts">
-          <ng-container *ngIf="card['title'] != undefined">
+          @if (card.title !== undefined) {
             <h4>{{ card.title }}</h4>
-          </ng-container>
-          <ng-container *ngIf="card['text'] != undefined">
+          }
+          @if (card.text !== undefined) {
             <p>{{ card.text }}</p>
-          </ng-container>
+          }
         </div>
-      </ng-container>
+      }
     </div>
-  </ng-container>
+  }
 </div>

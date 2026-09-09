@@ -1,55 +1,47 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  imports: [RouterOutlet],
+  template: '<router-outlet />',
 })
+export class AppComponent implements OnInit, OnDestroy {
+  private titleService = inject(Title);
 
-export class AppComponent implements OnInit {
+  private withoutUser = false;
+  private timers: ReturnType<typeof setTimeout>[] = [];
 
-  withoutUser = false;
-  titles = {
+  private readonly titles = {
     original: 'WorldHopp',
     leave: 'Hello?! We miss you 😥',
-    toReturn: '👋 Hey there! Welcome back ...'
+    toReturn: '👋 Hey there! Welcome back ...',
   };
 
-  constructor(private titleService: Title) { }
-
   ngOnInit(): void {
-    this.missTheUser();
+    document.addEventListener('visibilitychange', this.onVisibilityChange);
   }
 
-  @HostListener('window:visibilitychange', [])
-  missTheUser() {
-    const newTitle = (document.hidden) ? this.titles.leave : (this.withoutUser) ? this.titles.toReturn : this.titles.original;
+  ngOnDestroy(): void {
+    document.removeEventListener('visibilitychange', this.onVisibilityChange);
+    this.timers.forEach(clearTimeout);
+  }
+
+  private onVisibilityChange = (): void => {
+    this.timers.forEach(clearTimeout);
+    this.timers = [];
 
     if (document.hidden) {
-      setTimeout(() => {
-        this.setTitle(newTitle);
-      }, 500);
+      this.timers.push(setTimeout(() => this.titleService.setTitle(this.titles.leave), 500));
       this.withoutUser = true;
     } else {
-      setTimeout(() => {
-        this.setTitle(newTitle);
-      }, 400);
+      this.timers.push(
+        setTimeout(
+          () => this.titleService.setTitle(this.withoutUser ? this.titles.toReturn : this.titles.original),
+          400
+        )
+      );
     }
-
-    if (!document.hidden && this.withoutUser) {
-      this.withoutUser = false;
-      setTimeout(() => {
-        this.missTheUser();
-      }, 3000);
-    }
-  }
-
-  setTitle(title) {
-    this.titleService.setTitle(title);
-  }
-
-  getTitle() {
-    return this.titleService.getTitle();
-  }
+  };
 }

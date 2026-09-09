@@ -1,123 +1,94 @@
-import { Component, OnInit, Input, ViewChild, AfterContentChecked, Renderer2, ElementRef } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import * as Hammer from 'hammerjs';
+import { NgClass } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  inject,
+} from '@angular/core';
 
+export interface ExperienceSlide {
+  photo: string;
+  user: string;
+  nombre: string;
+  comment: string;
+  origen: string;
+  destino: string;
+}
+
+/**
+ * Testimonials slider. Pointer-drag with live tracking and momentum-ish
+ * threshold, dots navigation (replaces Hammer.js pan logic).
+ */
 @Component({
   selector: 'app-hp-slider-experiences',
+  imports: [NgClass],
   templateUrl: './hp-slider-experiences.component.html',
-  styleUrls: ['./hp-slider-experiences.component.css']
+  styleUrl: './hp-slider-experiences.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HpSliderExperiencesComponent implements OnInit, AfterContentChecked {
+export class HpSliderExperiencesComponent implements OnDestroy {
+  @Input() sliderList: ExperienceSlide[] = [];
 
-  @Input() sliderList: Object[] = [];
+  currentSlider = 1;
+  dragging = false;
+  dragDelta = 0;
 
-  // tslint:disable-next-line:no-inferrable-types
-  currentSlider: number = 1;
-  sliderClassName: String = '';
-  // tslint:disable-next-line:no-inferrable-types
-  sliderWidth: number;
-  sliderTimer;
+  private cdr = inject(ChangeDetectorRef);
+  private host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private resizeObserver?: ResizeObserver;
+  private dragStartX = 0;
 
-  @ViewChild('eSliderList') eSliderList: ElementRef;
-
-  constructor(
-    private _sanitizer: DomSanitizer,
-    private renderer2: Renderer2
-  ) { }
-
-  ngOnInit() {
-    this.sliderClassName = this.makeid();
-    this.newSlider();
-  }
-
-  ngAfterContentChecked(): void {
-    this.getSliderWidth();
-  }
-
-  setBgImage(url) {
-    if (url !== '') {
-      // safe value type URL
-      url = this._sanitizer.bypassSecurityTrustStyle('url(' + url + ')');
-    }
-    return url;
-  }
-
-  makeid() {
-    const length = 5;
-    let text = '';
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < length; i++) {
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    if ((<HTMLElement>document.getElementsByClassName('slider_' + text)[0])) {
-      this.makeid();
-    } else {
-      return 'slider_' + text;
+  constructor() {
+    if (typeof ResizeObserver !== 'undefined') {
+      this.resizeObserver = new ResizeObserver(() => this.cdr.detectChanges());
     }
   }
 
-  newSlider() {
-    if ((<HTMLElement>document.getElementsByClassName('' + this.sliderClassName)[0])) {
-      const slider = (<HTMLElement>document.getElementsByClassName('' + this.sliderClassName)[0]);
-      this.goTo(this.currentSlider);
-      const mc = new Hammer.Manager(slider);
-      // const Swipe = new Hammer.Swipe({ direction: Hammer.DIRECTION_HORIZONTAL });
-      const Pan = new Hammer.Pan({ threshold: 0, direction: Hammer.DIRECTION_HORIZONTAL });
-      // Swipe.recognizeWith(Pan);
-      // mc.add(Swipe);
-      mc.add(Pan);
-      mc.on('pan', (e) => {
-        const percentage = (this.sliderList.length * 100) / this.sliderList.length * e.deltaX / this.sliderWidth;
-        const percentageCalculated = percentage - (this.sliderList.length * 100) / this.sliderList.length * this.currentSlider;
-        this.renderer2.setStyle(this.eSliderList.nativeElement, 'transform', 'translateX( ' + percentageCalculated + '% )');
-
-        if (e.isFinal) {
-          if (e.velocityX > 1) {
-            this.goTo(this.currentSlider - 1);
-          } else if (e.velocityX < -1) {
-            this.goTo(this.currentSlider + 1);
-          } else {
-            if (percentage <= -(100 / this.sliderList.length)) {
-              this.goTo(this.currentSlider + 1);
-            } else if (percentage >= (100 / this.sliderList.length)) {
-              this.goTo(this.currentSlider - 1);
-            } else {
-              this.goTo(this.currentSlider);
-            }
-          }
-        }
-      });
-    } else {
-      setTimeout(() => {
-        this.newSlider();
-      }, 100);
-    }
+  ngOnDestroy(): void {
+    this.resizeObserver?.disconnect();
   }
 
-  goTo(number) {
-    if (number < 0) {
-      this.currentSlider = 0;
-    } else if (number > (this.sliderList.length - 1)) {
-      this.currentSlider = this.sliderList.length - 1;
-    } else {
-      this.currentSlider = number;
-    }
-    this.renderer2.addClass(this.eSliderList.nativeElement, 'is-animating');
-    const percentage = -((this.sliderList.length * 100) / this.sliderList.length) * this.currentSlider;
-    this.renderer2.setStyle(this.eSliderList.nativeElement, 'transform', 'translateX( ' + (percentage - 2) + '% )');
-    clearTimeout(this.sliderTimer);
-    const self = this;
-    this.sliderTimer = setTimeout(function () {
-      self.renderer2.removeClass(self.eSliderList.nativeElement, 'is-animating');
-    }, 400);
+  transformStyle(): string {
+    return `translateX(-${this.currentSlider * 100}%)`;
   }
 
-  getSliderWidth() {
-    const element = this.eSliderList.nativeElement.getBoundingClientRect();
-    const widthSize = element.width;
-    const marginSize = 20;
-    const realWidthSize = (marginSize + widthSize);
-    // console.log(marginSize);
-    this.sliderWidth = realWidthSize;
+  goTo(index: number): void {
+    this.currentSlider = Math.max(0, Math.min(this.sliderList.length - 1, index));
+    this.cdr.detectChanges();
+  }
+
+  onPointerDown(event: PointerEvent): void {
+    this.dragging = true;
+    this.dragDelta = 0;
+    this.dragStartX = event.clientX;
+    (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
+  }
+
+  onPointerMove(event: PointerEvent): void {
+    if (!this.dragging) return;
+    this.dragDelta = event.clientX - this.dragStartX;
+    this.cdr.detectChanges();
+  }
+
+  onPointerUp(): void {
+    if (!this.dragging) return;
+    const w = this.listWidth() || 1;
+    const threshold = Math.min(80, w / 4);
+    if (this.dragDelta < -threshold && this.currentSlider < this.sliderList.length - 1) {
+      this.currentSlider++;
+    } else if (this.dragDelta > threshold && this.currentSlider > 0) {
+      this.currentSlider--;
+    }
+    this.dragging = false;
+    this.dragDelta = 0;
+    this.cdr.detectChanges();
+  }
+
+  private listWidth(): number {
+    const list = this.host.nativeElement.querySelector<HTMLElement>('.slider-list');
+    return list ? list.getBoundingClientRect().width : 0;
   }
 }

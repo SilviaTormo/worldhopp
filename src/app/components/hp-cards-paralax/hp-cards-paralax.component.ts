@@ -1,124 +1,91 @@
-import { Component, OnInit, Input, SecurityContext, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import * as Rellax from 'rellax';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  inject,
+} from '@angular/core';
 
+export interface ServiceCard {
+  icon?: string;
+  title?: string;
+  text?: string;
+  rellax?: { speed: number };
+}
+
+/**
+ * Services cards row. Hover lift on desktop (CSS), swipe strip on mobile
+ * with native Pointer Events (replaces Hammer.js).
+ */
 @Component({
   selector: 'app-hp-cards-paralax',
   templateUrl: './hp-cards-paralax.component.html',
-  styleUrls: ['./hp-cards-paralax.component.css']
+  styleUrl: './hp-cards-paralax.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HpCardsParalaxComponent implements OnInit, AfterViewInit {
+export class HpCardsParalaxComponent implements OnInit, AfterViewInit, OnDestroy {
+  @Input() cards: ServiceCard[] = [];
 
-  @ViewChild('cardsElement') cardsElement: ElementRef;
+  isMobile = window.innerWidth <= 750;
+  currentSlider = 0;
+  sliderWidth = 208;
 
-  @Input() cards: Object[] = [];
+  private cdr = inject(ChangeDetectorRef);
+  private host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private resizeObserver?: ResizeObserver;
+  private pointerStart: { x: number; index: number } | null = null;
 
-  // tslint:disable-next-line:no-inferrable-types
-  sliderClassName: string = '';
-
-  // tslint:disable-next-line:no-inferrable-types
-  isMobile: boolean = false;
-
-  // tslint:disable-next-line:no-inferrable-types
-  currentSlider: number = 0;
-  // tslint:disable-next-line:no-inferrable-types
-  sliderWidth: number = 208;
-
-  constructor(
-    private _sanitizer: DomSanitizer
-  ) { }
-
-  ngOnInit() {
-    this.checkWindowWidth();
-
-    this.sliderClassName = this.makeid('g-slider');
-    this.newSlider();
+  ngOnInit(): void {
+    // Match old template behavior: mobile slide offset with a small margin.
+    this.sliderWidth = 218;
   }
 
   ngAfterViewInit(): void {
-    this.getSliderWidth();
-  }
-
-  setBgCard(url) {
-    if (url !== '') {
-      // safe value type URL
-      url = this._sanitizer.bypassSecurityTrustUrl(url);
-    }
-    return url;
-  }
-
-  setAttrAlt(img) {
-    const alt = img.replace(/.*\/(.*\..*)$/gm, '$1');
-    return alt;
-  }
-
-  makeid(className) {
-    const length = 5;
-    let text = '';
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < length; i++) {
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    if ((<HTMLElement>document.getElementsByClassName(className + '_' + text)[0])) {
-      this.makeid(className);
-    } else {
-      return className + '_' + text;
-    }
-  }
-
-  newSlider() {
-    if ((<HTMLElement>document.getElementsByClassName('' + this.sliderClassName)[0])) {
-      const slider = (<HTMLElement>document.getElementsByClassName('' + this.sliderClassName)[0]);
-      const mc = new Hammer.Manager(slider);
-      const Swipe = new Hammer.Swipe({
-        direction: Hammer.DIRECTION_HORIZONTAL
+    const card = this.host.nativeElement.querySelector<HTMLElement>('.cb-card-box');
+    if (card && typeof ResizeObserver !== 'undefined') {
+      this.resizeObserver = new ResizeObserver(() => {
+        const width = card.getBoundingClientRect().width;
+        this.sliderWidth = (this.isMobile ? width + 10 : 0);
       });
-      mc.add(Swipe);
-      mc.on('swipeleft', () => {
-        if (this.isMobile) {
-          if (this.currentSlider !== (this.cards.length - 1)) {
-            // console.log('Swipe Left!');
-            this.currentSlider = ++this.currentSlider;
-          }
-        }
-      });
-      mc.on('swiperight', () => {
-        if (this.isMobile) {
-          if (this.currentSlider !== 0) {
-            // console.log('Swipe Right!');
-            this.currentSlider = --this.currentSlider;
-          }
-        }
-      });
-    } else {
-      setTimeout(() => {
-        this.newSlider();
-      }, 100);
+      this.resizeObserver.observe(card);
     }
   }
 
-  getSliderWidth() {
-    if (this.cards.length > 0) {
-      // tslint:disable-next-line:max-line-length
-      if ((<HTMLElement>document.getElementsByClassName(this.sliderClassName)[0]) && (<HTMLElement>document.getElementsByClassName(this.sliderClassName)[0]).getElementsByClassName('cb-card-box')[this.currentSlider]) {
-        // tslint:disable-next-line:max-line-length
-        const element = (<HTMLElement>document.getElementsByClassName(this.sliderClassName)[0]).getElementsByClassName('cb-card-box')[this.currentSlider].getBoundingClientRect();
-        const widthSize = element.width;
-        const marginSize = 10;
-        const realWidthSize = (marginSize + widthSize);
-        // console.log(realWidthSize);
-        this.sliderWidth = realWidthSize;
-      }
-    }
+  ngOnDestroy(): void {
+    this.resizeObserver?.disconnect();
   }
 
-  checkWindowWidth() {
-    const windowWidth = window.innerWidth;
-    if (windowWidth > 750) {
-      this.isMobile = false;
-      this.currentSlider = 0;
+  setAttrAlt(img: string): string {
+    return img.replace(/.*\/(.*\..*)$/gm, '$1');
+  }
+
+  onPointerDown(event: PointerEvent): void {
+    if (!this.isMobile) return;
+    this.pointerStart = { x: event.clientX, index: this.currentSlider };
+  }
+
+  onPointerUp(event: PointerEvent): void {
+    if (!this.pointerStart) return;
+    const dx = event.clientX - this.pointerStart.x;
+    if (dx < -40 && this.currentSlider < this.cards.length - 1) {
+      this.currentSlider++;
+    } else if (dx > 40 && this.currentSlider > 0) {
+      this.currentSlider--;
     } else {
-      this.isMobile = true;
+      this.currentSlider = this.pointerStart.index;
+    }
+    this.pointerStart = null;
+    this.cdr.detectChanges();
+  }
+
+  onCardClick(index: number): void {
+    if (this.isMobile) {
+      this.currentSlider = index;
+      this.cdr.detectChanges();
     }
   }
 }

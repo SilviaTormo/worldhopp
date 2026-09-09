@@ -1,151 +1,106 @@
-import { Component, OnInit, OnDestroy, EventEmitter, Output, Renderer2, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { NgClass } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  NgZone,
+  OnDestroy,
+  Output,
+  inject,
+} from '@angular/core';
 
+export interface SidebarCard {
+  image: string;
+  title: string;
+  text: string;
+}
+
+/**
+ * Full-screen sidebar with the 10 reasons to Hopp. The header title
+ * parallax is a small rAF-throttled scroll effect on the sidebar's own
+ * scroll container.
+ */
 @Component({
   selector: 'app-hp-sidebar-do-you-lack-a-hopp',
+  imports: [NgClass],
   templateUrl: './hp-sidebar-do-you-lack-a-hopp.component.html',
-  styleUrls: ['./hp-sidebar-do-you-lack-a-hopp.component.css']
+  styleUrl: './hp-sidebar-do-you-lack-a-hopp.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HpSidebarDoYouLackAHoppComponent implements OnInit, OnDestroy {
+export class HpSidebarDoYouLackAHoppComponent implements OnDestroy {
+  @Input() cards: SidebarCard[] = [];
+  @Output() actionToExport = new EventEmitter<{ action: string; data?: unknown }>();
 
-  // tslint:disable-next-line:no-inferrable-types
-  hideSideBar: boolean = false;
+  hideSideBar = false;
+  isMobile = window.innerWidth <= 920;
 
-  cards = [
-    {
-      image: '../../../../assets/img/mundo.jpg',
-      title: 'Verás mundo',
-      text: 'Conocerás diferentes formas de vivir, pensar y explorarás nuevos sitios que jamás habías imaginado.'
-    },
-    {
-      image: '../../../../assets/img/cultura.jpg',
-      title: 'Entenderás otras culturas',
-      // tslint:disable-next-line:max-line-length
-      text: 'Ya que vivir en otro país, significa conocer a sus habitantes, relacionarte y sumergirte en sus costumbres y su estilo de vida. Entenderás verdaderamente sus pensamientos y formas de vivir.'
-    },
-    {
-      image: '../../../../assets/img/paisdesdefuera.jpg',
-      title: 'Verás tu país desde fuera',
-      // tslint:disable-next-line:max-line-length
-      text: 'Y aunque te parezca raro, te darás cuenta de que tu propio país tiene cosas estupendas y que hay otras que podrían mejorarse bastante. Serás mucho mas objetivo.'
-    },
-    {
-      image: '../../../../assets/img/amigos.jpg',
-      title: 'Amigos para toda la vida',
-      // tslint:disable-next-line:max-line-length
-      text: 'Conocerás gente de todas partes del mundo, compartirás experiencias inolvidables, momentos difíciles y horas de charlas, y seréis amigos para siempre por que al cruzar vuestros caminos todo fue diferente. Además a partir de este momento, seguro que ya no tienes excusas para ir a visitar a tus nuevos amigos en sus países, crearás una red de amistades internacional.'
-    },
-    {
-      image: '../../../../assets/img/adventure.jpg',
-      title: 'Romperás con tu rutina',
-      // tslint:disable-next-line:max-line-length
-      text: 'Romperás tanto con tu rutina que será como una segunda vida, una oportunidad de hacer las cosas diferentes. Tendás tiempo para ti y para hacer lo que más te guste, ¡reinvéntate!'
-    },
-    {
-      image: '../../../../assets/img/hablar.jpg',
-      title: 'El placer de hablar otro idioma',
-      // tslint:disable-next-line:max-line-length
-      text: 'Porque cuando al principio la comunicación se hace más compleja, con los días adquirirás más fluidez, vocabulario y sobre todo confianza y seguridad en ti mismo, y empezarás a entender las canciones que has cantado toda tu vida en plan wachu wachu!'
-    },
-    {
-      image: '../../../../assets/img/viajar.jpg',
-      title: 'Viajas',
-      // tslint:disable-next-line:max-line-length
-      text: 'Te animarás a hacer muchísimas salidas entre semana y escapadas de fin de semana, puentes, vacaciones, estarás muy activo porque vas a querer aprovechar al máximo esta experiencia y tu memoria se llenará de momentos inolvidables.'
-    },
-    {
-      image: '../../../../assets/img/curriculum.jpg',
-      title: 'Mejorarás tu CV y tus oportunidades laborales',
-      // tslint:disable-next-line:max-line-length
-      text: 'Porque tu perspectiva será más amplia, tu experiencia será diferente, confiaras mas en ti mismo y los cursos que realices darán a tu hoja de vida un valor mas agregado.'
-    },
-    {
-      image: '../../../../assets/img/enriqueceras.jpg',
-      title: '¡Enriquecerás tu vida!',
-      text: 'Inspirarás a la gente que te rodea; a tus amigos, hermanos, familia a perseguir sus sueños y dar el salto.'
-    },
-    {
-      image: '../../../../assets/img/feliz.jpg',
-      title: '¡Serás feliz!',
-      // tslint:disable-next-line:max-line-length
-      text: 'Y cuando cierres la etapa y mires para atrás, sabrás que fue lo correcto porque fue lo que querías hacer, con sus momentos duros y sus momentos de risas.'
-    }
-  ];
+  private zone = inject(NgZone);
+  private host = inject<ElementRef<HTMLElement>>(ElementRef);
 
-  // tslint:disable-next-line:no-inferrable-types
-  isMobile: boolean = false;
+  private ticking = false;
+  private pendingTimer?: ReturnType<typeof setTimeout>;
 
-  @ViewChild('sbHeader') sbHeader: ElementRef;
-  @ViewChild('sbHeaderTitle') sbHeaderTitle: ElementRef;
-
-  @Output() private actionToExport = new EventEmitter();
-
-  constructor(
-    private renderer2: Renderer2
-  ) { }
-
-  ngOnInit() {
-    this.renderer2.setStyle(document.documentElement, 'overflow', 'hidden');
-    this.checkWindowWidth();
-  }
-
-  ngOnDestroy(): void {
-    this.renderer2.removeStyle(document.documentElement, 'overflow');
-  }
-
-  scrollEffects(event) {
-    const sidebarHeaderHeight = this.sbHeader.nativeElement.getBoundingClientRect().height;
-    const scrollPos = event.target.scrollTop;
-    let calcPercent = (scrollPos / (sidebarHeaderHeight / 2.5));
-    if (calcPercent > 1) {
-      calcPercent = 1;
-    }
-    const percentScroll = (((scrollPos / sidebarHeaderHeight) * 100) > 50) ? 50 : ((scrollPos / sidebarHeaderHeight) * 100);
-    const getValue = (percentScroll * 200) / sidebarHeaderHeight;
-    this.sbHeaderTitle.nativeElement.style.opacity = 1 - calcPercent;
-    this.sbHeaderTitle.nativeElement.style.marginBottom = '-' + getValue + 'px';
-  }
-
-  closeSideBar() {
-    this.hideSideBar = true;
-    // this.renderer2.removeStyle(document.body, 'overflow');
-
-    if (!this.isMobile) {
-      setTimeout(() => {
-        this.exportAction('close');
-      }, 400);
-    } else {
-      setTimeout(() => {
-        this.exportAction('close');
-      }, 200);
-    }
-  }
-
-  stopPropagation(e) {
-    e.stopPropagation();
-  }
-
-  exportAction(actionName, data = {}) {
-    this.actionToExport.emit({
-      action: actionName,
-      data: data
+  constructor() {
+    document.documentElement.style.overflow = 'hidden';
+    this.zone.runOutsideAngular(() => {
+      const scroller = this.host.nativeElement.querySelector('.sidebar');
+      scroller?.addEventListener('scroll', this.onSidebarScroll, { passive: true });
     });
   }
 
-  goToContact() {
-    this.closeSideBar();
-    setTimeout(() => {
-      console.log('Scroll to Contact Form!');
-      document.querySelector('.hp-s9-contact').scrollIntoView({ behavior: 'smooth' });
-    }, 400);
-  }
-
-  checkWindowWidth() {
-    const windowWidth = window.innerWidth;
-    if (windowWidth > 920) {
-      this.isMobile = false;
-    } else {
-      this.isMobile = true;
+  ngOnDestroy(): void {
+    document.documentElement.style.overflow = '';
+    this.host.nativeElement.querySelector('.sidebar')?.removeEventListener('scroll', this.onSidebarScroll);
+    if (this.pendingTimer) {
+      clearTimeout(this.pendingTimer);
     }
   }
 
+  closeSideBar(): void {
+    this.hideSideBar = true;
+    const delay = this.isMobile ? 200 : 400;
+    this.pendingTimer = setTimeout(() => this.exportAction('close'), delay);
+  }
+
+  stopPropagation(event: Event): void {
+    event.stopPropagation();
+  }
+
+  goToContact(): void {
+    this.closeSideBar();
+    setTimeout(() => {
+      document.querySelector('.hp-s9-contact')?.scrollIntoView({ behavior: 'smooth' });
+    }, 400);
+  }
+
+  exportAction(actionName: string, data: unknown = {}): void {
+    this.actionToExport.emit({ action: actionName, data });
+  }
+
+  private onSidebarScroll = (): void => {
+    if (this.ticking) {
+      return;
+    }
+    this.ticking = true;
+    requestAnimationFrame(() => {
+      this.ticking = false;
+      const header = this.host.nativeElement.querySelector<HTMLElement>('.sb-header');
+      const title = this.host.nativeElement.querySelector<HTMLElement>('.sb-header>div');
+      if (!header || !title) {
+        return;
+      }
+      const headerHeight = header.getBoundingClientRect().height;
+      const scrollPos = (this.host.nativeElement.querySelector('.sidebar') as HTMLElement).scrollTop;
+      let calcPercent = scrollPos / (headerHeight / 2.5);
+      if (calcPercent > 1) {
+        calcPercent = 1;
+      }
+      const percentScroll = (scrollPos / headerHeight) * 100 > 50 ? 50 : (scrollPos / headerHeight) * 100;
+      const getValue = (percentScroll * 200) / headerHeight;
+      title.style.opacity = String(1 - calcPercent);
+      title.style.marginBottom = `-${getValue}px`;
+    });
+  };
 }

@@ -1,13 +1,6 @@
-<div class="hp-btn-goto-contact" (window:resize)="checkWindowWidth()" (window:touchstart)="hiddenBanner()"
-  (window:touchmove)="hiddenBanner()" (window:touchend)="showBanner()"
-  [ngClass]="{ 'desktop-version': !isMobile, 'mobile-version': isMobile, 'hide-banner': hideBanner }">
-  <a (click)="goToContactForm()">
-    <!-- <a [routerLink]="['./']" [fragment]="anchor"> -->
-    <ng-container *ngIf="isMobile; then mobileContent; else desktopContent"></ng-container>
-    <ng-template #desktopContent>
-      <div class="hp-btn-gtc-btn-image"></div>
-    </ng-template>
-    <ng-template #mobileContent>
+<div class="hp-btn-goto-contact" [ngClass]="{ 'desktop-version': !isMobile, 'mobile-version': isMobile, 'hide-banner': hideBanner }">
+  <a (click)="goToContactForm()" (keydown.enter)="goToContactForm()" role="button" tabindex="0">
+    @if (isMobile) {
       <div class="hp-btn-gtc-bottom-bar">
         <div class="hp-btn-gtc-bb-image">
           <div></div>
@@ -16,6 +9,8 @@
           <p>Te ayudamos a dar el hopp</p>
         </div>
       </div>
-    </ng-template>
+    } @else {
+      <div class="hp-btn-gtc-btn-image"></div>
+    }
   </a>
 </div>

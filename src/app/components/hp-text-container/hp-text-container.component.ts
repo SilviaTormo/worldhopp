@@ -1,22 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { NgClass } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-hp-text-container',
+  imports: [NgClass],
   templateUrl: './hp-text-container.component.html',
-  styleUrls: ['./hp-text-container.component.css']
+  styleUrl: './hp-text-container.component.css',
 })
-export class HpTextContainerComponent implements OnInit {
-
+export class HpTextContainerComponent {
   @Input() theme: 'dark' | 'light' = 'dark';
-  @Input() subtitle: string = null;
-  @Input() title: string = null;
-  @Input() title2: string = null;
-  @Input() paragraph: string = null;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  @Input() subtitle: string | null = null;
+  @Input() title: string | null = null;
+  @Input() title2: string | null = null;
+  @Input() paragraph: string | null = null;
 }

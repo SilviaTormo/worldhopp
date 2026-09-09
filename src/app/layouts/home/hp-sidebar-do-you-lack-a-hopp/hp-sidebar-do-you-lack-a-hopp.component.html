@@ -1,39 +1,40 @@
-<div class="sidebar-container" (click)="closeSideBar()" (window:resize)="checkWindowWidth()"
-  [ngClass]="{'hide-sidebar': hideSideBar}">
+<div class="sidebar-container" (click)="closeSideBar()" [ngClass]="{ 'hide-sidebar': hideSideBar }">
   <div class="sidebar" (click)="stopPropagation($event)">
-    <div class="sb-header" #sbHeader>
-      <div #sbHeaderTitle>
+    <div class="sb-header">
+      <div>
         <h2 class="worlhopp-name">world<span class="hopp-name">hopp</span></h2>
         <p>Cambiamos <strong>sueños por planes</strong></p>
       </div>
-      <img src="../../../../assets/img/wave.1.svg" alt="" />
-      <div class="close-sidebar" (click)="closeSideBar()">
-        <i class="fas fa-times"></i>
+      <img src="img/wave.1.svg" alt="" />
+      <div class="close-sidebar" (click)="closeSideBar()" role="button" tabindex="0" aria-label="Cerrar">
+        <svg width="22" height="22" viewBox="0 0 352 512" fill="currentColor" aria-hidden="true">
+          <path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z" />
+        </svg>
       </div>
     </div>
     <div class="sb-body">
       <div class="sb-b-description">
-        <img src="../../../../assets/img/grasshopper_yellow_line.svg" alt="" />
+        <img src="img/grasshopper_yellow_line.svg" alt="" />
         <h3>¿Te falta un Hopp?</h3>
         <p>Desde WorldHopp y nuestra comunidad de WorldHoppers te damos <strong>10 motivos</strong> de sobras para que
           nuestros viajeros se inpiren y den el Hopp</p>
       </div>
       <div class="sb-b-cards-list">
-        <ng-container *ngFor="let card of cards; let num = index">
+        @for (card of cards; track $index; let num = $index) {
           <div class="card">
-            <div class="card-header" [style.background-image]="'url('+ card.image +')'">
-              <h4>{{ (num + 1) }}. {{ card.title }}</h4>
+            <div class="card-header" [style.background-image]="'url(' + card.image + ')'">
+              <h4>{{ num + 1 }}. {{ card.title }}</h4>
             </div>
             <div class="card-body">
               <p>{{ card.text }}</p>
             </div>
           </div>
-        </ng-container>
+        }
       </div>
     </div>
     <div class="sb-footer">
       <div class="sb-f-container">
-        <img src="../../../../assets/img/paper_plane.svg" alt="" />
+        <img src="img/paper_plane.svg" alt="" />
         <h3>¿Te hemos convencido?</h3>
         <p>Vive, estudia y trabaja en el extranjero</p>
         <button type="button" class="btn btn-primary btn-lg" (click)="goToContact()">DAR EL HOPP</button>

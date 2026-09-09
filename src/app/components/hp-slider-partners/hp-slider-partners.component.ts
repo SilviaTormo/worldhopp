@@ -1,73 +1,44 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import * as Hammer from 'hammerjs';
+import { NgClass } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, inject } from '@angular/core';
 
+export interface PartnerSlide {
+  img: string;
+  name: string;
+  description: string;
+  url: string;
+}
+
+/**
+ * Partners logo strip. Dots/click navigation with wrap-around
+ * (replaces Hammer swipe; keyboard/pointer friendly).
+ */
 @Component({
   selector: 'app-hp-slider-partners',
+  imports: [NgClass],
   templateUrl: './hp-slider-partners.component.html',
-  styleUrls: ['./hp-slider-partners.component.css']
+  styleUrl: './hp-slider-partners.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HpSliderPartnersComponent implements OnInit {
+export class HpSliderPartnersComponent {
+  @Input() sliderList: PartnerSlide[] = [];
+  @Input() dots = false;
 
-  @Input() sliderList: Object[] = [];
-  // tslint:disable-next-line:no-inferrable-types
-  @Input() dots: boolean = false;
+  currentSlider = 0;
 
-  // tslint:disable-next-line:no-inferrable-types
-  currentSlider: number = 0;
-  sliderClassName: String = '';
+  private cdr = inject(ChangeDetectorRef);
 
-  constructor(
-    private _sanitizer: DomSanitizer
-  ) { }
-
-  ngOnInit() {
-    this.sliderClassName = this.makeid();
-    this.newSlider();
+  next(): void {
+    this.currentSlider = (this.currentSlider + 1) % this.sliderList.length;
+    this.cdr.detectChanges();
   }
 
-  setBgImage(url) {
-    if (url !== '') {
-      // safe value type URL
-      url = this._sanitizer.bypassSecurityTrustStyle('url(' + url + ')');
-    }
-    return url;
+  prev(): void {
+    this.currentSlider = (this.currentSlider - 1 + this.sliderList.length) % this.sliderList.length;
+    this.cdr.detectChanges();
   }
 
-  makeid() {
-    const length = 5;
-    let text = '';
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < length; i++) {
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    if ((<HTMLElement>document.getElementsByClassName('slider_' + text)[0])) {
-      this.makeid();
-    } else {
-      return 'slider_' + text;
-    }
-  }
-
-  newSlider() {
-    if ((<HTMLElement>document.getElementsByClassName('' + this.sliderClassName)[0])) {
-      const slider = (<HTMLElement>document.getElementsByClassName('' + this.sliderClassName)[0]);
-      const mc = new Hammer.Manager(slider);
-      const Swipe = new Hammer.Swipe({
-        direction: Hammer.DIRECTION_HORIZONTAL
-      });
-      mc.add(Swipe);
-      mc.on('swipeleft', () => {
-        console.log('Swipe Left!');
-        this.currentSlider = (this.currentSlider === (this.sliderList.length - 1)) ? 0 : ++this.currentSlider;
-      });
-      mc.on('swiperight', () => {
-        console.log('Swipe Right!');
-        this.currentSlider = (this.currentSlider === 0) ? (this.sliderList.length - 1) : --this.currentSlider;
-      });
-    } else {
-      setTimeout(() => {
-        this.newSlider();
-      }, 100);
-    }
+  goTo(index: number): void {
+    this.currentSlider = index;
+    this.cdr.detectChanges();
   }
 }

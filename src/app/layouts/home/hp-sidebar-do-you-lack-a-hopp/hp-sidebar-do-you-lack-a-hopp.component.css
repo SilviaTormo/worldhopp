@@ -1,4 +1,4 @@
-:host() {
+:host {
   z-index: 999999999;
 }
 
@@ -30,7 +30,6 @@
   }
 }
 
-
 .sidebar-container.hide-sidebar {
   animation-name: clean_background;
   z-index: -1;
@@ -45,7 +44,6 @@
     background-color: rgba(0, 0, 0, 0);
   }
 }
-
 
 .sidebar {
   width: 470px;
@@ -246,7 +244,7 @@
 .sidebar>.sb-footer {
   padding-top: 30px;
   padding-bottom: 140px;
-  background-image: url('../../../../assets/img/clouds_right.svg');
+  background-image: url('../../../../../public/img/clouds_right.svg');
   background-size: 110%;
   background-repeat: no-repeat;
   background-position: 50% 160%;

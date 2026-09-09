@@ -9,8 +9,8 @@
   background-color: white;
 }
 
-#footer-content *:not(i.fab) {
-  font-family: 'Avenir Roman';
+#footer-content * {
+  font-family: 'Avenir Roman', 'Avenir', sans-serif;
   color: #353b50;
 }
 
@@ -42,6 +42,10 @@
 
 #footer-content li.fc-social-networks li:not(:last-of-type) {
   margin-right: 20px;
+}
+
+#footer-content li.fc-social-networks svg {
+  vertical-align: middle;
 }
 
 #footer-content li.fc-legal-notices li:not(:last-of-type) {
@@ -94,7 +98,8 @@
     content: none;
   }
 
-  #footer-content li.fc-social-networks i.fab {
-    font-size: 21px;
+  #footer-content li.fc-social-networks svg {
+    width: 21px;
+    height: 21px;
   }
 }

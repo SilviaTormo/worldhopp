@@ -37,6 +37,14 @@
   background-color: yellow;
 }
 
+.hp-s8-learn-english .typed-element {
+  display: block;
+  min-height: 1em;
+  font-size: 18px;
+  color: #1686F7;
+  font-weight: 600;
+}
+
 @media only screen and (max-width: 560px) {
   .hp-s8-learn-english .worlhopp-name {
     font-size: 48px;

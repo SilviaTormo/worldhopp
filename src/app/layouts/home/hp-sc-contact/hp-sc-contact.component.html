@@ -1,7 +1,7 @@
-<section id="contact" class="hp-s9-contact" data-anchor="3">
-  <img class="paper-moon" src="../../../assets/img/moon.svg" alt="moon.svg" />
-  <img class="paper-plane" src="../../../assets/img/plane.svg" alt="plane.svg" />
-  <app-hp-text-container [theme]="'light'" [title]="content.title" [paragraph]="content.paragraph">
+<section id="contact" class="hp-s9-contact" appReveal>
+  <img class="paper-moon" src="img/moon.svg" alt="" />
+  <img class="paper-plane" src="img/plane.svg" alt="" />
+  <app-hp-text-container theme="light" [title]="content.title" [paragraph]="content.paragraph">
   </app-hp-text-container>
   <div class="hp-s9-c-form">
     <form>
@@ -20,7 +20,9 @@
         <label class="select-field">
           <select>
             <option selected>Nacionalidad</option>
-            <option *ngFor="let item of nationalitiesAvailable">{{ item }}</option>
+            @for (item of nationalitiesAvailable; track item) {
+              <option>{{ item }}</option>
+            }
           </select>
         </label>
       </div>
@@ -42,11 +44,8 @@
     </form>
   </div>
   <div #starCanvas class="star-canvas"></div>
-  <img class="clouds-left" src="../../../assets/img/clouds_left.svg" alt="clouds_left.svg" />
-  <img class="clouds-right" src="../../../assets/img/clouds_right.svg" alt="clouds_right.svg" />
- <!-- <img class="hill" src="../../../assets/img/hill.pngng serv" />Ricard puedes maquetar esta imagen aqui debajo? -->
+  <img class="clouds-left" src="img/clouds_left.svg" alt="" />
+  <img class="clouds-right" src="img/clouds_right.svg" alt="" />
 </section>
 
-<ng-container>
-  <app-hp-btn-goto-contact [anchor]="'contact'"></app-hp-btn-goto-contact>
-</ng-container>
+<app-hp-btn-goto-contact></app-hp-btn-goto-contact>
