@@ -1,7 +1,7 @@
 /* ============ FONTS (self-hosted, swap) ============ */
 @font-face {
   font-family: 'Avenir';
-  src: url('/fonts/AvenirLTStd-Book.otf') format('opentype');
+  src: url('../public/fonts/AvenirLTStd-Book.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: 'Avenir';
-  src: url('/fonts/AvenirLTStd-Roman.otf') format('opentype');
+  src: url('../public/fonts/AvenirLTStd-Roman.otf') format('opentype');
   font-weight: 450;
   font-style: normal;
   font-display: swap;
@@ -17,7 +17,7 @@
 
 @font-face {
   font-family: 'Avenir';
-  src: url('/fonts/AvenirLTStd-Medium.woff') format('woff');
+  src: url('../public/fonts/AvenirLTStd-Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -25,7 +25,7 @@
 
 @font-face {
   font-family: 'Avenir';
-  src: url('/fonts/AvenirLTStd-Heavy.woff') format('woff');
+  src: url('../public/fonts/AvenirLTStd-Heavy.woff') format('woff');
   font-weight: 600 900;
   font-style: normal;
   font-display: swap;
