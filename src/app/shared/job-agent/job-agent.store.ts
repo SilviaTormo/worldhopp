@@ -62,6 +62,14 @@ export const ENGINE_DEFAULTS: Record<AgentSettings['engine'], Pick<AgentSettings
   gemini: { baseUrl: '', model: 'gemini-2.5-flash' },
 };
 
+/** Fixes stale combos persisted by older versions (e.g. Gemini engine carrying an OpenAI model name, which makes Google return 404). */
+function normalizeSettings(s: AgentSettings): AgentSettings {
+  if (s.engine === 'gemini' && !/^gemini/i.test(s.model)) {
+    return { ...s, model: ENGINE_DEFAULTS.gemini.model };
+  }
+  return s;
+}
+
 const initial: JobAgentState = {
   profile: DEFAULT_PROFILE,
   sources: [
@@ -85,7 +93,7 @@ function load(): JobAgentState {
       ...initial,
       ...parsed,
       profile: { ...initial.profile, ...parsed.profile },
-      settings: { ...DEFAULT_SETTINGS, ...parsed.settings },
+      settings: normalizeSettings({ ...DEFAULT_SETTINGS, ...parsed.settings }),
       sources: parsed.sources ?? initial.sources,
       leads: parsed.leads ?? [],
       docs: parsed.docs ?? [],

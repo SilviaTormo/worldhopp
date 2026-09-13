@@ -13,6 +13,15 @@
     <div class="agent-chat-settings">
       <label for="agent-gemini-key">Clave de Google AI Studio (Gemini)</label>
       <input id="agent-gemini-key" type="password" autocomplete="off" placeholder="AIza… — se guarda solo en tu navegador" [value]="store.settings().apiKey" (input)="onKeyInput($event)" />
+      <label for="agent-gemini-model">Modelo</label>
+      <select id="agent-gemini-model" (change)="onModelChange($event)">
+        @for (m of geminiModels; track m) {
+          <option [value]="m" [selected]="m === store.settings().model">{{ m }}</option>
+        }
+        @if (!geminiModels.includes(store.settings().model)) {
+          <option [value]="store.settings().model" selected>{{ store.settings().model }} (guardado)</option>
+        }
+      </select>
       <p>
         Consíguela gratis en <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer">aistudio.google.com/apikey</a>.
         Sin clave sigo en modo guía; con ella activo ofertas, CV, emails y pagos.
