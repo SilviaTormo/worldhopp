@@ -3,7 +3,11 @@
   min-height: 100vh;
   padding-top: 60px;
   background-color: white;
+  /* clip (not hidden): contains decorative overflow but keeps the page
+     scrollable programmatically — `hidden` made it a scroll container and
+     broke scrollIntoView for anchors and the agent. */
   overflow: hidden;
+  overflow: clip;
 }
 
 /* BEGIN:: HERO */
@@ -19,25 +23,25 @@
 
 @media only screen and (min-width: 1920px) {
   #home-page .hero {
-    background-image: url('../../../../public/img/wave.svg'), url('../../../../public/img/new-zealand-583177_1920.jpg');
+    background-image: url('../../../../public/img/wave.svg'), url('../../../../public/img/new-zealand-583177_1920.webp');
   }
 }
 
 @media only screen and (max-width: 1919px) {
   #home-page .hero {
-    background-image: url('../../../../public/img/wave.svg'), url('../../../../public/img/new-zealand-583177_1920.jpg');
+    background-image: url('../../../../public/img/wave.svg'), url('../../../../public/img/new-zealand-583177_1920.webp');
   }
 }
 
 @media only screen and (max-width: 1280px) {
   #home-page .hero {
-    background-image: url('../../../../public/img/wave.svg'), url('../../../../public/img/new-zealand-583177_1280.jpg');
+    background-image: url('../../../../public/img/wave.svg'), url('../../../../public/img/new-zealand-583177_1280.webp');
   }
 }
 
 @media only screen and (max-width: 640px) {
   #home-page .hero {
-    background-image: url('../../../../public/img/wave.svg'), url('../../../../public/img/new-zealand-583177_640.jpg');
+    background-image: url('../../../../public/img/wave.svg'), url('../../../../public/img/new-zealand-583177_640.webp');
   }
 }
 

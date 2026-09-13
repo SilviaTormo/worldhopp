@@ -1,4 +1,6 @@
-import { NgClass, NgStyle } from '@angular/common';
+import { NgClass } from '@angular/common';
+import { Router } from '@angular/router';
+import { LazyBgDirective } from '../../shared/lazy-bg.directive';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -25,6 +27,8 @@ export interface GalleryImage {
     color?: string;
   };
   rellax?: { speed: number };
+  /** Optional route (e.g. /destino/malta) opened when the card is clicked. */
+  link?: string;
 }
 
 export interface GalleryConfig {
@@ -40,7 +44,7 @@ export interface GalleryConfig {
  */
 @Component({
   selector: 'app-hp-gallery-paralax',
-  imports: [NgClass, NgStyle],
+  imports: [NgClass, LazyBgDirective],
   templateUrl: './hp-gallery-paralax.component.html',
   styleUrl: './hp-gallery-paralax.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -56,6 +60,8 @@ export class HpGalleryParalaxComponent implements OnInit, AfterViewInit, OnDestr
   private zone = inject(NgZone);
   private cdr = inject(ChangeDetectorRef);
   private host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private router = inject(Router);
+  private dragged = false;
 
   private boxes: HTMLElement[] = [];
   private visible = new Set<HTMLElement>();
@@ -97,12 +103,14 @@ export class HpGalleryParalaxComponent implements OnInit, AfterViewInit, OnDestr
 
   onPointerDown(event: PointerEvent): void {
     if (!this.isMobile) return;
+    this.dragged = false;
     this.pointerStart = { x: event.clientX, index: this.currentSlider };
   }
 
   onPointerUp(event: PointerEvent): void {
     if (!this.pointerStart) return;
     const dx = event.clientX - this.pointerStart.x;
+    if (Math.abs(dx) > 10) this.dragged = true;
     if (dx < -40 && this.currentSlider < this.gallery.images.length - 1) {
       this.currentSlider++;
     } else if (dx > 40 && this.currentSlider > 0) {
@@ -118,6 +126,11 @@ export class HpGalleryParalaxComponent implements OnInit, AfterViewInit, OnDestr
     if (this.isMobile) {
       this.currentSlider = index;
       this.cdr.detectChanges();
+    }
+    // Navigate unless the gesture was a swipe (mobile strip).
+    const link = this.gallery.images[index]?.link;
+    if (link && !this.dragged) {
+      this.router.navigateByUrl(link);
     }
   }
 

@@ -1,6 +1,6 @@
 <div [ngClass]="{ 'theme-dark': theme === 'dark', 'theme-light': theme === 'light' }">
   @if (subtitle !== null) {
-    <h3>{{ subtitle }}</h3>
+    <p class="htc-sub">{{ subtitle }}</p>
   }
   @if (title !== null) {
     <h2>{{ title }}</h2>

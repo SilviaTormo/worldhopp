@@ -13,13 +13,13 @@
         class="slider-item"
         [ngClass]="{ 'current-slider': currentSlider === index }"
         [attr.data-slider-index]="index"
-        [style.background-image]="'url(' + slider.photo + ')'"
+        [appLazyBg]="slider.photo"
       >
         @if (slider.user !== '' || slider.comment !== '') {
           <div class="si-comment">
             <div>
               @if (slider.nombre !== '') {
-                <h5>{{ slider.nombre }}</h5>
+                <p class="si-nombre">{{ slider.nombre }}</p>
               }
               @if (slider.origen !== '') {
                 <span>{{ slider.origen }}</span>

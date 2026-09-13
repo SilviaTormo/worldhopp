@@ -46,6 +46,10 @@
   text-align: center;
 }
 
+.cards-box>.cb-card-box>.cb-cb-texts>p.cb-t {
+  margin: 0;
+}
+
 .cards-box>.cb-card-box>.cb-cb-texts * {
   line-height: inherit;
 }

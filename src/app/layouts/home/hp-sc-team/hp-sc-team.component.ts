@@ -26,9 +26,9 @@ export class HpScTeamComponent {
       steps: false,
       rellax: true,
       images: [
-        { img: { path: 'img/natalia.jpg' }, rellax: { speed: -1 } },
-        { img: { path: 'img/silvia.jpg' }, rellax: { speed: 1 } },
-        { img: { path: 'img/tania.jpg' }, rellax: { speed: -1 } },
+        { img: { path: 'img/natalia.webp' }, rellax: { speed: -1 } },
+        { img: { path: 'img/silvia.webp' }, rellax: { speed: 1 } },
+        { img: { path: 'img/tania.webp' }, rellax: { speed: -1 } },
       ],
     },
   };

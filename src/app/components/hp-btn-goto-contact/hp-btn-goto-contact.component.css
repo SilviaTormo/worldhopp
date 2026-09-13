@@ -9,8 +9,9 @@
 .hp-btn-goto-contact.desktop-version {
   width: 128px;
   height: 128px;
-  right: 4%;
-  bottom: 18%;
+  /* Standard chat-launcher corner — the agent panel opens right above it. */
+  right: 24px;
+  bottom: 24px;
   border-radius: 100%;
 }
 
@@ -42,6 +43,13 @@
 
 .hp-btn-goto-contact.mobile-version.hide-banner {
   transform: translateY(100%);
+}
+
+/* Ball hides while the agent chat panel is open (desktop) */
+.hp-btn-goto-contact.desktop-version.chat-open {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
 }
 
 .hp-btn-goto-contact.mobile-version>a>.hp-btn-gtc-bottom-bar {

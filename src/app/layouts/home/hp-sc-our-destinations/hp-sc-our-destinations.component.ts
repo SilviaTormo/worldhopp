@@ -27,24 +27,28 @@ export class HpScOurDestinationsComponent {
       rellax: true,
       images: [
         {
-          img: { path: 'img/nz.jpg', text: 'New Zeland', textVisibility: 0, color: '#1684F5' },
+          img: { path: 'img/nz.webp', text: 'New Zeland', textVisibility: 0, color: '#1684F5' },
           title: { text: 'KIWIhopp', textVisibility: 2, color: '#1684F5' },
           rellax: { speed: -1 },
+          link: '/destino/nueva-zelanda',
         },
         {
-          img: { path: 'img/malta.jpg', text: 'Malta', textVisibility: 0, color: '#F5A623' },
+          img: { path: 'img/malta.webp', text: 'Malta', textVisibility: 0, color: '#F5A623' },
           title: { text: 'MALTAhopp', textVisibility: 2, color: '#F5A623' },
           rellax: { speed: 1 },
+          link: '/destino/malta',
         },
         {
-          img: { path: 'img/irlanda.jpg', text: 'Ireland', textVisibility: 0, color: '#1BBA99' },
+          img: { path: 'img/irlanda.webp', text: 'Ireland', textVisibility: 0, color: '#1BBA99' },
           title: { text: 'IRELANDhopp', textVisibility: 2, color: '#1BBA99' },
           rellax: { speed: -1 },
+          link: '/destino/irlanda',
         },
         {
-          img: { path: 'img/bcn.jpg', text: 'Barcelona', textVisibility: 0, color: '#CA3D4E' },
+          img: { path: 'img/bcn.webp', text: 'Barcelona', textVisibility: 0, color: '#CA3D4E' },
           title: { text: 'BARCELONAhopp', textVisibility: 2, color: '#CA3D4E' },
           rellax: { speed: 1 },
+          link: '/destino/barcelona',
         },
       ],
     },

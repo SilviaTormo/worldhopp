@@ -1,0 +1,44 @@
+<div class="agent-chat" [ngClass]="{ open: open() }" role="dialog" aria-label="Chat con el asistente de WorldHopp" aria-modal="false">
+  <header class="agent-chat-header">
+    <div class="agent-chat-avatar" aria-hidden="true"></div>
+    <div class="agent-chat-title">
+      <strong>Agente WorldHopp</strong>
+      <span class="status"><span class="dot"></span> en línea</span>
+    </div>
+    <button type="button" class="agent-chat-close" (click)="close()" aria-label="Cerrar chat">✕</button>
+  </header>
+
+  <div class="agent-chat-body" #scroller>
+    @for (m of messages(); track $index) {
+      <div class="msg" [ngClass]="m.from">
+        <div class="bubble">
+          <p>{{ m.text }}</p>
+          @if (m.actions?.length) {
+            <div class="actions">
+              @for (a of m.actions; track a.intent) {
+                <button type="button" (click)="runAction(a)">{{ a.label }}</button>
+              }
+            </div>
+          }
+        </div>
+        <span class="time">{{ m.time }}</span>
+      </div>
+    }
+    @if (thinking()) {
+      <div class="msg agent">
+        <div class="bubble typing"><span></span><span></span><span></span></div>
+      </div>
+    }
+  </div>
+
+  <footer class="agent-chat-input">
+    <input
+      #chatInput
+      type="text"
+      placeholder="Escribe tu mensaje…"
+      aria-label="Escribe tu mensaje"
+      (keydown.enter)="sendMessage()"
+    />
+    <button type="button" (click)="sendMessage()" aria-label="Enviar mensaje">➤</button>
+  </footer>
+</div>

@@ -7,6 +7,8 @@ import {
   OnDestroy,
   inject,
 } from '@angular/core';
+import { AgentChatComponent } from '../../shared/agent-chat/agent-chat.component';
+import { AgentUiService } from '../../shared/agent-ui.service';
 
 /**
  * Floating "Te ayudamos a dar el hopp" button. On mobile it becomes a
@@ -16,7 +18,7 @@ import {
  */
 @Component({
   selector: 'app-hp-btn-goto-contact',
-  imports: [NgClass],
+  imports: [NgClass, AgentChatComponent],
   templateUrl: './hp-btn-goto-contact.component.html',
   styleUrl: './hp-btn-goto-contact.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,6 +26,7 @@ import {
 export class HpBtnGotoContactComponent implements OnDestroy {
   private zone = inject(NgZone);
   private cdr = inject(ChangeDetectorRef);
+  readonly ui = inject(AgentUiService);
 
   isMobile = window.innerWidth <= 920;
   hideBanner = false;
@@ -47,8 +50,9 @@ export class HpBtnGotoContactComponent implements OnDestroy {
     }
   }
 
-  goToContactForm(): void {
-    document.querySelector('.hp-s9-contact')?.scrollIntoView({ behavior: 'smooth' });
+  /** The ball is now the entry point for the agent: it opens the chat panel. */
+  onBallClick(): void {
+    this.ui.setChatOpen(!this.ui.chatOpen());
   }
 
   private onScroll = (): void => {

@@ -27,22 +27,22 @@ export class HpScStepsToFollowComponent {
       rellax: true,
       images: [
         {
-          img: { path: 'img/decide.jpg' },
+          img: { path: 'img/decide.webp' },
           title: { text: 'Infórmate y Decide', textVisibility: 2 },
           rellax: { speed: -1 },
         },
         {
-          img: { path: 'img/city-1868530_1280.jpg' },
+          img: { path: 'img/city-1868530_1280.webp' },
           title: { text: 'Conviertete en Worldhopper', textVisibility: 2 },
           rellax: { speed: 1 },
         },
         {
-          img: { path: 'img/maletas.jpg' },
+          img: { path: 'img/maletas.webp' },
           title: { text: 'Haz las maletas', textVisibility: 2 },
           rellax: { speed: -1 },
         },
         {
-          img: { path: 'img/welcome.jpg' },
+          img: { path: 'img/welcome.webp' },
           title: { text: 'Welcome to the Jungle!', textVisibility: 2 },
           rellax: { speed: 1 },
         },

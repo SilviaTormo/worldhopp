@@ -23,7 +23,7 @@
         @for (card of cards; track $index; let num = $index) {
           <div class="card">
             <div class="card-header" [style.background-image]="'url(' + card.image + ')'">
-              <h4>{{ num + 1 }}. {{ card.title }}</h4>
+              <p>{{ num + 1 }}. {{ card.title }}</p>
             </div>
             <div class="card-body">
               <p>{{ card.text }}</p>

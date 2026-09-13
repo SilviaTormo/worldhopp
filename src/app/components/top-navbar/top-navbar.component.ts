@@ -10,7 +10,7 @@ import {
   inject,
 } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { Router } from '@angular/router';
+import { scrollToTarget } from '../../shared/scroll-to';
 
 export interface MenuAnchor {
   name: string;
@@ -32,7 +32,6 @@ export class TopNavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   activeId = '';
 
   private zone = inject(NgZone);
-  private router = inject(Router);
   private host = inject<ElementRef<HTMLElement>>(ElementRef);
 
   private scrollObserver?: IntersectionObserver;
@@ -61,15 +60,12 @@ export class TopNavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   goTo(sectionId: string): void {
-    document.querySelector(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    scrollToTarget(sectionId);
   }
 
   logoEvents(): void {
-    if (!this.scrollIsUp) {
-      window.scroll({ top: 0, left: 0, behavior: 'smooth' });
-    } else {
-      this.router.navigate(['/']);
-    }
+    // Single-page site: the logo always returns to the top.
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
   }
 
   private onScroll = (): void => {

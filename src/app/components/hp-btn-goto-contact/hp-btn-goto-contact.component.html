@@ -1,5 +1,7 @@
-<div class="hp-btn-goto-contact" [ngClass]="{ 'desktop-version': !isMobile, 'mobile-version': isMobile, 'hide-banner': hideBanner }">
-  <a (click)="goToContactForm()" (keydown.enter)="goToContactForm()" role="button" tabindex="0">
+<app-agent-chat />
+<div class="hp-btn-goto-contact" [ngClass]="{ 'desktop-version': !isMobile, 'mobile-version': isMobile, 'hide-banner': hideBanner, 'chat-open': ui.chatOpen() }">
+  <a (click)="onBallClick()" (keydown.enter)="onBallClick()" role="button" tabindex="0"
+    aria-label="Abrir el asistente de WorldHopp">
     @if (isMobile) {
       <div class="hp-btn-gtc-bottom-bar">
         <div class="hp-btn-gtc-bb-image">

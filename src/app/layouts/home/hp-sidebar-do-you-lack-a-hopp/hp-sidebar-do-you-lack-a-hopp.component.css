@@ -223,9 +223,10 @@
   z-index: 1;
 }
 
-.card>.card-header>h4 {
+.card>.card-header>p {
   width: 100%;
   font-size: 22px;
+  font-weight: 600;
   color: white;
   display: block;
   overflow: hidden;

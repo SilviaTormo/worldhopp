@@ -20,8 +20,8 @@ export class HpScServicesComponent {
   };
 
   cards: ServiceCard[] = [
-    { icon: 'img/icon_asesoria.PNG', title: 'Asesoria gratis y trámites online' },
-    { icon: 'img/icon_oportunidades.PNG', title: 'Oportunidades para tí' },
-    { icon: 'img/icon_informacion.PNG', title: 'Información durante la experiencia' },
+    { icon: 'img/icon_asesoria.webp', title: 'Asesoria gratis y trámites online' },
+    { icon: 'img/icon_oportunidades.webp', title: 'Oportunidades para tí' },
+    { icon: 'img/icon_informacion.webp', title: 'Información durante la experiencia' },
   ];
 }

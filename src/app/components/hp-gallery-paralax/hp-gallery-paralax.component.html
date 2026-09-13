@@ -15,7 +15,7 @@
     >
       @if (image.img; as img) {
         <div class="gb-ib-image">
-          <div [style.background-image]="'url(' + img.path + ')'"></div>
+          <div [appLazyBg]="img.path"></div>
           @if (checkVisibility(img)) {
             <div class="gb-ib-text">
               <span>{{ img.text }}</span>
@@ -26,7 +26,7 @@
       @if (checkVisibility(image.title)) {
         <div class="gb-ib-title">
           <p
-            [ngStyle]="{ color: image.title?.color !== undefined ? image.title?.color : null }"
+            [style.color]="image.title?.color !== undefined ? image.title?.color : null"
             [innerHTML]="getFormat(image.title!.text)"
           ></p>
         </div>

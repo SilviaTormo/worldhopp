@@ -19,7 +19,7 @@ export class HpScExperiencesComponent {
       'Estás a punto de emprender una nueva aventura, conoce la historia de otros Worldhoppers que se han lanzado a estudiar, trabajar y vivir en el extranjero.',
     slider: [
       {
-        photo: 'img/fabio.jpg',
+        photo: 'img/fabio.webp',
         user: '',
         nombre: 'Fabio',
         comment:
@@ -28,7 +28,7 @@ export class HpScExperiencesComponent {
         destino: 'Nueva Zelanda',
       },
       {
-        photo: 'img/leidy.jpg',
+        photo: 'img/leidy.webp',
         user: '',
         nombre: 'Leidy',
         comment:
@@ -37,7 +37,7 @@ export class HpScExperiencesComponent {
         destino: 'Irlanda',
       },
       {
-        photo: 'img/marina.jpg',
+        photo: 'img/marina.webp',
         user: '',
         nombre: 'Marina',
         comment:

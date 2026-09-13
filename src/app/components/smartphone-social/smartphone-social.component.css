@@ -75,6 +75,7 @@
   font-weight: 300;
   line-height: 40px;
   display: inline-block;
+  margin: 0;
 }
 
 .smartphone-shape>.ss-box>.ss-b-header>.ss-b-h-user-details>.ss-b-h-ud-actions {
@@ -125,10 +126,11 @@
   overflow: hidden;
 }
 
-.smartphone-shape>.ss-box>.ss-b-description>h6 {
+.smartphone-shape>.ss-box>.ss-b-description>p.ss-b-d-brand {
   width: 100%;
   font: inherit;
   font-weight: 600;
+  margin: 0;
 }
 
 .smartphone-shape>.ss-box>.ss-b-counter {
@@ -193,17 +195,16 @@
 .smartphone-shape>.ss-box>.ss-b-display-options>ul>li>span {
   height: 24px;
   width: 24px;
-  background-image: url('../../../../public/img/xxss/icons_and_buttons.png');
-  background-size: 301px 273px;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 
 .smartphone-shape>.ss-box>.ss-b-display-options>ul>li.ss-b-do-grip>span {
-  background-position: -253px -100px;
+  background-image: url('../../../../public/img/xxss/do-grip.webp');
 }
 
 .smartphone-shape>.ss-box>.ss-b-display-options>ul>li.ss-b-do-tagged>span {
-  background-position: -150px -249px;
+  background-image: url('../../../../public/img/xxss/do-tagged.webp');
 }
 
 .smartphone-shape>.ss-box>.ss-b-gallery {

@@ -1,4 +1,5 @@
 import { NgClass } from '@angular/common';
+import { LazyBgDirective } from '../../shared/lazy-bg.directive';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -24,7 +25,7 @@ export interface ExperienceSlide {
  */
 @Component({
   selector: 'app-hp-slider-experiences',
-  imports: [NgClass],
+  imports: [NgClass, LazyBgDirective],
   templateUrl: './hp-slider-experiences.component.html',
   styleUrl: './hp-slider-experiences.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

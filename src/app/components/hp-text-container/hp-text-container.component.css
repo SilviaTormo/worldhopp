@@ -12,7 +12,7 @@ div {
   }
 }
 
-h3 {
+p.htc-sub {
   font-size: 18px;
   font-weight: 500;
   color: #1686F7;
@@ -21,7 +21,7 @@ h3 {
   margin-bottom: 5px;
 }
 
-.theme-light h3 {
+.theme-light p.htc-sub {
   color: #ffffff;
 }
 
@@ -48,7 +48,7 @@ p {
 }
 
 @media only screen and (max-width: 560px) {
-  h3 {
+  p.htc-sub {
     font-size: 14px;
     line-height: 20px;
     margin-bottom: 10px;
