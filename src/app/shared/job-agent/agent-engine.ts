@@ -1,5 +1,5 @@
 import { Injectable, computed, inject } from '@angular/core';
-import { JobAgentStore } from './job-agent.store';
+import { ENGINE_DEFAULTS, JobAgentStore } from './job-agent.store';
 import { AgentEmail, AgentSettings, Lead, LeadStage, STAGE_LABEL } from './job-agent.types';
 
 export interface ToolSpec {
@@ -28,12 +28,14 @@ const NEXT_STAGE: Partial<Record<LeadStage, LeadStage>> = {
 };
 
 /**
- * Agent engine. Two modes:
+ * Agent engine. Three modes:
  *  - 'mock': deterministic local "brain" with real tool effects on the store
  *    (works offline, used for the demo and for tests).
  *  - 'openai-compat': calls any OpenAI-compatible /chat/completions endpoint
  *    (OpenAI, Groq, OpenRouter, Ollama, LM Studio…) with the user's key,
  *    then executes the tool calls it decides locally.
+ *  - 'gemini': calls the Google AI Studio generateContent API (models/*.generate)
+ *    with the user's AI Studio key — same local tool execution as above.
  */
 @Injectable({ providedIn: 'root' })
 export class AgentEngine {
@@ -52,6 +54,9 @@ export class AgentEngine {
 
   readonly engineLabel = computed(() => {
     const s = this.store.settings();
+    if (s.engine === 'gemini') {
+      return s.apiKey ? `Google Gemini · ${s.model}` : 'Google Gemini (falta API key)';
+    }
     return s.engine === 'openai-compat' && s.apiKey
       ? `LLM remoto · ${s.model}`
       : s.engine === 'openai-compat'
@@ -61,6 +66,15 @@ export class AgentEngine {
 
   async send(userText: string, history: { role: 'user' | 'agent'; text: string }[]): Promise<AgentReply> {
     const settings = this.store.settings();
+    if (settings.engine === 'gemini' && settings.apiKey) {
+      try {
+        return await this.sendGemini(userText, history, settings);
+      } catch (err) {
+        const text = `⚠️ No pude hablar con Gemini (${err instanceof Error ? err.message : 'error'}). Sigo con el motor local.`;
+        const local = this.runLocal(userText);
+        return { text: `${text}\n\n${local.text}`, steps: local.steps };
+      }
+    }
     if (settings.engine === 'openai-compat' && settings.apiKey) {
       try {
         return await this.sendRemote(userText, history, settings);
@@ -75,14 +89,11 @@ export class AgentEngine {
 
   // ============ Remote (OpenAI-compatible) ============
 
-  private async sendRemote(
-    userText: string,
-    history: { role: 'user' | 'agent'; text: string }[],
-    settings: AgentSettings
-  ): Promise<AgentReply> {
+  /** Shared persona + workspace context sent to any remote model. */
+  private buildSystem(): string {
     const profile = this.store.profile();
     const leads = this.store.leads().slice(0, 20);
-    const system = [
+    return [
       'Eres el agente de búsqueda de empleo de WorldHopp. Respondes en español, breve y accionable.',
       `Perfil: ${profile.name}. ${profile.headline}. Skills: ${profile.skills.join(', ')}.`,
       `Países objetivo: ${profile.targetCountries.join(', ')}. Salario mínimo: ${profile.salaryMin ?? 'sin mínimo'}.`,
@@ -92,6 +103,29 @@ export class AgentEngine {
       'Herramientas disponibles: ' + this.tools.map((t) => `${t.name} (${t.description})`).join('; ') + '.',
       'Si el usuario pide una acción (buscar, generar CV, escribir carta, enviar email, follow-up, registrar pago), describe la acción ejecutada como pasos "[tool] detalle" en líneas distintas antes de la respuesta final. No inventes datos de contacto.',
     ].join('\n');
+  }
+
+  /** Splits the model's "[tool] detail" step lines from the reply text. */
+  private parseSteps(content: string): AgentReply {
+    const steps: AgentStep[] = [];
+    const textLines: string[] = [];
+    for (const line of content.split('\n')) {
+      const m = line.match(/^\s*\[([\w_]+)\]\s*(.+)$/);
+      if (m && this.tools.some((t) => t.name === m[1])) {
+        steps.push({ tool: m[1], detail: m[2].trim() });
+      } else {
+        textLines.push(line);
+      }
+    }
+    return { text: textLines.join('\n').trim() || content.trim(), steps };
+  }
+
+  private async sendRemote(
+    userText: string,
+    history: { role: 'user' | 'agent'; text: string }[],
+    settings: AgentSettings
+  ): Promise<AgentReply> {
+    const system = this.buildSystem();
 
     const messages = [
       { role: 'system', content: system },
@@ -116,19 +150,53 @@ export class AgentEngine {
     }
     const data = await res.json();
     const content: string = data?.choices?.[0]?.message?.content ?? '(respuesta vacía del modelo)';
+    return this.parseSteps(content);
+  }
 
-    // Parse "[tool] detail" step lines the model was asked to emit.
-    const steps: AgentStep[] = [];
-    const textLines: string[] = [];
-    for (const line of content.split('\n')) {
-      const m = line.match(/^\s*\[([\w_]+)\]\s*(.+)$/);
-      if (m && this.tools.some((t) => t.name === m[1])) {
-        steps.push({ tool: m[1], detail: m[2].trim() });
-      } else {
-        textLines.push(line);
+  // ============ Remote (Google AI Studio / Gemini) ============
+
+  private async sendGemini(
+    userText: string,
+    history: { role: 'user' | 'agent'; text: string }[],
+    settings: AgentSettings
+  ): Promise<AgentReply> {
+    const model = settings.model || 'gemini-2.5-flash';
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`;
+    const contents = [
+      ...history.slice(-10).map((m) => ({
+        role: m.role === 'agent' ? 'model' : 'user',
+        parts: [{ text: m.text }],
+      })),
+      { role: 'user', parts: [{ text: userText }] },
+    ];
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Google AI Studio key. Sent as header so it never appears in the URL.
+        'x-goog-api-key': settings.apiKey,
+      },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: this.buildSystem() }] },
+        contents,
+        generationConfig: { temperature: settings.temperature },
+      }),
+    });
+    if (!res.ok) {
+      let detail = `HTTP ${res.status}`;
+      try {
+        const err = await res.json();
+        if (err?.error?.message) detail = `HTTP ${res.status} — ${err.error.message}`;
+      } catch {
+        /* keep plain status */
       }
+      throw new Error(detail);
     }
-    return { text: textLines.join('\n').trim() || content.trim(), steps };
+    const data = await res.json();
+    const content: string =
+      data?.candidates?.[0]?.content?.parts?.map((p: { text?: string }) => p.text ?? '').join('') ||
+      '(respuesta vacía del modelo)';
+    return this.parseSteps(content);
   }
 
   // ============ Local mock brain ============

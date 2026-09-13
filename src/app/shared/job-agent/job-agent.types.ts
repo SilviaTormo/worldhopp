@@ -135,11 +135,13 @@ export interface AgentProfile {
   targetCountries: string[];
 }
 
-export type EngineKind = 'mock' | 'openai-compat';
+export type EngineKind = 'mock' | 'openai-compat' | 'gemini';
 
 export interface AgentSettings {
   engine: EngineKind;
+  /** Endpoint base for 'openai-compat' (e.g. https://api.openai.com/v1). Ignored by 'gemini'. */
   baseUrl: string;
+  /** Model name: 'gpt-4o-mini' (OpenAI-compat) or 'gemini-2.5-flash' (Gemini). */
   model: string;
   /** Stored locally only; never leaves this browser except to the configured endpoint. */
   apiKey: string;

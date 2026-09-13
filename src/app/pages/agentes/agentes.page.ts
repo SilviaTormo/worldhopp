@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, View
 import { NgClass, DecimalPipe, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { JobAgentStore } from '../../shared/job-agent/job-agent.store';
+import { ENGINE_DEFAULTS, JobAgentStore } from '../../shared/job-agent/job-agent.store';
+import { AgentSettings } from '../../shared/job-agent/job-agent.types';
 import { AgentEngine, AgentStep } from '../../shared/job-agent/agent-engine';
 import {
   AgentDoc,
@@ -201,6 +202,13 @@ export class AgentesPageComponent {
     if (lead && lead.stage === 'cobrando') {
       this.store.moveLead(lead.id, 'pagado');
     }
+  }
+
+  /** Switch engine in Ajustes and auto-fill its sensible defaults. */
+  onEngineChange(value: string): void {
+    const engine = value as AgentSettings['engine'];
+    const defaults = ENGINE_DEFAULTS[engine];
+    this.store.updateSettings({ engine, ...defaults });
   }
 
   setTab(t: Tab): void {

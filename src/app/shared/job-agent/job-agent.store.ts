@@ -55,6 +55,13 @@ const DEFAULT_SETTINGS: AgentSettings = {
   temperature: 0.4,
 };
 
+/** Settings shown when the user switches engines in Ajustes. */
+export const ENGINE_DEFAULTS: Record<AgentSettings['engine'], Pick<AgentSettings, 'baseUrl' | 'model'>> = {
+  mock: { baseUrl: '', model: '' },
+  'openai-compat': { baseUrl: 'https://api.openai.com/v1', model: 'gpt-4o-mini' },
+  gemini: { baseUrl: '', model: 'gemini-2.5-flash' },
+};
+
 const initial: JobAgentState = {
   profile: DEFAULT_PROFILE,
   sources: [
