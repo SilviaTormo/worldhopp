@@ -13,11 +13,6 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/destinations/destination-page.component').then(m => m.DestinationPageComponent),
   },
-  {
-    path: 'agentes',
-    loadComponent: () =>
-      import('./pages/agentes/agentes.page').then(m => m.AgentesPageComponent),
-  },
   { path: '**', redirectTo: '' },
 ];
 

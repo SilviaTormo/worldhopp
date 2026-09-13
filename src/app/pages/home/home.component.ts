@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { TopNavbarComponent } from '../../components/top-navbar/top-navbar.component';
 import { HpScOurDestinationsComponent } from '../../layouts/home/hp-sc-our-destinations/hp-sc-our-destinations.component';
 import { HpScReasonsComponent } from '../../layouts/home/hp-sc-reasons/hp-sc-reasons.component';
@@ -29,7 +28,6 @@ import { MenuAnchor } from '../../components/top-navbar/top-navbar.component';
     HpScPartnersComponent,
     HpScSocialComponent,
     FooterComponent,
-    RouterLink,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',

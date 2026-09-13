@@ -3,16 +3,35 @@
     <div class="agent-chat-avatar" aria-hidden="true"></div>
     <div class="agent-chat-title">
       <strong>Agente WorldHopp</strong>
-      <span class="status"><span class="dot"></span> en línea</span>
+      <span class="status"><span class="dot"></span> {{ statusLabel() }}</span>
     </div>
+    <button type="button" class="agent-chat-gear" (click)="showSettings.set(!showSettings())" [attr.aria-expanded]="showSettings()" aria-label="Ajustes del agente">⚙️</button>
     <button type="button" class="agent-chat-close" (click)="close()" aria-label="Cerrar chat">✕</button>
   </header>
+
+  @if (showSettings()) {
+    <div class="agent-chat-settings">
+      <label for="agent-gemini-key">Clave de Google AI Studio (Gemini)</label>
+      <input id="agent-gemini-key" type="password" autocomplete="off" placeholder="AIza… — se guarda solo en tu navegador" [value]="store.settings().apiKey" (input)="onKeyInput($event)" />
+      <p>
+        Consíguela gratis en <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer">aistudio.google.com/apikey</a>.
+        Sin clave sigo en modo guía; con ella activo ofertas, CV, emails y pagos.
+      </p>
+    </div>
+  }
 
   <div class="agent-chat-body" #scroller>
     @for (m of messages(); track $index) {
       <div class="msg" [ngClass]="m.from">
         <div class="bubble">
           <p>{{ m.text }}</p>
+          @if (m.steps?.length) {
+            <div class="steps">
+              @for (s of m.steps; track $index) {
+                <span class="step"><code>{{ s.tool }}</code> {{ s.detail }}</span>
+              }
+            </div>
+          }
           @if (m.actions?.length) {
             <div class="actions">
               @for (a of m.actions; track a.intent) {
