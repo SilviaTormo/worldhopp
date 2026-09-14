@@ -160,7 +160,7 @@ export class AgentEngine {
     history: { role: 'user' | 'agent'; text: string }[],
     settings: AgentSettings
   ): Promise<AgentReply> {
-    const model = settings.model || 'gemini-2.5-flash';
+    const model = settings.model || 'gemini-3.7-flash';
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`;
     const contents = [
       ...history.slice(-10).map((m) => ({

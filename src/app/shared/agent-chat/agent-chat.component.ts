@@ -139,8 +139,14 @@ export class AgentChatComponent implements OnInit, OnDestroy {
 
   readonly statusLabel = computed(() => (this.remoteReady() ? 'Gemini conectado' : 'modo guía'));
 
-  /** Curated Gemini models (Google AI Studio); a saved non-Gemini name is kept as an extra option. */
-  readonly geminiModels = ['gemini-2.5-flash', 'gemini-2.5-pro', 'gemini-2.5-flash-lite'];
+  /** Curated Gemini models (Google AI Studio); a saved non-listed name is kept as an extra option. */
+  readonly geminiModels = [
+    'gemini-3.7-flash',
+    'gemini-3.8-flash',
+    'gemini-3.6-flash',
+    'gemini-3.5-flash-lite',
+    'gemini-3.1-pro-preview',
+  ];
 
   onModelChange(event: Event): void {
     this.store.updateSettings({ model: (event.target as HTMLSelectElement).value });
@@ -249,12 +255,13 @@ export class AgentChatComponent implements OnInit, OnDestroy {
   openPanel(): void {
     if (!this.open()) {
       // The ball is the agent's home: prefer Gemini and make sure the saved
-      // model actually belongs to it (older builds saved 'gpt-4o-mini').
+      // model actually belongs to it (older builds saved 'gpt-4o-mini' or a
+      // retired gemini-2.x model).
       const s = this.store.settings();
-      if (s.engine !== 'gemini' || !/^gemini/i.test(s.model)) {
+      if (s.engine !== 'gemini' || !/^gemini-3/i.test(s.model)) {
         this.store.updateSettings({
           engine: 'gemini',
-          model: /^gemini/i.test(s.model) ? s.model : 'gemini-2.5-flash',
+          model: /^gemini-3/i.test(s.model) ? s.model : 'gemini-3.7-flash',
         });
       }
       this.open.set(true);

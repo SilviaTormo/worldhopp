@@ -59,13 +59,16 @@ const DEFAULT_SETTINGS: AgentSettings = {
 export const ENGINE_DEFAULTS: Record<AgentSettings['engine'], Pick<AgentSettings, 'baseUrl' | 'model'>> = {
   mock: { baseUrl: '', model: '' },
   'openai-compat': { baseUrl: 'https://api.openai.com/v1', model: 'gpt-4o-mini' },
-  gemini: { baseUrl: '', model: 'gemini-2.5-flash' },
+  gemini: { baseUrl: '', model: 'gemini-3.7-flash' },
 };
 
-/** Fixes stale combos persisted by older versions (e.g. Gemini engine carrying an OpenAI model name, which makes Google return 404). */
+/** Fixes stale combos persisted by older versions (e.g. Gemini engine carrying an OpenAI model name, which makes Google return 404, or a retired gemini-2.x model). */
 function normalizeSettings(s: AgentSettings): AgentSettings {
-  if (s.engine === 'gemini' && !/^gemini/i.test(s.model)) {
-    return { ...s, model: ENGINE_DEFAULTS.gemini.model };
+  if (s.engine === 'gemini') {
+    // Non-Gemini names break the API; gemini-2.x is legacy — both reset to the current default.
+    if (!/^gemini/i.test(s.model) || /^gemini-[12]\./i.test(s.model)) {
+      return { ...s, model: ENGINE_DEFAULTS.gemini.model };
+    }
   }
   return s;
 }
