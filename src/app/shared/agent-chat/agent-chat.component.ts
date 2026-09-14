@@ -20,6 +20,10 @@ import { AgentEngine, AgentStep } from '../job-agent/agent-engine';
 import { JobAgentStore } from '../job-agent/job-agent.store';
 import { scrollToTarget } from '../scroll-to';
 
+const STORAGE_KEY = 'worldhopp.agent-chat.v1';
+/** Cap so the stored transcript never grows unbounded. */
+const MAX_HISTORY = 60;
+
 interface ChatAction {
   label: string;
   intent: string;
@@ -32,6 +36,61 @@ interface ChatMessage {
   /** Tool steps reported by the agent engine (chips under the bubble). */
   steps?: AgentStep[];
   time: string;
+}
+
+/**
+ * Restores the saved transcript so the conversation survives page reloads.
+ * Malformed or partial entries are dropped instead of crashing the chat.
+ */
+function loadMessages(): ChatMessage[] {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) {
+      return [];
+    }
+    const parsed: unknown = JSON.parse(raw);
+    if (!Array.isArray(parsed)) {
+      return [];
+    }
+    const msgs: ChatMessage[] = [];
+    for (const m of parsed) {
+      if (!m || typeof m !== 'object') {
+        continue;
+      }
+      const rec = m as Record<string, unknown>;
+      if ((rec['from'] !== 'user' && rec['from'] !== 'agent') || typeof rec['text'] !== 'string') {
+        continue;
+      }
+      msgs.push({
+        from: rec['from'],
+        text: rec['text'],
+        time: typeof rec['time'] === 'string' ? rec['time'] : '',
+        steps: Array.isArray(rec['steps'])
+          ? rec['steps'].filter(
+              (s): s is AgentStep =>
+                !!s && typeof s === 'object' && typeof (s as AgentStep).tool === 'string' && typeof (s as AgentStep).detail === 'string'
+            )
+          : undefined,
+        actions: Array.isArray(rec['actions'])
+          ? rec['actions'].filter(
+              (a): a is ChatAction =>
+                !!a && typeof a === 'object' && typeof (a as ChatAction).label === 'string' && typeof (a as ChatAction).intent === 'string'
+            )
+          : undefined,
+      });
+    }
+    return msgs.slice(-MAX_HISTORY);
+  } catch {
+    return [];
+  }
+}
+
+function persistMessages(msgs: ChatMessage[]): void {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(msgs.slice(-MAX_HISTORY)));
+  } catch {
+    // Storage unavailable (private mode / quota) — the chat keeps working in memory.
+  }
 }
 
 /**
@@ -62,9 +121,11 @@ export class AgentChatComponent implements OnInit, OnDestroy {
   @ViewChild('chatInput') private chatInput?: ElementRef<HTMLInputElement>;
 
   readonly open = signal(false);
-  readonly messages = signal<ChatMessage[]>([]);
+  readonly messages = signal<ChatMessage[]>(loadMessages());
   readonly thinking = signal(false);
   readonly showSettings = signal(false);
+  /** Armed state of the 🧹 clear button (two-step confirm). */
+  readonly clearArm = signal(false);
   /** Result of the ⚙️ "Comprobar clave" sanity check (Google ListModels). */
   readonly keyCheck = signal<{ state: 'idle' | 'checking' | 'ok' | 'error'; models?: string[]; error?: string }>({
     state: 'idle',
@@ -123,8 +184,13 @@ export class AgentChatComponent implements OnInit, OnDestroy {
   private typingTimer?: ReturnType<typeof setTimeout>;
   private typingDelay = 0;
 
-  /** The floating ball toggles the shared service; this effect opens/closes the panel. */
   constructor() {
+    // Persist the transcript so the conversation survives page reloads.
+    effect(() => {
+      const msgs = this.messages();
+      untracked(() => persistMessages(msgs));
+    });
+    // The floating ball toggles the shared service; this effect opens/closes the panel.
     effect(() => {
       const shouldBeOpen = this.ui.chatOpen();
       untracked(() => (shouldBeOpen ? this.openPanel() : this.close()));
@@ -152,6 +218,34 @@ export class AgentChatComponent implements OnInit, OnDestroy {
     this.open() ? this.close() : this.openPanel();
   }
 
+  /** First message for a fresh conversation (no saved history). */
+  private greeting(): { text: string; actions: ChatAction[] } {
+    return {
+      text: this.remoteReady()
+        ? '¡Hopp! 🦗 Agente de WorldHopp en línea con Gemini. Pregúntame lo que quieras: te guío por la web, busco ofertas y llevo tu candidatura de principio a fin.'
+        : '¡Hopp! 🦗 Soy el agente de WorldHopp. Te guío por la página y resuelvo tus dudas. Conecta Gemini en ⚙️ para activar mi modo completo (ofertas, CV, emails, pagos).',
+      actions: [
+        { label: '🧭 Ver destinos', intent: 'destinos' },
+        { label: '✉️ Ir a contacto', intent: 'contacto' },
+        { label: '❓ ¿Qué es WorldHopp?', intent: 'que es worldhopp' },
+      ],
+    };
+  }
+
+  /** Two-step 🧹: first click arms it, a second click within 3s wipes the saved transcript. */
+  clearChat(): void {
+    if (!this.clearArm()) {
+      this.clearArm.set(true);
+      setTimeout(() => this.clearArm.set(false), 3000);
+      return;
+    }
+    this.clearArm.set(false);
+    this.showSettings.set(false);
+    this.messages.set([]);
+    const g = this.greeting();
+    this.pushAgent(g.text, g.actions);
+  }
+
   openPanel(): void {
     if (!this.open()) {
       // The ball is the agent's home: prefer Gemini and make sure the saved
@@ -166,16 +260,8 @@ export class AgentChatComponent implements OnInit, OnDestroy {
       this.open.set(true);
       this.ui.setChatOpen(true);
       if (this.messages().length === 0) {
-        this.pushAgent(
-          this.remoteReady()
-            ? '¡Hopp! 🦗 Agente de WorldHopp en línea con Gemini. Pregúntame lo que quieras: te guío por la web, busco ofertas y llevo tu candidatura de principio a fin.'
-            : '¡Hopp! 🦗 Soy el agente de WorldHopp. Te guío por la página y resuelvo tus dudas. Conecta Gemini en ⚙️ para activar mi modo completo (ofertas, CV, emails, pagos).',
-          [
-            { label: '🧭 Ver destinos', intent: 'destinos' },
-            { label: '✉️ Ir a contacto', intent: 'contacto' },
-            { label: '❓ ¿Qué es WorldHopp?', intent: 'que es worldhopp' },
-          ]
-        );
+        const g = this.greeting();
+        this.pushAgent(g.text, g.actions);
       }
       this.cdr.detectChanges();
       // Focus after the open transition so focus is visible.

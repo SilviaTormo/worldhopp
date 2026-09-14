@@ -6,6 +6,7 @@
       <span class="status"><span class="dot"></span> {{ statusLabel() }}</span>
     </div>
     <button type="button" class="agent-chat-gear" (click)="showSettings.set(!showSettings())" [attr.aria-expanded]="showSettings()" aria-label="Ajustes del agente">⚙️</button>
+    <button type="button" class="agent-chat-gear" [class.arm]="clearArm()" (click)="clearChat()" [attr.aria-label]="clearArm() ? 'Pulsa de nuevo para borrar la conversación' : 'Borrar conversación'">🧹</button>
     <button type="button" class="agent-chat-close" (click)="close()" aria-label="Cerrar chat">✕</button>
   </header>
 
