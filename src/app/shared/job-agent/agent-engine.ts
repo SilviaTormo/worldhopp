@@ -199,6 +199,41 @@ export class AgentEngine {
     return this.parseSteps(content);
   }
 
+  // ============ Key sanity check (Google ListModels) ============
+
+  /**
+   * Validates an AI Studio key by listing the models it can use.
+   * Returns only chat-capable models (generateContent), with the
+   * 'models/' prefix stripped so values match AgentSettings.model.
+   */
+  async listGeminiModels(apiKey: string): Promise<{ ok: boolean; models: string[]; error?: string }> {
+    try {
+      const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models', {
+        headers: { 'x-goog-api-key': apiKey },
+      });
+      if (!res.ok) {
+        let detail = `HTTP ${res.status}`;
+        try {
+          const err = await res.json();
+          if (err?.error?.message) detail = `HTTP ${res.status} — ${err.error.message}`;
+        } catch {
+          /* keep plain status */
+        }
+        return { ok: false, models: [], error: detail };
+      }
+      const data = await res.json();
+      const models: string[] = (data?.models ?? [])
+        .filter((m: { supportedGenerationMethods?: string[] }) =>
+          m.supportedGenerationMethods?.includes('generateContent')
+        )
+        .map((m: { name: string }) => m.name.replace(/^models\//, ''))
+        .sort();
+      return { ok: true, models };
+    } catch {
+      return { ok: false, models: [], error: 'sin conexión con Google' };
+    }
+  }
+
   // ============ Local mock brain ============
 
   private runLocal(raw: string): AgentReply {

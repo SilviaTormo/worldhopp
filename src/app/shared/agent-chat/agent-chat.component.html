@@ -22,6 +22,24 @@
           <option [value]="store.settings().model" selected>{{ store.settings().model }} (guardado)</option>
         }
       </select>
+      <button type="button" class="check-btn" (click)="checkKey()" [disabled]="keyCheck().state === 'checking' || !store.settings().apiKey.trim()">
+        @if (keyCheck().state === 'checking') {
+          Comprobando…
+        } @else {
+          🔍 Comprobar clave y ver modelos
+        }
+      </button>
+      @if (keyCheck().state === 'ok') {
+        <p class="check-ok">✅ Clave válida — {{ keyCheck().models!.length }} modelos disponibles. Toca uno para usarlo:</p>
+        <div class="model-chips">
+          @for (m of keyCheck().models; track m) {
+            <button type="button" [class.current]="m === store.settings().model" (click)="pickModel(m)">{{ m }}</button>
+          }
+        </div>
+      }
+      @if (keyCheck().state === 'error') {
+        <p class="check-error">⚠️ {{ keyCheck().error }}</p>
+      }
       <p>
         Consíguela gratis en <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer">aistudio.google.com/apikey</a>.
         Sin clave sigo en modo guía; con ella activo ofertas, CV, emails y pagos.
