@@ -96,6 +96,11 @@
   background: rgba(255, 255, 255, 0.15);
 }
 
+/* Armed 🧹: red to signal the next tap really deletes. */
+.agent-chat-gear.arm {
+  background: #dc2626;
+}
+
 .agent-chat-close {
   border: none;
   background: transparent;
