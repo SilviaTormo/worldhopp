@@ -65,6 +65,10 @@ export class AgentChatComponent implements OnInit, OnDestroy {
   readonly messages = signal<ChatMessage[]>([]);
   readonly thinking = signal(false);
   readonly showSettings = signal(false);
+  /** Result of the ⚙️ "Comprobar clave" sanity check (Google ListModels). */
+  readonly keyCheck = signal<{ state: 'idle' | 'checking' | 'ok' | 'error'; models?: string[]; error?: string }>({
+    state: 'idle',
+  });
 
   /** Gemini is active when it is the chosen engine and a key is present. */
   readonly remoteReady = computed(() => {
@@ -79,6 +83,35 @@ export class AgentChatComponent implements OnInit, OnDestroy {
 
   onModelChange(event: Event): void {
     this.store.updateSettings({ model: (event.target as HTMLSelectElement).value });
+    this.keyCheck.set({ state: 'idle' });
+  }
+
+  /** Calls Google's ListModels with the pasted key to prove it works and list usable models. */
+  async checkKey(): Promise<void> {
+    const apiKey = this.store.settings().apiKey.trim();
+    if (!apiKey || this.keyCheck().state === 'checking') {
+      return;
+    }
+    this.keyCheck.set({ state: 'checking' });
+    this.cdr.detectChanges();
+    const result = await this.engine.listGeminiModels(apiKey);
+    this.zone.run(() => {
+      this.keyCheck.set(
+        result.ok
+          ? { state: 'ok', models: result.models }
+          : { state: 'error', error: result.error }
+      );
+      this.cdr.detectChanges();
+    });
+  }
+
+  /** Picks a model from the sanity-check chips (list stays open so you can compare). */
+  pickModel(model: string): void {
+    this.store.updateSettings({ model });
+    const check = this.keyCheck();
+    if (check.state === 'ok') {
+      this.keyCheck.set({ ...check });
+    }
   }
 
   readonly quickActions: ChatAction[] = [
@@ -163,6 +196,9 @@ export class AgentChatComponent implements OnInit, OnDestroy {
   onKeyInput(event: Event): void {
     const value = (event.target as HTMLInputElement).value.trim();
     this.store.updateSettings({ apiKey: value });
+    if (this.keyCheck().state !== 'checking') {
+      this.keyCheck.set({ state: 'idle' });
+    }
   }
 
   sendMessage(): void {
