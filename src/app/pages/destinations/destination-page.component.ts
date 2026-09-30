@@ -22,29 +22,26 @@ import { getDestination } from './destination.data';
 
         <section class="hero">
           <div class="hero-scene" aria-hidden="true">
-            <img class="scene-img" [src]="d.heroImage" [alt]="'Ilustración de ' + d.name" loading="eager" />
             @if (d.animatedScene) {
-              <div class="cable"></div>
-              <div class="car car-a">
-                <svg viewBox="0 0 64 54" width="64" height="54">
-                  <path d="M32 0 L32 8" stroke="var(--accent)" stroke-width="3" />
-                  <rect x="30" y="6" width="4" height="6" rx="1" fill="#1d1c3c" />
-                  <rect x="8" y="12" width="48" height="34" rx="10" fill="#1d1c3c" />
-                  <rect x="13" y="17" width="24" height="14" rx="5" fill="#f7d13d" />
-                  <rect x="41" y="17" width="10" height="24" rx="4" fill="#e8674f" />
-                  <rect x="16" y="35" width="12" height="6" rx="3" fill="#ffffff" opacity=".85" />
-                </svg>
-              </div>
-              <div class="car car-b">
-                <svg viewBox="0 0 64 54" width="52" height="44">
-                  <path d="M32 0 L32 8" stroke="var(--accent)" stroke-width="3" />
-                  <rect x="30" y="6" width="4" height="6" rx="1" fill="#1d1c3c" />
-                  <rect x="8" y="12" width="48" height="34" rx="10" fill="#1d1c3c" />
-                  <rect x="13" y="17" width="24" height="14" rx="5" fill="#f7d13d" />
-                  <rect x="41" y="17" width="10" height="24" rx="4" fill="#e8674f" />
-                  <rect x="16" y="35" width="12" height="6" rx="3" fill="#ffffff" opacity=".85" />
-                </svg>
-              </div>
+              <svg class="scene-img scene-svg" viewBox="0 0 1070 850" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <!-- Both layers use the exact same supplied illustration. -->
+                  <path id="original-cabin" d="M364 92 C354 92 349 99 348 110 C337 109 329 115 328 125 C327 133 334 142 345 143 L327 205 L309 211 C289 211 274 224 274 240 L274 252 C264 256 263 267 270 271 L267 414 C266 429 274 435 285 437 L310 439 L309 445 L327 448 L335 439 L393 439 L405 448 L414 445 L415 437 L443 435 C452 433 455 426 455 415 L455 271 C465 267 460 256 452 255 L452 240 C452 226 436 214 419 211 L401 206 L382 142 C393 141 400 135 400 126 C400 117 391 111 381 110 C380 100 374 93 364 92 Z"/>
+                  <clipPath id="cabin-clip"><use href="#original-cabin"/></clipPath>
+                  <mask id="remove-static-cabin" maskUnits="userSpaceOnUse" x="0" y="0" width="1070" height="850">
+                    <rect width="1070" height="850" fill="white"/>
+                    <use href="#original-cabin" fill="black"/>
+                  </mask>
+                </defs>
+                <rect width="1070" height="850" fill="white"/>
+                <image [attr.href]="d.heroImage" width="1070" height="850" mask="url(#remove-static-cabin)"/>
+                <path d="M20 167 L1070 30" fill="none" stroke="#333" stroke-width="5"/>
+                <g class="original-cabin-moving" clip-path="url(#cabin-clip)">
+                  <image [attr.href]="d.heroImage" width="1070" height="850"/>
+                </g>
+              </svg>
+            } @else {
+              <img class="scene-img" [src]="d.heroImage" [alt]="'Ilustración de ' + d.name" loading="eager" />
             }
           </div>
 
@@ -111,10 +108,8 @@ import { getDestination } from './destination.data';
       .hero { position: relative; overflow: hidden; padding: 30px 6vw 60px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
       .hero-scene { position: absolute; inset: 0; pointer-events: none; }
       .scene-img { position: absolute; right: -2%; bottom: 0; height: 78%; max-height: 520px; opacity: 0.95; }
-      .cable { position: absolute; left: 0; right: 0; top: 18%; height: 2px; background: #1d1c3c; opacity: 0.5; }
-      .car { position: absolute; top: calc(18% - 44px); will-change: transform; filter: drop-shadow(0 4px 8px rgba(29,28,60,0.25)); }
-      .car-b { top: calc(18% - 36px); }
-      .car-b svg { transform: scaleX(-1); }
+      .scene-svg { width: auto; overflow: visible; }
+      .original-cabin-moving { will-change: transform; }
 
       .hero-copy { position: relative; max-width: 560px; padding-top: 40px; }
       .kicker { font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-size: 13px; }
@@ -150,8 +145,6 @@ import { getDestination } from './destination.data';
         .stats { grid-template-columns: repeat(2, 1fr); margin-top: -20px; }
         .photos { grid-template-columns: 1fr; }
         .photos img { height: 200px; }
-        .car { top: calc(18% - 34px); }
-        .car svg { width: 48px; height: 40px; }
       }
     `,
   ],
@@ -162,19 +155,18 @@ export class DestinationPageComponent implements AfterViewInit, OnDestroy {
 
   dest = computed(() => getDestination(this.route.snapshot.paramMap.get('slug') ?? ''));
 
-  // Cable-car ride: rAF-driven (CSS animations stay frozen for offscreen
-  // elements in some embedded browsers). Two cars cross in opposite dirs.
+  // Move the original cabin along the cable in the illustration's coordinates.
   private raf = 0;
   private last = 0;
-  private progress = [0.1, 0.62];
-  private readonly speeds = [1 / 26, 1 / 34];
+  private progress = 0;
   private running = false;
   private io?: IntersectionObserver;
-  private els: HTMLElement[] = [];
+  private cabin?: SVGGElement;
 
   ngAfterViewInit(): void {
     const d = this.dest();
-    if (!d?.animatedScene || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!d?.animatedScene) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     this.io = new IntersectionObserver((entries) => {
       const visible = entries.some((e) => e.isIntersecting);
       visible ? this.start() : this.stop();
@@ -189,8 +181,8 @@ export class DestinationPageComponent implements AfterViewInit, OnDestroy {
 
   private start(): void {
     if (this.running) return;
-    this.els = Array.from(this.host.nativeElement.querySelectorAll<HTMLElement>('.car'));
-    if (this.els.length === 0) return;
+    this.cabin = this.host.nativeElement.querySelector<SVGGElement>('.original-cabin-moving') ?? undefined;
+    if (!this.cabin) return;
     this.running = true;
     this.last = performance.now();
     this.raf = requestAnimationFrame(this.tick);
@@ -205,16 +197,11 @@ export class DestinationPageComponent implements AfterViewInit, OnDestroy {
     if (!this.running) return;
     const dt = Math.min(64, now - this.last) / 1000;
     this.last = now;
-    const els = this.els;
-    const w = this.host.nativeElement.clientWidth || window.innerWidth;
-    for (let i = 0; i < els.length; i++) {
-      this.progress[i] = (this.progress[i] + dt * this.speeds[i]) % 1;
-      const p = this.progress[i];
-      const span = w + 200;
-      const x = i === 0 ? -100 + p * span : w + 100 - p * span;
-      const bob = Math.sin(p * Math.PI * 4) * 3;
-      els[i].style.transform = `translate3d(${x.toFixed(1)}px, ${bob.toFixed(1)}px, 0)`;
-    }
+    this.progress = (this.progress + dt / 26) % 1;
+    // At rest the pulley is at x=364, y=119; the cable slopes -137 / 1050.
+    const x = this.progress * 1160 - 480;
+    const y = -x * 137 / 1050;
+    this.cabin?.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)})`);
     this.raf = requestAnimationFrame(this.tick);
   };
 }
